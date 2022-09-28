@@ -1,6 +1,6 @@
-import {createGolbalStyle} from "stled-components";
+import styled from "styled-components";
 
-export const GlobalStyle = createGolbalStyle`
+export const GlobalStyle = styled`
 :root {
     --background: #f0f2f5;
     --input-background: #e7e9ee;
