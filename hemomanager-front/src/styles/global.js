@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import {createGlobalStyle} from "styled-components";
 
-export const GlobalStyle = styled`
+export const GlobalStyle = createGlobalStyle`
 :root {
     --background: #f0f2f5;
     --input-background: #e7e9ee;
