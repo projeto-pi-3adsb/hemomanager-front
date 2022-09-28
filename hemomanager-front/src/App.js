@@ -4,14 +4,13 @@ import { Header } from './components/Header/Header';
 import { PerfilUsuario } from './components/PerfilUsuario';
 import { GlobalStyled } from './styles/global';
 
+import { Header } from "./components/Header/Header";
 
-function App() {
+export function App() {
   return (
     <>
-    <PerfilUsuario/>
-    <GlobalStyled/>
+      <Header />
+      <GlobalStyle />
     </>
   );
 }
-
-export default App;
