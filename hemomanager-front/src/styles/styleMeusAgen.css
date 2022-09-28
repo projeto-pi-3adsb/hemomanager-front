@@ -26,6 +26,10 @@
   .container strong{
     color: #ABABAB;
   }
+
+  .container .banner{
+    width: 100%;
+  }
   
 
   .container button {
