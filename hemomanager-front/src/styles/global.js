@@ -18,8 +18,10 @@ export const GlobalStyled = createGlobalStyle`
   --text-body: #969cb3;
   --shape: #ffffff;
   --green: #33cc95;
-  --black: #1c1c1c;
+  --black: #111111;
+  --gray-dark: #1c1c1c;
   --gray: #64676b;
+  --text-white:#E5E5E5;
 }
 *,
 *:before,
@@ -66,7 +68,6 @@ main {
   display: block;
 }
 
-
 ol,
 ul {
   list-style: none;
@@ -90,10 +91,12 @@ input {
   -webkit-appearance: none;
   border-radius: 0;
 }
+
 html,
 body {
   block-size: 100%;
 }
+
 body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
@@ -103,7 +106,7 @@ body {
 
 button{
   cursor: pointer;
-}
+}  
 
 [disabled]{
   opacity: 0.6;
