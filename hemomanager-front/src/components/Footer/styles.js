@@ -60,15 +60,16 @@ export const BreakLine = styled.div`
 `;
 
 export const MenuFooter = styled.div`
-
-  margin: auto;
+  margin: 0 ;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 
+
   img {
-    height: 15rem;
+    height: 10rem;
+    margin-bottom: 2.5rem;
   }
 
   div {
@@ -97,5 +98,29 @@ export const MenuFooter = styled.div`
     background: var(--background-button);
     width: 10rem;
     height: 48px;
+  }
+`;
+
+export const Reservados = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--gray);
+
+  img{
+    height: 3rem;
+    cursor: pointer;
+  }
+
+  span {
+   
+    &:nth-child(1) {
+      font-weight: 600;
+      cursor: pointer;
+    }
+    &:nth-child(3) {
+      font-weight: 600;
+      cursor: pointer;
+    }
   }
 `;

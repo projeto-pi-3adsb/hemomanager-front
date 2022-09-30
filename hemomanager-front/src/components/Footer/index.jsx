@@ -5,10 +5,12 @@ import {
   Contato,
   ContatoGroup,
   MenuFooter,
+  Reservados,
 } from "./styles";
 import emailIcon from "../../assets/email.svg";
 import telefoneIcon from "../../assets/telefone.svg";
 import logoImg from "../../assets/logotypes/logo-3.svg";
+import arrowImg from "../../assets/up-arrow.svg";
 
 export function Footer() {
   return (
@@ -39,6 +41,12 @@ export function Footer() {
         </div>
         <button>Doar agora</button>
       </MenuFooter>
+      <Reservados>
+        <span>@2022 HEMOMANAGER. Todos os direitos reservados</span>
+        <span>Política de privacidade</span>
+        <span>Cookies</span>
+        <img src={arrowImg} alt="" />
+      </Reservados>
     </Container>
   );
 }
