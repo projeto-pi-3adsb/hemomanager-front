@@ -6,13 +6,15 @@ import {
     Title,
     SubTitle,
     BoxButton,
-    Button
+    Button,
+    ListCard
 } from "./styles"
 
 import Maps from "../../../assets/maps.png"
 
 export function CardMeusAgend(props) {
     return (<>
+        <ListCard>
         <BoxCard>
         <BoxImg>
             <img src={Maps} id="mapa" />
@@ -31,5 +33,42 @@ export function CardMeusAgend(props) {
             </Button>
         </BoxButton>
         </BoxCard>
+        <BoxCard>
+        <BoxImg>
+            <img src={Maps} id="mapa" />
+        </BoxImg>
+        <BoxText>
+            <Title>
+                lalalaall
+            </Title>
+            <SubTitle>
+                dhdhdhd
+            </SubTitle>
+        </BoxText>
+        <BoxButton>
+            <Button>
+                dfgjfghjfg
+            </Button>
+        </BoxButton>
+        </BoxCard>
+        <BoxCard>
+        <BoxImg>
+            <img src={Maps} id="mapa" />
+        </BoxImg>
+        <BoxText>
+            <Title>
+                lalalaall
+            </Title>
+            <SubTitle>
+                dhdhdhd
+            </SubTitle>
+        </BoxText>
+        <BoxButton>
+            <Button>
+                dfgjfghjfg
+            </Button>
+        </BoxButton>
+        </BoxCard>
+        </ListCard>   
      </>)
 }

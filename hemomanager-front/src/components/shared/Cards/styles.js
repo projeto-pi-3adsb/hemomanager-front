@@ -52,3 +52,14 @@ width: 50%;
 align-self: end;
 
 `
+
+export const ListCard = styled.div`
+height : 70vh;
+width: 100%;
+display: flex;
+justify-content:space-evenly;
+margin-bottom: 100px;
+
+`
+
+
