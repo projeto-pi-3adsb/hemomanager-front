@@ -1,21 +1,35 @@
-import { Card } from 'primereact/card';
-import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
-import "primereact/resources/primereact.min.css";                  //core css
-import "primeicons/primeicons.css";  
-import "primeflex/primeflex.css";
+import React from "react";
+import {
+    BoxCard,
+    BoxImg,
+    BoxText,
+    Title,
+    SubTitle,
+    BoxButton,
+    Button
+} from "./styles"
 
-const header = <img alt="Card" src='../../assets/maps.png'/>;
-const footer = <span>
-    <button label="Save" icon="pi pi-check" style={{marginRight: '.25em'}}/>
-    <button label="Cancel" icon="pi pi-times" className="p-button-secondary"/>
-</span>;
+import Maps from "../../../assets/maps.png"
 
 export function CardMeusAgend(props) {
     return (<>
-    <div className='p-col'>
-        <Card footer={footer} header={header}>
-            Content
-        </Card>
-    </div>
+        <BoxCard>
+        <BoxImg>
+            <img src={Maps} id="mapa" />
+        </BoxImg>
+        <BoxText>
+            <Title>
+                lalalaall
+            </Title>
+            <SubTitle>
+                dhdhdhd
+            </SubTitle>
+        </BoxText>
+        <BoxButton>
+            <Button>
+                dfgjfghjfg
+            </Button>
+        </BoxButton>
+        </BoxCard>
      </>)
 }

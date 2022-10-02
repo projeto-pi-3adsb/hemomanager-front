@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { PerfilUsuario } from "./components/PerfilUsuario";
 import { MeusAgendamentos } from "./components/MeusAgendamentos";
-import { GlobalStyle } from "./styles/global";
+import { GlobalStyled } from "./styles/global";
 
 export function App() {
   return (
@@ -14,7 +14,7 @@ export function App() {
       <Route exact path="/" element={<PerfilUsuario />} />
       <Route exact path="/meus-agendamentos" element={<MeusAgendamentos />} />
     </Routes>
-      <GlobalStyle />
+      <GlobalStyled />
     </>
   );
 }
