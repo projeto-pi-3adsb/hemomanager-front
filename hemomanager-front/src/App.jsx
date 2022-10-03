@@ -1,12 +1,15 @@
 import React from "react";
-import { PerfilUsuario } from "./components/PerfilUsuario";
-import { Quiz } from "./components/Quiz";
+import { ButtonComeback } from "./components/ButtonComeback";
+import { HeaderComponent } from "./components/Header";
+
+
 import { GlobalStyled } from "./styles/global";
 
 export function App() {
   return (
     <>
-      <Quiz />
+      <HeaderComponent button={<ButtonComeback />} />
+      <GlobalStyled />
     </>
   );
 }
