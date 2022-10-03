@@ -1,11 +1,14 @@
 import React from "react";
-import { PerfilUsuario } from "./components/PerfilUsuario";
+import { ButtonComeback } from "./components/ButtonComeback";
+import { HeaderComponent } from "./components/Header";
+
+
 import { GlobalStyled } from "./styles/global";
 
 export function App() {
   return (
     <>
-      <PerfilUsuario />
+      <HeaderComponent button={<ButtonComeback />} />
       <GlobalStyled />
     </>
   );
