@@ -65,7 +65,6 @@ export const MenuFooter = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: red;
 
   img {
     height: 10rem;
@@ -114,7 +113,7 @@ export const Reservados = styled.div`
 
   span {
    
-    &:nth-child(1) {
+    &:nth-child(2) {
       font-weight: 600;
       cursor: pointer;
     }
