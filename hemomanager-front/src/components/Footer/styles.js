@@ -65,7 +65,7 @@ export const MenuFooter = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-
+  background: red;
 
   img {
     height: 10rem;
