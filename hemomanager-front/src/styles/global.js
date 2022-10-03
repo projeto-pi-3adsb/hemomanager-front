@@ -35,7 +35,7 @@ html {
     font-size: 93.75%; // = 15px if scrren equal 750px;
   }
   @media (max-inline-size: 750px) {
-    font-size: 87.5%; // 14px if scrren equal 750px;
+    font-size: 87.5%; // = 14px if scrren equal 750px;
   }
 }
 
