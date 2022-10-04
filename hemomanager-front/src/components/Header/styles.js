@@ -12,6 +12,7 @@ export const Header = styled.header`
   font-family: "Farro", sans-serif;
  
   ul {
+    
     display: flex;
     align-items: center;
     gap: 3rem;

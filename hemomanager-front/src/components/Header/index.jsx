@@ -6,7 +6,7 @@ import logo from "../../assets/logotypes/logo-2.png";
 export function HeaderComponent(props) {
   return (
     <Header>
-      
+      {props.button}
       <ul>
         <img src={logo} alt="" />
         <li>Home</li>
