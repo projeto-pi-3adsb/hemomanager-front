@@ -5,6 +5,7 @@ import {
     BoxText,
     Title,
     SubTitle,
+    Description,
     BoxButton,
     Button,
     ListCard
@@ -21,15 +22,20 @@ export function CardMeusAgend(props) {
         </BoxImg>
         <BoxText>
             <Title>
-                lalalaall
+                HEMOCENTRO FLOR DO CAMPO
             </Title>
             <SubTitle>
-                dhdhdhd
+                SÃO PAULO - SP,  Rua Haddock Lobo 565, Vila Brasilândia
             </SubTitle>
+            <Description>
+                asdfghhgfdsadj
+                asdfghgfdsaasd
+                asdfggbfvdcsxs
+            </Description>
         </BoxText>
         <BoxButton>
             <Button>
-                dfgjfghjfg
+                CANCELAR AGENDAMENTO
             </Button>
         </BoxButton>
         </BoxCard>
@@ -39,15 +45,20 @@ export function CardMeusAgend(props) {
         </BoxImg>
         <BoxText>
             <Title>
-                lalalaall
+                HEMOCENTRO FLOR DO CAMPO
             </Title>
             <SubTitle>
-                dhdhdhd
+                SÃO PAULO - SP,  Rua Haddock Lobo 565, Vila Brasilândia
             </SubTitle>
+            <Description>
+                asdfghhgfdsadj
+                asdfghgfdsaasd
+                asdfggbfvdcsxs
+            </Description>
         </BoxText>
         <BoxButton>
             <Button>
-                dfgjfghjfg
+                CANCELAR AGENDAMENTO
             </Button>
         </BoxButton>
         </BoxCard>
@@ -57,15 +68,20 @@ export function CardMeusAgend(props) {
         </BoxImg>
         <BoxText>
             <Title>
-                lalalaall
+                HEMOCENTRO FLOR DO CAMPO
             </Title>
             <SubTitle>
-                dhdhdhd
+                SÃO PAULO - SP,  Rua Haddock Lobo 565, Vila Brasilândia
             </SubTitle>
+            <Description>
+                asdfghhgfdsadj
+                asdfghgfdsaasd
+                asdfggbfvdcsxs
+            </Description>
         </BoxText>
         <BoxButton>
             <Button>
-                dfgjfghjfg
+                CANCELAR AGENDAMENTO
             </Button>
         </BoxButton>
         </BoxCard>
