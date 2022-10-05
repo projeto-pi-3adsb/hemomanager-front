@@ -54,6 +54,7 @@ font-size: 0.8em;
 export const Description = styled.h3`
 color: #666666;
 font-size: 0.8em;
+font-weight: 300;
 
 ` 
 
@@ -62,7 +63,7 @@ height : 20%;
 width: 100%;
 display: flex;
 justify-content: end;
-align-items: flex-end;
+
 
 `
 
@@ -85,8 +86,58 @@ height : 70vh;
 width: 100%;
 display: flex;
 justify-content:space-evenly;
-margin-bottom: 100px;
+margin-bottom: 150px;
 
 `
+
+export const BoxTitulo = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+  margin-bottom:20px;
+`;
+
+export const MeusAgend = styled.h1 `
+margin-left: 80px;
+font-size: 20px;
+`
+
+export const BoxButtonAgend = styled.div `
+height : 60%;
+width: 10%;
+display: flex;
+margin-right:80px;
+`
+export const ButtonAgendEsquerda = styled.button `
+height : 100%;
+width: 50%;
+display: flex;
+background-color: #B83B25;
+margin-right: 10px;
+border-bottom-width: 0;
+border-top-width: 0;
+border-right-width: 0;
+border-left-width: 0;
+border-radius: 5px;
+
+`
+
+export const ButtonAgendDireita = styled.button `
+height : 100%;
+width: 50%;
+display: flex;
+background-color: #000000;
+border-bottom-width: 0;
+border-top-width: 0;
+border-right-width: 0;
+border-left-width: 0;
+border-radius: 5px;
+
+
+`
+
+
 
 
