@@ -30,7 +30,7 @@ export const Header = styled.header`
     height: 4rem;
   }
 
-  p{
+  p {
     margin-top: 1rem;
     font-size: 1.4rem;
     font-family: "Roboto", sans-serif;
@@ -43,5 +43,3 @@ export const Title = styled.strong`
   font-weight: 400;
   color: var(--black);
 `;
-
-
