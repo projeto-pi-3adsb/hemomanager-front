@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyled = createGlobalStyle`
     :root {
   --background: #FCFCFE;
-  --background-button: #B83B25; 
+  --background-button: #B83B25;
+  --red-blood: #ED1C24; 
   --background-border-bar: #CECECE;
   --background-option-bar: #F5F5F5;
   --cinza-claro: #ABABAB;
@@ -34,7 +35,7 @@ html {
     font-size: 93.75%; // = 15px if scrren equal 750px;
   }
   @media (max-inline-size: 750px) {
-    font-size: 87.5%; // 14px if scrren equal 750px;
+    font-size: 87.5%; // = 14px if scrren equal 750px;
   }
 }
 html,body,div,span,
