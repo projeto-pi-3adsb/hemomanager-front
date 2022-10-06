@@ -16,7 +16,6 @@ export const Contato = styled.div`
   justify-content: flex-start;
   width: 100%;
   flex-direction: column;
-
   h1 {
     font-size: 1.4rem;
     color: var(--text-white);
@@ -31,7 +30,6 @@ export const ContatoGroup = styled.div`
   height: 4rem;
   gap: 8.5rem;
   margin-top: 1.6rem;
-
   div {
     margin-top: 0.6rem;
     color: var(--background);
@@ -40,11 +38,9 @@ export const ContatoGroup = styled.div`
     align-items: center;
     font-size: 22px;
     font-weight: 500;
-
     &:nth-child(2) {
       text-decoration: underline;
     }
-
     img {
       height: 3.2rem;
     }
@@ -70,14 +66,12 @@ export const MenuFooter = styled.div`
     height: 10rem;
     margin-bottom: 2.5rem;
   }
-
   div {
     display: flex;
     justify-content: flex-end;
     align-content: center;
     height: 4rem;
     align-items: center;
-
     ul {
       display: flex;
       justify-content: center;
@@ -87,7 +81,6 @@ export const MenuFooter = styled.div`
       color: var(--text-white);
     }
   }
-
   button {
     border: none;
     color: var(--text-white);
@@ -105,12 +98,10 @@ export const Reservados = styled.div`
   align-items: center;
   justify-content: space-between;
   color: var(--gray);
-
   img{
     height: 3rem;
     cursor: pointer;
   }
-
   span {
    
     &:nth-child(2) {

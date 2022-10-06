@@ -30,7 +30,6 @@ export const GlobalStyled = createGlobalStyle`
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-
 html {
   @media (max-inline-size: 1080px) {
     font-size: 93.75%; // = 15px if scrren equal 750px;
@@ -39,7 +38,6 @@ html {
     font-size: 87.5%; // = 14px if scrren equal 750px;
   }
 }
-
 html,body,div,span,
 object,iframe,figure,h1,h2,h3,
 h4,h5,h6,p,blockquote,pre,
@@ -60,7 +58,6 @@ video {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: none;
 }
-
 footer,
 header,
 nav,
@@ -68,17 +65,14 @@ section,
 main {
   display: block;
 }
-
 ol,
 ul {
   list-style: none;
 }
-
 blockquote,
 q {
   quotes: none;
 }
-
 blockquote:before,
 blockquote:after,
 q:before,
@@ -86,36 +80,28 @@ q:after {
   content: "";
   content: none;
 }
-
-
 input {
   -webkit-appearance: none;
   border-radius: 0;
 }
-
 html,
 body {
   block-size: 100%;
 }
-
 body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   font-family: 'Roboto', sans-serif;
   line-height: 1;
 }
-
 button{
   cursor: pointer;
 }  
-
 [disabled]{
   opacity: 0.6;
   cursor: not-allowed;
 }
-
 h1, h2, h3, h4, h5, h6, strong {
   font-weight: 600;
 }
-
 `;

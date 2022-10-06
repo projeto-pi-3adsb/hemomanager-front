@@ -36,8 +36,8 @@ export const Perfil = styled.div`
 
 export const BarraOpcoes = styled.div`
   margin: 4rem auto;
-  width: 75vw;
-  height: 15vh;
+  width: 800px;
+  height: 100px;
   background-color: var(--background-option-bar);
   display: flex;
   align-items: center;
