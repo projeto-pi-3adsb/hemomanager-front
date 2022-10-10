@@ -1,6 +1,6 @@
-import React from "react";
+
 import { Button } from "./styles";
-import arrow from "../../assets/arrow-left.svg";
+import arrow from "../../../assets/arrow-left.svg";
 
 export function ButtonComeback(props) {
   return (

@@ -11,6 +11,7 @@ import emailIcon from "../../assets/email.svg";
 import telefoneIcon from "../../assets/telefone.svg";
 import logoImg from "../../assets/logotypes/logo-3.svg";
 import arrowImg from "../../assets/up-arrow.svg";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   return (
@@ -33,10 +34,10 @@ export function Footer() {
         <img src={logoImg} alt="" />
         <div>
           <ul>
-            <li>Homepage</li>
-            <li>Sobre nos</li>
-            <li>Noticias</li>
-            <li>Depoimentos</li>
+            <Link>Homepage</Link>
+            <Link>Sobre nós</Link>
+            <Link>Notícias</Link>
+            <Link>Depoimentos</Link>
           </ul>
         </div>
         <button>Doar agora</button>

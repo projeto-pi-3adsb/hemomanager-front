@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { PerfilUsuario } from "./components/PerfilUsuario";
 import { MeusAgendamentos } from "./components/MeusAgendamentos";
 
 import { QuizPage } from "./pages/QuizPage";
