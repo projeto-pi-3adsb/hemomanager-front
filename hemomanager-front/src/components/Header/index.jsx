@@ -3,11 +3,12 @@ import { BorderlessButton } from "../BorderlessButton";
 import { ButtonGroup, Header } from "./styles";
 import logo from "../../assets/logotypes/logo-2.png";
 import { ButtonComeback } from "../ButtonComeback";
+import { Link } from "react-router-dom";
 
 export function HeaderComponent(props) {
   return (
     <Header>
-      {props.button ? <ButtonComeback /> : false}
+      <Link to="/">{props.button ? <ButtonComeback /> : false}</Link>
       <ul>
         <img src={logo} alt="" />
         <li>Home</li>
