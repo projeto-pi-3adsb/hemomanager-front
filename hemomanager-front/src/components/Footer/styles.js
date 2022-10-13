@@ -8,6 +8,7 @@ export const Container = styled.footer`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+
 `;
 
 export const Contato = styled.div`
@@ -30,6 +31,7 @@ export const ContatoGroup = styled.div`
   height: 4rem;
   gap: 8.5rem;
   margin-top: 1.6rem;
+
   div {
     margin-top: 0.6rem;
     color: var(--background);
@@ -38,9 +40,11 @@ export const ContatoGroup = styled.div`
     align-items: center;
     font-size: 22px;
     font-weight: 500;
+    
     &:nth-child(2) {
       text-decoration: underline;
     }
+
     img {
       height: 3.2rem;
     }
@@ -56,7 +60,7 @@ export const BreakLine = styled.div`
 `;
 
 export const MenuFooter = styled.div`
-  margin: 0 ;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,13 +76,17 @@ export const MenuFooter = styled.div`
     align-content: center;
     height: 4rem;
     align-items: center;
+    
     ul {
       display: flex;
       justify-content: center;
       gap: 5rem;
       font-size: 1rem;
       font-weight: 500;
-      color: var(--text-white);
+      a {
+        color: var(--text-white);
+        text-decoration: none;
+      }
     }
   }
   button {
@@ -98,12 +106,11 @@ export const Reservados = styled.div`
   align-items: center;
   justify-content: space-between;
   color: var(--gray);
-  img{
+  img {
     height: 3rem;
     cursor: pointer;
   }
   span {
-   
     &:nth-child(2) {
       font-weight: 600;
       cursor: pointer;

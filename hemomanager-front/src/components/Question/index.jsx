@@ -15,7 +15,6 @@ export function Question(props) {
 
     props.setAnswer(false);
     props.setCounter(props.counter + 1);
-
   }
 
   return (
