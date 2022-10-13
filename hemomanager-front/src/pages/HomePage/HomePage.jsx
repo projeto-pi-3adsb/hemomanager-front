@@ -1,8 +1,10 @@
 import { BorderlessButton } from "../../components/BorderlessButton";
 import { Footer } from "../../components/Footer";
 import { HeaderComponent } from "../../components/Header";
-import { Container } from "./styles";
-import homeImg from "../../assets/home-img.png"
+import { Container, ContainerSecondary } from "./styles";
+import homeImg from "../../assets/home-img.png";
+import aboutImg from "../../assets/about-img.png";
+import bloodDrop from "../../assets/blood-drop.svg";
 
 export function HomePage() {
   return (
@@ -21,9 +23,30 @@ export function HomePage() {
           <BorderlessButton text="AGENDER AGORA" />
         </div>
         <div>
-            <img src={homeImg} alt="" />
+          <img src={homeImg} alt="" />
         </div>
       </Container>
+      <ContainerSecondary>
+        <div>
+          <img src={aboutImg} alt="" />
+        </div>
+        <div>
+          <h1>
+            <img src={bloodDrop} alt="" />
+            <span>SOBRE NÓS</span>
+          </h1>
+          <strong>
+            DOE SANGUE E SEJA O MOTIVO DO SORRISO DE MUITOS ROSTOS!
+          </strong>
+          <p>
+            Você pode escolher o Hemocentro de sua preferência, saber os
+            horários disponíveis, e a partir de então há o intermédio dos
+            Hemocentros que estão dispostas a receber a doação, e à você,
+            doador, que irá contribuir conosco.
+          </p>
+          <BorderlessButton text="SEJA UM DOADOR" />
+        </div>
+      </ContainerSecondary>
       <Footer />
     </>
   );
