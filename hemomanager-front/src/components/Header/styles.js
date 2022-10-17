@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderStyle = styled.header`
   display: flex;
   position: fixed;
-  z-index: 9;
+  z-index: 7;
   justify-content: space-around;
   align-items: center;
   height: 80px;
@@ -12,12 +12,16 @@ export const HeaderStyle = styled.header`
 
   font-size: 1.2rem;
   font-weight: bold;
-  font-family: "Francois One", sans-serif;
+  font-family: "Farro", sans-serif;
 
   ul {
     display: flex;
     align-items: center;
     gap: 3rem;
+
+    img{
+      z-index: 10;
+    }
 
     li {
       cursor: pointer;

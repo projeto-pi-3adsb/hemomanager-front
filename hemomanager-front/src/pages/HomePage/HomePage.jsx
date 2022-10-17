@@ -1,8 +1,9 @@
 import { BorderlessButton } from "../../components/BorderlessButton";
 import { Footer } from "../../components/Footer";
 import { HeaderComponent } from "../../components/Header";
-import { Container, ContainerSecondary } from "./styles";
+import { Container, About, FireImg, FireAbout } from "./styles";
 import homeImg from "../../assets/home-img.png";
+import fireImg from "../../assets/fire-img.png";
 import aboutImg from "../../assets/about-img.png";
 import bloodDrop from "../../assets/blood-drop.svg";
 
@@ -11,6 +12,9 @@ export function HomePage() {
     <>
       <HeaderComponent />
       <Container>
+        <FireImg>
+          <img className="fire" src={fireImg} alt="" />
+        </FireImg>
         <div>
           <strong>
             PARA QUEM DOA SÃO ALGUNS MINUTOS, PARA QUEM RECEBE É UMA VIDA
@@ -26,7 +30,7 @@ export function HomePage() {
           <img src={homeImg} alt="" />
         </div>
       </Container>
-      <ContainerSecondary>
+      <About>
         <div>
           <img src={aboutImg} alt="" />
         </div>
@@ -46,7 +50,8 @@ export function HomePage() {
           </p>
           <BorderlessButton text="SEJA UM DOADOR" />
         </div>
-      </ContainerSecondary>
+
+      </About>
       <Footer />
     </>
   );
