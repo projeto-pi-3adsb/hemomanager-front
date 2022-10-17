@@ -19,7 +19,12 @@ export const HeaderStyle = styled.header`
     align-items: center;
     gap: 3rem;
 
-    img{
+    a {
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    img {
       z-index: 10;
     }
 
@@ -27,8 +32,11 @@ export const HeaderStyle = styled.header`
       cursor: pointer;
     }
   }
-`;
 
+  .menuSelected {
+    color: var(--red);
+  }
+`;
 
 export const ButtonGroup = styled.div`
   display: flex;
