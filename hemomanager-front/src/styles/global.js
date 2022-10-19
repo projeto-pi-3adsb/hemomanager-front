@@ -31,6 +31,8 @@ export const GlobalStyled = createGlobalStyle`
   font-family: "Roboto", sans-serif;
 }
 html {
+  scroll-behavior: smooth;
+  transition: 0.4s;
   @media (max-inline-size: 1080px) {
     font-size: 93.75%; // = 15px if scrren equal 750px;
   }

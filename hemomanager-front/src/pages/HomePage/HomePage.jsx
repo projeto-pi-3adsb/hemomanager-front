@@ -1,17 +1,28 @@
-import { BorderlessButton } from "../../components/BorderlessButton";
 import { Footer } from "../../components/Footer";
 import { HeaderComponent } from "../../components/Header";
-import { Container, About, FireImg } from "./styles";
+import { Container, About, FireImg, Orientation } from "./styles";
 import homeImg from "../../assets/home-img.png";
 import fireImg from "../../assets/fire-img.png";
+import weight from "../../assets/weight.png";
+import orientationImg from "../../assets/orientation-img.png";
+import schaduleImg from "../../assets/schadule.png";
+import health from "../../assets/health.png";
+import spoon from "../../assets/spoon.png";
 import aboutImg from "../../assets/about-img.png";
+import comunication from "../../assets/comunication.png";
 import bloodDrop from "../../assets/blood-drop.svg";
+import { BorderlessButton } from "../../components/shared/BorderlessButton";
+import { Link } from "react-router-dom";
 
 export function HomePage() {
-
   return (
     <>
-      <HeaderComponent home="#home" about="#about" />
+      <HeaderComponent
+        home="#home"
+        about="#about"
+        orientation="#orientation"
+        contact="#contact"
+      />
       <Container id="home">
         <FireImg>
           <img className="fire" src={fireImg} alt="" />
@@ -52,7 +63,59 @@ export function HomePage() {
           <BorderlessButton text="SEJA UM DOADOR" />
         </div>
       </About>
-      <Footer />
+      <Orientation id="orientation">
+        <div>
+          <div className="content">
+            <h1>
+              <img src={bloodDrop} alt="" />
+              ORIENTAÇÕES
+            </h1>
+            <strong>PARA DOAR SANGUE VOCÊ DEVE...</strong>
+            <span>
+              <img src={comunication} alt="" />
+              <p>
+                Portar documento oficial e original de identidade com foto e
+                dentro do prazo de validade
+              </p>
+            </span>
+            <span>
+              <img src={schaduleImg} alt="" />
+              <p>
+                Ter entre 16 e 69 anos de idade* (sendo que a primeira doação
+                deve ter sido feita até 60 anos incompletos)
+              </p>
+            </span>
+            <span>
+              <img src={weight} alt="" />
+              <p>Pesar acima de 50 Kg</p>
+            </span>
+            <span>
+              <img src={health} alt="" />
+              <p>
+                Portar documento oficial e original de identidade com foto e
+                dentro do prazo de validade
+              </p>
+            </span>
+            <span>
+              <img src={spoon} alt="" />
+              <p>
+                Portar documento oficial e original de identidade com foto e
+                dentro do prazo de validade
+              </p>
+            </span>
+          </div>
+          <div className="button-group">
+            <BorderlessButton text="INFO DO GOVERNO" />
+            <Link to="/quiz">
+              <BorderlessButton text="RESPONDER QUIZ" />
+            </Link>
+          </div>
+        </div>
+        <div>
+          <img src={orientationImg} alt="" />
+        </div>
+      </Orientation>
+      <Footer id="#contact" />
     </>
   );
 }

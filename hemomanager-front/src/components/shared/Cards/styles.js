@@ -53,6 +53,13 @@ export const BoxButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;
+
+  align-items: center;
+
+  button{
+    width: 60%;
+    margin: 2rem;
+  }
 `;
 
 export const Button = styled.button`
@@ -101,11 +108,12 @@ export const ButtonAgendEsquerda = styled.button`
   display: flex;
   background-color: #b83b25;
   margin-right: 10px;
-  border-bottom-width: 0;
-  border-top-width: 0;
-  border-right-width: 0;
-  border-left-width: 0;
+  border: none;
   border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+
+  
 `;
 
 export const ButtonAgendDireita = styled.button`

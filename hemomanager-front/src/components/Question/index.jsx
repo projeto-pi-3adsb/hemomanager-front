@@ -1,18 +1,16 @@
 import React from "react";
-import { BorderlessButton } from "../BorderlessButton";
+import { BorderlessButton } from "../shared/BorderlessButton";
 import { Container } from "./styles";
 
 export function Question(props) {
 
 
   function doAnswerTrue() {
-
     props.setAnswer(true)
     props.setCounter(props.counter + 1);
   }
 
   function doAnswerFalse() {
-
     props.setAnswer(false);
     props.setCounter(props.counter + 1);
   }

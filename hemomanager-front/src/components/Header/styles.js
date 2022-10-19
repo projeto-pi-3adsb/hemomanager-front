@@ -22,6 +22,11 @@ export const HeaderStyle = styled.header`
     a {
       text-decoration: none;
       color: var(--black);
+
+      &:hover{
+        color: var(--red);
+        transition: 0.2s;
+      }
     }
 
     img {
@@ -33,9 +38,6 @@ export const HeaderStyle = styled.header`
     }
   }
 
-  .menuSelected {
-    color: var(--red);
-  }
 `;
 
 export const ButtonGroup = styled.div`

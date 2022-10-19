@@ -38,6 +38,7 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.strong`
+  margin-top: 4rem;
   font-family: "Francois One", sans-serif;
   font-size: 40px;
   font-weight: 400;
