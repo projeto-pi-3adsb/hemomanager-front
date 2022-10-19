@@ -115,7 +115,7 @@ export function HomePage() {
           <img src={orientationImg} alt="" />
         </div>
       </Orientation>
-      <Footer id="#contact" />
+      <Footer id="contact" start="#home" />
     </>
   );
 }

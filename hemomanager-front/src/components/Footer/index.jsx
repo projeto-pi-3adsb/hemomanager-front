@@ -46,7 +46,9 @@ export function Footer(props) {
         <span>@2022 HEMOMANAGER. Todos os direitos reservados</span>
         <span>Política de privacidade</span>
         <span>Cookies</span>
-        <img src={arrowImg} alt="" />
+        <a href={props.start}>
+          <img src={arrowImg} alt="" />
+        </a>
       </Reservados>
     </Container>
   );
