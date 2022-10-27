@@ -13,9 +13,9 @@ import logoImg from "../../assets/logotypes/logo-3.svg";
 import arrowImg from "../../assets/up-arrow.svg";
 import { Link } from "react-router-dom";
 
-export function Footer() {
+export function Footer(props) {
   return (
-    <Container>
+    <Container id={props.id}>
       <Contato>
         <h1>Entre em contato conosco através</h1>
         <ContatoGroup>
@@ -46,7 +46,9 @@ export function Footer() {
         <span>@2022 HEMOMANAGER. Todos os direitos reservados</span>
         <span>Política de privacidade</span>
         <span>Cookies</span>
-        <img src={arrowImg} alt="" />
+        <a href={props.start}>
+          <img src={arrowImg} alt="" />
+        </a>
       </Reservados>
     </Container>
   );

@@ -7,11 +7,11 @@ import {
   SubTitle,
   Description,
   BoxButton,
-  Button,
   ListCard,
 } from "./styles";
 
 import Maps from "../../../assets/maps.png";
+import { BorderlessButton } from "../BorderlessButton";
 
 export function CardMeusAgend(props) {
   return (
@@ -31,7 +31,7 @@ export function CardMeusAgend(props) {
             </Description>
           </BoxText>
           <BoxButton>
-            <Button>CANCELAR AGENDAMENTO</Button>
+            <BorderlessButton text="CANCELR MEU AGENDAMENTO" />
           </BoxButton>
         </BoxCard>
         <BoxCard>
@@ -48,7 +48,7 @@ export function CardMeusAgend(props) {
             </Description>
           </BoxText>
           <BoxButton>
-            <Button>CANCELAR AGENDAMENTO</Button>
+            <BorderlessButton text="CANCELR MEU AGENDAMENTO" />
           </BoxButton>
         </BoxCard>
         <BoxCard>
@@ -65,7 +65,7 @@ export function CardMeusAgend(props) {
             </Description>
           </BoxText>
           <BoxButton>
-            <Button>CANCELAR AGENDAMENTO</Button>
+            <BorderlessButton text="CANCELR MEU AGENDAMENTO" />
           </BoxButton>
         </BoxCard>
       </ListCard>

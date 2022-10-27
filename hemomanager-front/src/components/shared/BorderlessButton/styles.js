@@ -16,4 +16,11 @@ export const Button = styled.button`
   background: var(--background-button);
 
   color: var(--background);
+
+  &:hover {
+    color: var(--red);
+    transition: 0.2s;
+    background: var(--background);
+    border: 2px solid var(--red);
+  }
 `;

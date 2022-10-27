@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { BorderlessButton } from "../BorderlessButton";
+
 import { ButtonGroup, HeaderStyle } from "./styles";
 import logo from "../../assets/logotypes/logo-2.png";
-
+import { ButtonComeback } from "../shared/ButtonComeback";
 import { Link } from "react-router-dom";
-import { ButtonComeback } from "../Footer/ButtonComeback";
+import { BorderlessButton } from "../shared/BorderlessButton";
 
 export function HeaderComponent(props) {
   const [colorMenu, setColorMenu] = useState(false);
@@ -15,40 +15,16 @@ export function HeaderComponent(props) {
       <ul>
         <img src={logo} alt="" />
         <li>
-          <a
-            href={props.home}
-            className={colorMenu ? "menuSelected" : "#1111"}
-            onClick={() => setColorMenu(true)}
-          >
-            Home
-          </a>
+          <a href={props.home}>Home</a>
         </li>
         <li>
-          <a
-            href={props.about}
-            className={colorMenu ? "menuSelected" : "#1111"}
-            onClick={() => setColorMenu(true)}
-          >
-            Sobre nós
-          </a>
+          <a href={props.about}>Sobre nós</a>
         </li>
         <li>
-          <a
-            href={props.orientation}
-            className={colorMenu ? "menuSelected" : "#1111"}
-            onClick={() => setColorMenu(true)}
-          >
-            Orientações
-          </a>
+          <a href={props.orientation}>Orientações</a>
         </li>
         <li>
-          <a
-            href={props.question}
-            className={colorMenu ? "menuSelected" : "#1111"}
-            onClick={() => setColorMenu(true)}
-          >
-            Perguntas frequentes
-          </a>
+          <a href={props.contact}>Contato</a>
         </li>
       </ul>
       <ButtonGroup>
