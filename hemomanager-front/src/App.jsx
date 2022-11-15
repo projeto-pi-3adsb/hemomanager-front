@@ -6,6 +6,7 @@ import { QuizPage } from "./pages/QuizPage";
 
 import { GlobalStyled } from "./styles/global";
 import { HomePage } from "./pages/HomePage/HomePage";
+import { CadastroDoador } from "./pages/CadastroDoador/CadastroDoador";
 
 export function App() {
   return (
@@ -14,6 +15,7 @@ export function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/meus-agendamentos" element={<MeusAgendamentos />} />
         <Route exact path="/quiz" element={<QuizPage />} />
+        <Route exact path="/cadastro-doador" element={<CadastroDoador />} />
       </Routes>
       <GlobalStyled />
     </>
