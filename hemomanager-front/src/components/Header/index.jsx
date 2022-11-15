@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { ButtonGroup, HeaderStyle } from "./styles";
 import logo from "../../assets/logotypes/logo-2.png";
@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import { BorderlessButton } from "../shared/BorderlessButton";
 
 export function HeaderComponent(props) {
-  const [colorMenu, setColorMenu] = useState(false);
-
   return (
     <HeaderStyle>
       <Link to="/">{props.button ? <ButtonComeback /> : false}</Link>

@@ -7,7 +7,7 @@ export const GlobalStyled = createGlobalStyle`
   --red-blood: #ED1C24; 
   --background-border-bar: #CECECE;
   --background-option-bar: #F5F5F5;
-  --cinza-claro: #ABABAB;
+  --gray-light: #ABABAB;
   --input-background: #e7e9ee;
   --input-border: #d5d5d5;
   --red: #e52e4d;
