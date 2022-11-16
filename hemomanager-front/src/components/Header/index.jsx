@@ -1,4 +1,3 @@
-import React from "react";
 
 import { ButtonGroup, HeaderStyle } from "./styles";
 import logo from "../../assets/logotypes/logo-2.png";

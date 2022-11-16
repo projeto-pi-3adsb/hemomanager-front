@@ -12,7 +12,7 @@ export const Container = styled.div`
     height: 100vh;
     width: 25%;
     flex-direction: column;
-    padding-top: 4rem;
+    padding-top: 2rem;
 
     .avatar {
       width: 100%;
@@ -63,7 +63,7 @@ export const Container = styled.div`
           &:first-child {
             border-radius: 8px 8px 0 0;
 
-            span {
+            button {
               border-radius: 8px 0 0 0;
 
               &:last-child {
@@ -75,7 +75,7 @@ export const Container = styled.div`
           &:last-child {
             border-radius: 0 0px 8px 8px;
 
-            span {
+            button {
               border-radius: 0 0 0 8px;
 
               &:last-child {
@@ -84,20 +84,32 @@ export const Container = styled.div`
             }
           }
 
-          span {
+          button {
+            background: transparent;
             display: flex;
+            flex-direction: column;
             height: 100%;
             width: 100%;
             justify-content: center;
             align-items: center;
-            border: 1px solid var(--gray-light);
+            border: 0.5px solid var(--gray-light);
+            color: var(--text-body);
 
             &:hover {
               border-radius: 8px;
               height: 120%;
               width: 120%;
-              background: var(--background);
+              margin: -0.5rem;
+              background: var(--shape);
               z-index: 9;
+              border: none;
+              transition: 0.3s;
+
+              img {
+                background-color: var(--red);
+                padding: 0.5rem;
+                border-radius: 8px;
+              }
             }
 
             &:last-child:hover {
@@ -126,6 +138,24 @@ export const Container = styled.div`
       border: 1px solid var(--gray-light);
       border-radius: 8px;
       padding: 0.5rem;
+    }
+
+    .bar-chart {
+      background-color: var(--shape);
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+    }
+
+    .top-charts {
+      background-color: var(--shape);
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
     }
   }
 `;
