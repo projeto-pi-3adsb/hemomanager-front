@@ -1,10 +1,14 @@
-import { Container } from "./styles";
+import { Container, Exit, MainArea, Menu, Profile } from "./styles";
 
-import dashIcon from "../../assets/dash.svg";
-import calenderIcon from "../../assets/calender.svg";
-import buldingIcon from "../../assets/building.svg";
-import peoplesIcon from "../../assets/peoples.svg";
-
+import {
+  CalendarLtr28Filled,
+  Board28Filled,
+  ReceiptBag24Filled,
+  Wrench24Filled,
+  PeopleCommunity24Filled,
+  ArrowCircleLeft24Filled,
+  ArrowCircleRight24Filled,
+} from "@fluentui/react-icons";
 import {
   Chart,
   CategoryScale,
@@ -53,7 +57,6 @@ export function ProfilePage() {
   const data = {
     labels,
     datasets: [
-
       {
         label: "Quantidade de bolsas doadas",
         data: labels.map(() => Math.random(), Math.random()),
@@ -80,7 +83,7 @@ export function ProfilePage() {
 
   return (
     <Container>
-      <div className="profile">
+      <Profile>
         <div className="avatar">
           <img src="https://www.github.com/samuckqadev.png" alt="" />
           <h1>
@@ -88,51 +91,69 @@ export function ProfilePage() {
             <span>samuelt.tomimatu@cip-bancos.org.br</span>
           </h1>
         </div>
-        <div className="menu">
+        <Menu>
           <ul>
             <li>
               <button>
-                <img src={dashIcon} alt="" />
+                <i>
+                  <Board28Filled />
+                </i>
                 <span>Dashboard</span>
               </button>
               <button>
-                <img src={calenderIcon} alt="" />
+                <i>
+                  <CalendarLtr28Filled />
+                </i>
                 <span>Calendário</span>
               </button>
             </li>
             <li>
               <button>
-                <img src={calenderIcon} alt="" />
+                <i>
+                  <CalendarLtr28Filled />
+                </i>
                 <span>Disponibilizar horários</span>
               </button>
               <button>
-                <img src={buldingIcon} alt="" />
-                <span>Disponibilizar horários</span>
+                <i>
+                  <ReceiptBag24Filled />
+                </i>
+                <span>Estoque</span>
               </button>
             </li>
             <li>
               <button>
-                <img src={peoplesIcon} alt="" />
+                <PeopleCommunity24Filled />
                 <span>Funcionários</span>
               </button>
               <button>
-                <img src={buldingIcon} alt="" />
-                <span>Disponibilizar horários</span>
+                <i>
+                  <Wrench24Filled />
+                </i>
+                <span>Configurações</span>
               </button>
             </li>
           </ul>
-        </div>
-      </div>
-      <div className="main-area">
+        </Menu>
+        <Exit>
+          <button>
+            <span>Sair</span>
+            <i>
+              <ArrowCircleRight24Filled />
+            </i>
+          </button>
+        </Exit>
+      </Profile>
+      <MainArea>
         <div>
           <section className="top-charts">
-            <Line height="80%" options={options} data={data} />
+            <Line height={90} options={options} data={data} />
           </section>
           <section className="bar-chart">
-            <Bar height="80%" options={options} data={data2} />
+            <Bar height={90} options={options} data={data2} />
           </section>
         </div>
-      </div>
+      </MainArea>
     </Container>
   );
 }
