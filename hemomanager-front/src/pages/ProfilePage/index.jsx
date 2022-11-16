@@ -35,10 +35,11 @@ export function ProfilePage() {
       },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "",
       },
     },
   };
+
   const labels = [
     "January",
     "February",
@@ -52,15 +53,11 @@ export function ProfilePage() {
   const data = {
     labels,
     datasets: [
-      {
-        label: "Atividade",
-        data: labels.map(() => Math.random(), -Math.random()),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
+
       {
         label: "Quantidade de bolsas doadas",
-        data: labels.map(() => Math.random(), -Math.random()),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        data: labels.map(() => Math.random(), Math.random()),
+        backgroundColor: "#fd37139b",
       },
     ],
   };
@@ -129,10 +126,10 @@ export function ProfilePage() {
       <div className="main-area">
         <div>
           <section className="top-charts">
-            <Line height={50} options={options} data={data} />
+            <Line height="80%" options={options} data={data} />
           </section>
           <section className="bar-chart">
-            <Bar height={90} options={options} data={data} />
+            <Bar height="80%" options={options} data={data2} />
           </section>
         </div>
       </div>

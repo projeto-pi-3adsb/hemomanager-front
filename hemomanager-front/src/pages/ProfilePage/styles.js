@@ -25,10 +25,9 @@ export const Container = styled.div`
 
       img {
         margin: 0 auto;
-        height: 6rem;
-        border: 2px solid black;
+        height: 8rem;
         padding: 2px;
-        border-radius: 8px;
+        border-radius: 50%;
       }
 
       h1 {
@@ -38,6 +37,14 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        color: var(--gray);
+        font-size: 1.2rem;
+
+        span {
+          font-size: 1rem;
+          text-align: center;
+          font-weight: normal;
+        }
       }
     }
 
@@ -104,6 +111,7 @@ export const Container = styled.div`
               z-index: 9;
               border: none;
               transition: 0.3s;
+              box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
               img {
                 background-color: var(--red);
@@ -147,6 +155,12 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
       border-radius: 8px;
+      flex-wrap: wrap;
+      flex-direction: column;
+
+      canvas {
+        width: 80%;
+      }
     }
 
     .top-charts {
@@ -156,6 +170,10 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
       border-radius: 8px;
+      flex-wrap: wrap;
+      flex-direction: column;
     }
   }
+
+  
 `;
