@@ -14,7 +14,7 @@ export function RegisterModal({ open, close }) {
         className="react-modal-content"
       >
         <Container>
-          <h2>Novo Funcinário</h2>
+          <h2>Novo Funcionário</h2>
           <input type="text" placeholder="Nome Completo" />
           <input type="email" placeholder="Email" />
           <input type="number" placeholder="Celular" />
