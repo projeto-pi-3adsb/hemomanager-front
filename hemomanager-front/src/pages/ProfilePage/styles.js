@@ -15,13 +15,16 @@ export const MainArea = styled.div`
   display: flex;
   align-items: center;
 
-  div {
+  .content {
     height: 95%;
     width: 95%;
     border: 1px solid var(--gray-light);
     border-radius: 8px;
-    padding: 0.5rem;
-    margin: 0.5rem;
+    padding: 0 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: hidden;
+    
   }
 
   .bar-chart {

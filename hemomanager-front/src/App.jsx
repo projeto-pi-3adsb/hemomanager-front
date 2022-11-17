@@ -11,10 +11,10 @@ export function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/meus-agendamentos" element={<MeusAgendamentos />} />
-        <Route exact path="/quiz" element={<QuizPage />} />
-        <Route exact path="/dashboard" element={<ProfilePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/meus-agendamentos" element={<MeusAgendamentos />} />
+        <Route path="/quiz" element={<QuizPage />} />
+        <Route path="/dashboard" element={<ProfilePage />} />
       </Routes>
       <GlobalStyled />
     </>

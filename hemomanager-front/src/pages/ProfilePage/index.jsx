@@ -6,7 +6,6 @@ import {
   ReceiptBag24Filled,
   Wrench24Filled,
   PeopleCommunity24Filled,
-  ArrowCircleLeft24Filled,
   ArrowCircleRight24Filled,
 } from "@fluentui/react-icons";
 import {
@@ -18,19 +17,19 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar, Line } from "react-chartjs-2";
 
-const ChartJS = () =>
-  Chart.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+import { Dashboard } from "../../components/Dashboard";
+import { useState } from "react";
+import { Schaduler } from "../../components/Scheduler";
+import { EmployeeList } from "../../components/EmployeeList";
+
+Chart.register = () => (
+  CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
+);
 
 export function ProfilePage() {
+  let currentCompnent;
+
   const options = {
     responsive: true,
     plugins: {
@@ -81,6 +80,8 @@ export function ProfilePage() {
     ],
   };
 
+  const [component, setComponent] = useState();
+
   return (
     <Container>
       <Profile>
@@ -94,13 +95,24 @@ export function ProfilePage() {
         <Menu>
           <ul>
             <li>
-              <button>
+              <button
+                onClick={() =>
+                  setComponent(
+                    <Dashboard
+                      data={data}
+                      options={options}
+                      data2={data}
+                      options2={options}
+                    />
+                  )
+                }
+              >
                 <i>
                   <Board28Filled />
                 </i>
                 <span>Dashboard</span>
               </button>
-              <button>
+              <button onClick={() => setComponent(<Schaduler />)}>
                 <i>
                   <CalendarLtr28Filled />
                 </i>
@@ -108,7 +120,7 @@ export function ProfilePage() {
               </button>
             </li>
             <li>
-              <button>
+              <button onClick={() => setComponent(<Schaduler />)}>
                 <i>
                   <CalendarLtr28Filled />
                 </i>
@@ -122,7 +134,7 @@ export function ProfilePage() {
               </button>
             </li>
             <li>
-              <button>
+              <button onClick={() => setComponent(<EmployeeList />)}>
                 <PeopleCommunity24Filled />
                 <span>Funcionários</span>
               </button>
@@ -145,14 +157,7 @@ export function ProfilePage() {
         </Exit>
       </Profile>
       <MainArea>
-        <div>
-          <section className="top-charts">
-            <Line height={90} options={options} data={data} />
-          </section>
-          <section className="bar-chart">
-            <Bar height={90} options={options} data={data2} />
-          </section>
-        </div>
+        <div className="content">{component}</div>
       </MainArea>
     </Container>
   );
