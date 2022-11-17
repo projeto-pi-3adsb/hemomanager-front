@@ -7,11 +7,11 @@ const employes = [
   { name: "Samuel", email: "tomimatu@gmail.com", role: "Developer" },
 ];
 
-export function EmployeeList() {
+export function EmployeeList({ isOpen }) {
   return (
     <Container>
       <h1>
-        <BorderlessButton text="CADASTRAR FUNCIONARIO" />
+        <BorderlessButton method={isOpen } text="CADASTRAR FUNCIONARIO" />
       </h1>
       <table>
         <thead>
@@ -23,7 +23,7 @@ export function EmployeeList() {
         </thead>
         <tbody>
           {employes.map((employee) => (
-            <tr>
+            <tr key={employee.email}>
               <td>{employee.name}</td>
               <td>{employee.email}</td>
               <td>{employee.role}</td>

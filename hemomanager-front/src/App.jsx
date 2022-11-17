@@ -7,6 +7,7 @@ import { GlobalStyled } from "./styles/global";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { ProfilePage } from "./pages/ProfilePage";
 
+
 export function App() {
   return (
     <>

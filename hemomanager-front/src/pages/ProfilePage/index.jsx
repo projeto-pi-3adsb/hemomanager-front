@@ -22,13 +22,28 @@ import { Dashboard } from "../../components/Dashboard";
 import { useState } from "react";
 import { Schaduler } from "../../components/Scheduler";
 import { EmployeeList } from "../../components/EmployeeList";
+import { RegisterModal } from "../../components/RegisterModal";
+
+
 
 Chart.register = () => (
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
 );
 
 export function ProfilePage() {
-  let currentCompnent;
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const [component, setComponent] = useState(() => {});
+
+  function doIsOpenModalTrue() {
+    console.log("TO aberto");
+    setIsOpenModal(true);
+  }
+
+  function doIsOpenModalFalse() {
+    console.log("TO FECHADO");
+    setIsOpenModal(false);
+  }
 
   const options = {
     responsive: true,
@@ -79,8 +94,6 @@ export function ProfilePage() {
       },
     ],
   };
-
-  const [component, setComponent] = useState();
 
   return (
     <Container>
@@ -134,7 +147,11 @@ export function ProfilePage() {
               </button>
             </li>
             <li>
-              <button onClick={() => setComponent(<EmployeeList />)}>
+              <button
+                onClick={() =>
+                  setComponent(<EmployeeList isOpen={doIsOpenModalTrue} />)
+                }
+              >
                 <PeopleCommunity24Filled />
                 <span>Funcionários</span>
               </button>
@@ -159,6 +176,7 @@ export function ProfilePage() {
       <MainArea>
         <div className="content">{component}</div>
       </MainArea>
+      <RegisterModal close={doIsOpenModalFalse} open={isOpenModal} />
     </Container>
   );
 }
