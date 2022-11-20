@@ -5,7 +5,7 @@ export function Login() {
   return (
     <Container>
       <Input placeholder="Email" />
-      <Input placeholder="Senha *" />
+      <Input placeholder="Senha" />
     </Container>
   );
 }

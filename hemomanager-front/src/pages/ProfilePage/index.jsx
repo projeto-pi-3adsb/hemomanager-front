@@ -23,6 +23,7 @@ import { useState } from "react";
 import { Schaduler } from "../../components/Scheduler";
 import { EmployeeList } from "../../components/EmployeeList";
 import { RegisterModal } from "../../components/RegisterModal";
+import { DonorMenu } from "../../components/DonorMenu";
 
 Chart.register = () => (
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
@@ -93,58 +94,39 @@ export function ProfilePage() {
     ],
   };
 
+  const user1 = {
+    id: 1,
+    name: "John Doe",
+    email: "johndoe@example.com",
+    senha: "teste123",
+    birth: "2001-03-06",
+    gender: "male",
+    role: "administrator",
+  };
+
+  const user2 = {
+    id: 1,
+    name: "John Doe",
+    email: "johndoe@example.com",
+    senha: "teste123",
+    birth: "2001-03-06",
+    gender: "male",
+    role: "administrator",
+  };
+
   return (
     <Container>
       <Profile>
         <div className="avatar">
           <img src="https://www.github.com/samuckqadev.png" alt="" />
           <h1>
-            <strong>Samuckqa</strong>
-            <span>samuelt.tomimatu@cip-bancos.org.br</span>
+            <strong>{user1.name}</strong>
+            <span>{user1.email}</span>
           </h1>
         </div>
         <Menu>
           <ul>
-            <li>
-              <button onClick={() => setPage(1)}>
-                <i>
-                  <Board28Filled />
-                </i>
-                <span>Dashboard</span>
-              </button>
-              <button onClick={() => setPage(2)}>
-                <i>
-                  <CalendarLtr28Filled />
-                </i>
-                <span>Calendário</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setPage(3)}>
-                <i>
-                  <CalendarLtr28Filled />
-                </i>
-                <span>Disponibilizar horários</span>
-              </button>
-              <button>
-                <i>
-                  <ReceiptBag24Filled />
-                </i>
-                <span>Estoque</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setPage(4)}>
-                <PeopleCommunity24Filled />
-                <span>Funcionários</span>
-              </button>
-              <button>
-                <i>
-                  <Wrench24Filled />
-                </i>
-                <span>Configurações</span>
-              </button>
-            </li>
+            <DonorMenu method1={()=> setPage(2)} method2={()=> setPage(1)}/>
           </ul>
         </Menu>
         <Exit>
@@ -164,7 +146,6 @@ export function ProfilePage() {
             ""
           )}
           {page === 2 ? <Schaduler /> : ""}
-          {page === 3 ? <Schaduler /> : ""}
           {page === 4 ? <EmployeeList isOpen={doIsOpenModalTrue} /> : ""}
         </div>
       </MainArea>

@@ -108,10 +108,10 @@ export const Menu = styled.div`
     height: 80%;
     display: flex;
     justify-content: center;
+    background: red;
+  
 
-    display: flex;
     flex-direction: column;
-    padding: 1rem;
 
     i {
       font-size: 2rem;
