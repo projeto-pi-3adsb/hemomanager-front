@@ -1,10 +1,12 @@
 import { ButtonGroup, HeaderStyle } from "./styles";
 import logo from "../../assets/logotypes/logo-2.png";
 import { ButtonComeback } from "../shared/ButtonComeback";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BorderlessButton } from "../shared/BorderlessButton";
 
 export function HeaderComponent(props) {
+  const navigate = useNavigate();
+
   return (
     <HeaderStyle>
       <Link to="/">{props.button ? <ButtonComeback /> : false}</Link>
@@ -24,8 +26,18 @@ export function HeaderComponent(props) {
         </li>
       </ul>
       <ButtonGroup>
-        <BorderlessButton text="Cadastro" />
-        <BorderlessButton text="Login" />
+        <BorderlessButton
+          method={() => {
+            navigate("/area-usuario");
+          }}
+          text="Cadastro"
+        />
+        <BorderlessButton
+          method={() => {
+            navigate("/area-usuario");
+          }}
+          text="Login"
+        />
       </ButtonGroup>
     </HeaderStyle>
   );

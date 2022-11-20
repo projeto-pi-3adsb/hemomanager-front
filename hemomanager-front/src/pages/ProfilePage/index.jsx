@@ -24,8 +24,6 @@ import { Schaduler } from "../../components/Scheduler";
 import { EmployeeList } from "../../components/EmployeeList";
 import { RegisterModal } from "../../components/RegisterModal";
 
-
-
 Chart.register = () => (
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
 );
@@ -33,7 +31,7 @@ Chart.register = () => (
 export function ProfilePage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const [component, setComponent] = useState(() => {});
+  const [page, setPage] = useState(1);
 
   function doIsOpenModalTrue() {
     console.log("TO aberto");
@@ -108,24 +106,13 @@ export function ProfilePage() {
         <Menu>
           <ul>
             <li>
-              <button
-                onClick={() =>
-                  setComponent(
-                    <Dashboard
-                      data={data}
-                      options={options}
-                      data2={data}
-                      options2={options}
-                    />
-                  )
-                }
-              >
+              <button onClick={() => setPage(1)}>
                 <i>
                   <Board28Filled />
                 </i>
                 <span>Dashboard</span>
               </button>
-              <button onClick={() => setComponent(<Schaduler />)}>
+              <button onClick={() => setPage(2)}>
                 <i>
                   <CalendarLtr28Filled />
                 </i>
@@ -133,7 +120,7 @@ export function ProfilePage() {
               </button>
             </li>
             <li>
-              <button onClick={() => setComponent(<Schaduler />)}>
+              <button onClick={() => setPage(3)}>
                 <i>
                   <CalendarLtr28Filled />
                 </i>
@@ -147,11 +134,7 @@ export function ProfilePage() {
               </button>
             </li>
             <li>
-              <button
-                onClick={() =>
-                  setComponent(<EmployeeList isOpen={doIsOpenModalTrue} />)
-                }
-              >
+              <button onClick={() => setPage(4)}>
                 <PeopleCommunity24Filled />
                 <span>Funcionários</span>
               </button>
@@ -174,7 +157,16 @@ export function ProfilePage() {
         </Exit>
       </Profile>
       <MainArea>
-        <div className="content">{component}</div>
+        <div className="content">
+          {page === 1 ? (
+            <Dashboard data={data} data2={data2} options={options} />
+          ) : (
+            ""
+          )}
+          {page === 2 ? <Schaduler /> : ""}
+          {page === 3 ? <Schaduler /> : ""}
+          {page === 4 ? <EmployeeList isOpen={doIsOpenModalTrue} /> : ""}
+        </div>
       </MainArea>
       <RegisterModal close={doIsOpenModalFalse} open={isOpenModal} />
     </Container>

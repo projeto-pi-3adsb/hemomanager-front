@@ -12,9 +12,11 @@ import aboutImg from "../../assets/about-img.png";
 import comunication from "../../assets/comunication.png";
 import bloodDrop from "../../assets/blood-drop.svg";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function HomePage() {
+  const navigate = useNavigate();
+
   return (
     <>
       <HeaderComponent
@@ -24,9 +26,7 @@ export function HomePage() {
         contact="#contact"
       />
       <Container id="home">
-        <FireImg>
-          <img className="fire" src={fireImg} alt="" />
-        </FireImg>
+        <FireImg />
         <div>
           <strong>
             PARA QUEM DOA SÃO ALGUNS MINUTOS, PARA QUEM RECEBE É UMA VIDA
@@ -105,10 +105,18 @@ export function HomePage() {
             </span>
           </div>
           <div className="button-group">
-            <BorderlessButton text="INFO DO GOVERNO" />
-            <Link to="/quiz">
-              <BorderlessButton text="RESPONDER QUIZ" />
-            </Link>
+            <a
+              href="http://www.prosangue.sp.gov.br/artigos/requisitos_basicos_para_doacao.html"
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              <BorderlessButton text="INFO DO GOVERNO" />
+            </a>
+
+            <BorderlessButton
+              method={() => navigate("/quiz")}
+              text="RESPONDER QUIZ"
+            />
           </div>
         </div>
         <div>
