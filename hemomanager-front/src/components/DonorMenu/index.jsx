@@ -1,8 +1,4 @@
-import {
-  CalendarLtr28Filled,
-  PeopleCommunity24Filled,
-  Wrench24Filled,
-} from "@fluentui/react-icons";
+import { CalendarLtr28Filled, Wrench24Filled } from "@fluentui/react-icons";
 
 export function DonorMenu({ method1, method2 }) {
   return (
@@ -12,13 +8,13 @@ export function DonorMenu({ method1, method2 }) {
           <i>
             <CalendarLtr28Filled />
           </i>
-          <span>Configurações </span>
+          <span>Agendamentos</span>
         </button>
         <button onClick={method2}>
           <i>
             <Wrench24Filled />
           </i>
-          <span>Agendamentos</span>
+          <span>Configurações</span>
         </button>
       </li>
     </>

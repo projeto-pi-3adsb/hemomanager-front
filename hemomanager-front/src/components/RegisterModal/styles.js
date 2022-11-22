@@ -13,7 +13,7 @@ export const Container = styled.form`
     margin: 2rem auto;
   }
 
-  input {
+  select {
     inline-size: 100%;
     padding: 1rem;
     block-size: 4rem;
@@ -23,15 +23,12 @@ export const Container = styled.form`
     font-weight: 400;
     font-size: 1rem;
 
-    &:placeholder {
-      color: var(--text-title);
-    }
-    & + input {
-      margin-block-start: 1rem;
-    }
+    color: var(--text-title);
+    
 
     :focus {
-      border: none;
+      border: transparent;
+      color: var(--blue);
     }
   }
 

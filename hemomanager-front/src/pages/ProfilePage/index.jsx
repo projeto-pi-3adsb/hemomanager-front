@@ -1,11 +1,6 @@
 import { Container, Exit, MainArea, Menu, Profile } from "./styles";
 
 import {
-  CalendarLtr28Filled,
-  Board28Filled,
-  ReceiptBag24Filled,
-  Wrench24Filled,
-  PeopleCommunity24Filled,
   ArrowCircleRight24Filled,
 } from "@fluentui/react-icons";
 import {
@@ -24,8 +19,11 @@ import { Schaduler } from "../../components/Scheduler";
 import { EmployeeList } from "../../components/EmployeeList";
 import { RegisterModal } from "../../components/RegisterModal";
 import { DonorMenu } from "../../components/DonorMenu";
+import { ManagerMenu } from "../../components/ManagerMenu";
+import { UserSettings } from "../../components/UserSettings";
 
 Chart.register = () => (
+  // eslint-disable-next-line no-sequences
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
 );
 
@@ -101,7 +99,7 @@ export function ProfilePage() {
     senha: "teste123",
     birth: "2001-03-06",
     gender: "male",
-    role: "administrator",
+    role: "donor",
   };
 
   const user2 = {
@@ -125,8 +123,29 @@ export function ProfilePage() {
           </h1>
         </div>
         <Menu>
-          <ul>
-            <DonorMenu method1={()=> setPage(2)} method2={()=> setPage(1)}/>
+          <ul className={user1.role === "donkor" ? "user-menu" : ""}>
+
+            {user1.role === "donokr" ? (
+              <DonorMenu
+                method1={() => setPage(2)}
+                method2={() => setPage(6)}
+              />
+            ) : (
+              ""
+            )}
+
+            {user1.role === "donor" ? (
+              <ManagerMenu
+                method1={() => setPage(1)}
+                method2={() => setPage(2)}
+                method3={() => setPage(3)}
+                method4={() => setPage(4)}
+                method5={() => setPage(5)}
+                method6={() => setPage(6)}
+              />
+            ) : (
+              ""
+            )}
           </ul>
         </Menu>
         <Exit>
@@ -143,10 +162,11 @@ export function ProfilePage() {
           {page === 1 ? (
             <Dashboard data={data} data2={data2} options={options} />
           ) : (
-            ""
+            () => {}
           )}
           {page === 2 ? <Schaduler /> : ""}
-          {page === 4 ? <EmployeeList isOpen={doIsOpenModalTrue} /> : ""}
+          {page === 5 ? <EmployeeList isOpen={doIsOpenModalTrue} /> : ""}
+          {page === 6 ? <UserSettings /> : ""}
         </div>
       </MainArea>
       <RegisterModal close={doIsOpenModalFalse} open={isOpenModal} />

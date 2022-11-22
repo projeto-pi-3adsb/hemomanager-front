@@ -10,14 +10,12 @@ export const InputDefault = styled.input`
   font-weight: 400;
   font-size: 1rem;
 
-  &:placeholder {
-    color: var(--text-title);
-  }
+
   & + input {
     margin-block-start: 1rem;
   }
 
-  :focus {
+  &:focus-within {
     border: none;
   }
 `;

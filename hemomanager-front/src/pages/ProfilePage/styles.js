@@ -18,13 +18,13 @@ export const MainArea = styled.div`
   .content {
     height: 95%;
     width: 95%;
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--gray-light);
     border-radius: 8px;
     padding: 0 2rem;
-    flex-wrap: wrap;
     align-items: center;
     overflow: hidden;
-    
   }
 
   .bar-chart {
@@ -34,7 +34,6 @@ export const MainArea = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    flex-wrap: wrap;
     flex-direction: column;
 
     canvas {
@@ -42,9 +41,10 @@ export const MainArea = styled.div`
     }
   }
 
-  .top-charts {
+  .chart {
     background-color: var(--shape);
     height: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,25 +102,25 @@ export const Menu = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 3.5rem;
+  flex-direction: column;
+
 
   ul {
     width: 100%;
-    height: 80%;
-    display: flex;
+    height: 100%;
+    display: block;
     justify-content: center;
-    background: red;
-  
-
-    flex-direction: column;
 
     i {
       font-size: 2rem;
     }
 
     li {
+      margin: auto; 
       display: flex;
       justify-content: center;
-      align-items: center;
+      min-width: 90%;
+      
 
       &:first-child {
         border-radius: 8px 8px 0 0;
@@ -184,6 +184,44 @@ export const Menu = styled.div`
           width: 7rem;
           background: var(--background);
           z-index: 9;
+        }
+      }
+    }
+  }
+
+  .user-menu {
+    &:first-child {
+      border-radius: 8px 8px 0 0;
+
+      button {
+        border-radius: 8px 0 0 0;
+
+        &:hover {
+          border-radius: 8px;
+        }
+
+        &:first-child {
+          border-radius: 8px 0 0 8px;
+        }
+      }
+    }
+
+    &:last-child {
+      border-radius: 0 0px 8px 8px;
+
+      button {
+        border-radius: 8px 0 0 8px;
+
+        &:hover {
+          border-radius: 8px;
+        }
+
+        &:last-child {
+          border-radius: 0 8px 8px 0;
+
+          &:hover {
+            border-radius: 8px;
+          }
         }
       }
     }
