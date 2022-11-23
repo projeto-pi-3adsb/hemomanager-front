@@ -2,7 +2,6 @@ import { Footer } from "../../components/Footer";
 import { HeaderComponent } from "../../components/Header";
 import { Container, About, FireImg, Orientation } from "./styles";
 import homeImg from "../../assets/home-img.png";
-import fireImg from "../../assets/fire-img.png";
 import weight from "../../assets/weight.png";
 import orientationImg from "../../assets/orientation-img.png";
 import schaduleImg from "../../assets/schadule.png";
@@ -12,7 +11,7 @@ import aboutImg from "../../assets/about-img.png";
 import comunication from "../../assets/comunication.png";
 import bloodDrop from "../../assets/blood-drop.svg";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function HomePage() {
   const navigate = useNavigate();

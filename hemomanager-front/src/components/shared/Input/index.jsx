@@ -1,7 +1,14 @@
 import { InputDefault } from "./styles";
 
-export function Input({ type, placeholder, value, id }) {
+export function Input({ type, placeholder, value, id, onInput, name }) {
   return (
-    <InputDefault id={id} type={type} placeholder={placeholder} value={value} />
+    <InputDefault
+      name={name}
+      id={id}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onInput={onInput}
+    />
   );
 }

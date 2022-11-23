@@ -13,7 +13,7 @@ export function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/hemomanager-front" element={<HomePage />} />
         <Route path="/area-usuario" element={<LoginPage />} />
         <Route path="/agendamento" element={<MeusAgendamentos />} />
         <Route path="/quiz" element={<QuizPage />} />
