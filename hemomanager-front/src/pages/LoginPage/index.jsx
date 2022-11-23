@@ -8,6 +8,7 @@ import { ButtonComeback } from "../../components/shared/ButtonComeback";
 import { Container, Link, LoginArea, Welcome } from "../LoginPage/styles";
 import { RegisterHemocenter } from "../../components/RegisterHemocenter";
 import { RegisterDonor } from "../../components/RegisterDonor";
+import { api } from "../../api";
 
 export function LoginPage({ pageSelected }) {
   const [page, setPage] = useState(1 || pageSelected);
@@ -21,26 +22,55 @@ export function LoginPage({ pageSelected }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [zipNumber, setZipNumber] = useState(0);
+  const [qtty, setQtty] = useState(0);
+  const [number, setNumber] = useState(0);
   const [startOperation, setStartOperation] = useState(0);
-  const [endOperation, setEndtOperation] = useState(0);
+  const [endOperation, setEndOperation] = useState(0);
 
-  const hemocenter = {
-    name,
-    cnpj,
-    email,
-    password,
-    zipCode,
-    zipNumber,
-    startOperation,
-    endOperation,
-  };
 
-  function doSaveNewHemocenter(event) {
-    event.preventDefault();
+
+  function doSaveNewHemocenter() {
+
+
+    const hemocenter = {
+      name,
+      cnpj,
+      email,
+      password,
+      zipCode,
+      zipNumber,
+      startOperation,
+      endOperation,
+    };
+
+
+
+    console.log("hemocenter", hemocenter)
+
+    api.post("hemocenters/", hemocenter).then(() => {
+      setPage(2)
+    })
+      .catch((erro) => {
+        alert("deu erro", erro)
+      })
+    // .then(() => navigate("/dashboard"))
+    // .then(() => alert("A requisicao ta vindo"))
+    // .catch((err) => {
+    // console.error(err)
+    // })
   }
 
-  function doSaveNewDonor(event) {
-    event.preventDefault();
+  function doLogin(event) {
+    const user = {
+      email, password
+    }
+    api.post("hemocenters/login", user).then(() => {
+      setPage()
+    })
+      .catch((erro) => {
+        alert("deu erro", erro)
+      })
+
   }
 
   return (
@@ -48,7 +78,7 @@ export function LoginPage({ pageSelected }) {
       <Container>
         <Welcome>
           <header>
-            <ButtonComeback method={() => navigate(-1)} white />
+            <ButtonComeback doSomething={() => navigate(-1)} white />
           </header>
           <div>
             <ul>
@@ -90,17 +120,26 @@ export function LoginPage({ pageSelected }) {
           {page === 1 ? (
             user === 2 ? (
               <RegisterHemocenter
-                name={() => setName()}
-                email={() => setEmail()}
-                cnpj={() => setCnpj()}
-                password={() => setPassword()}
-                method={() => doSaveNewHemocenter}
+                setName={setName}
+                setEmail={setEmail}
+                setCnpj={setCnpj}
+                setZipNumber={setZipNumber}
+                setZipCode={setZipCode}
+                setPassword={setPassword}
+                setQtty={setQtty}
+                setStartOperation={setStartOperation}
+                setEndOperation={setEndOperation}
               />
             ) : (
-              <RegisterDonor method={() => doSaveNewDonor} />
+              <RegisterDonor
+                setName={setName}
+                setEmail={setEmail}
+                setCnpj={setCnpj}
+                setPassword={setPassword}
+              />
             )
           ) : (
-            <Login />
+            <Login    typeInputPassword="password" setEmail={setEmail} setPassword={setPassword} />
           )}
 
           {page === 2 ? (
@@ -114,10 +153,7 @@ export function LoginPage({ pageSelected }) {
           )}
           <section className={page === 2 ? "center" : ""}>
             <BorderlessButton
-              type="submit"
-              method={
-                doSaveNewHemocenter 
-              }
+              doSomething={page === 1 ? () => doSaveNewHemocenter() : () => doLogin()}
               text={page === 1 ? "CADASTRAR" : "LOGIN"}
             />
           </section>

@@ -27,13 +27,13 @@ export function HeaderComponent(props) {
       </ul>
       <ButtonGroup>
         <BorderlessButton
-          method={() => {
+          doSomething={() => {
             navigate("/area-usuario");
           }}
           text="Cadastro"
         />
         <BorderlessButton
-          method={() => {
+          doSomething={() => {
             navigate("/area-usuario");
           }}
           text="Login"

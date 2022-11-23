@@ -1,17 +1,17 @@
 import { Input } from "../shared/Input";
 import { Container } from "./styles";
 
-export function RegisterDonor({ method }) {
+export function RegisterDonor({ setName, setCpf, setEmail, setBirthDate, setPhone, setSex, setPassword, setConfirmPassword, method }) {
   return (
-    <Container onSubmit={method}>
-      <Input name="name" placeholder="Nome completo *" />
-      <Input name="cpf" placeholder="CPF *" />
-      <Input name="email" placeholder="Email *" />
-      <Input name="birthDate" type="date" placeholder="Nascimento *" />
-      <Input name="phone" placeholder="Celular" />
-      <Input name="password" placeholder="Senha *" />
-      <Input name="confirmPassword" placeholder="Confiramar senha *" />
-      <select>
+    <Container>
+      <Input doSomething={setName} nameInput="name" placeholderInput="Nome completo *" />
+      <Input doSomething={setCpf} nameInput="cpf" placeholderInput="CPF *" />
+      <Input doSomething={setEmail} nameInput="email" placeholderInput="Email *" />
+      <Input doSomething={setBirthDate} nameInput="birthDate" typeInput="date" placeholderInput="Nascimento *" />
+      <Input doSomething={setPhone} nameInput="phone" placeholderInput="Celular" />
+      <Input doSomething={setPassword} nameInput="password" placeholderInput="Senha *" />
+      <Input doSomething={setConfirmPassword} nameInput="confirmPassword" placeholderInput="Confiramar senha *" />
+      <select onChange={(e) => setSex(e.target.value)}>
         <option value="MALE">Masculino</option>
         <option value="FEMALE">Feminino</option>
       </select>
