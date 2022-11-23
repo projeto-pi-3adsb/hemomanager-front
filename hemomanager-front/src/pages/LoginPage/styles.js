@@ -58,7 +58,7 @@ export const Welcome = styled.div`
     }
   }
 
-  .dropMissing {
+  .drop-missing {
     display: flex;
     justify-content: flex-start;
 
@@ -86,6 +86,10 @@ export const LoginArea = styled.div`
   align-items: center;
 
   h1 {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
     font-size: 2.5rem;
     font-family: "Farro", sans-serif;
     margin-bottom: 2rem;
