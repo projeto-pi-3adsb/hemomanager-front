@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/hemomanager-front/static/css/main.5706f515.css",
+    "main.js": "/hemomanager-front/static/js/main.b1b37ea7.js",
+    "static/media/meus-agend.png": "/hemomanager-front/static/media/meus-agend.8c276b83cb7edd547a4e.png",
+    "static/media/orientation-img.png": "/hemomanager-front/static/media/orientation-img.33a2e41eb433347d5888.png",
+    "static/media/about-img.png": "/hemomanager-front/static/media/about-img.4f7f6c8cdd1e794abdde.png",
+    "static/media/home-img.png": "/hemomanager-front/static/media/home-img.0756d155aab58d95f215.png",
+    "static/media/hands.jpg": "/hemomanager-front/static/media/hands.92b77a273fba0b26b6ed.jpg",
+    "static/media/not-found.svg": "/hemomanager-front/static/media/not-found.fc9788bd61a6fb98d628be4b04f0d681.svg",
+    "static/media/maps.png": "/hemomanager-front/static/media/maps.dcfdb0c0c4d9f85af13b.png",
+    "static/media/fire-img.png": "/hemomanager-front/static/media/fire-img.3abf931809e5bfe13edd.png",
+    "static/media/logo-3.svg": "/hemomanager-front/static/media/logo-3.7a86800c93efd07baa7e3236e0f6be2a.svg",
+    "static/media/blood-drop.svg": "/hemomanager-front/static/media/blood-drop.283e76eaad1f8d75d3ac06c02094259a.svg",
+    "static/media/telefone.svg": "/hemomanager-front/static/media/telefone.a37ada814bfa7fd23b61f40d2969026c.svg",
+    "static/media/email.svg": "/hemomanager-front/static/media/email.1b93a1180249d5ba92a4d8e377d19b8e.svg",
+    "index.html": "/hemomanager-front/index.html",
+    "static/media/up-arrow.svg": "/hemomanager-front/static/media/up-arrow.1513fe0a737ac739239ece722b081447.svg",
+    "static/media/arrow-left.svg": "/hemomanager-front/static/media/arrow-left.c470e748b86acfa2d1a7a8d76e96cf0e.svg",
+    "static/media/arrow-left-white.svg": "/hemomanager-front/static/media/arrow-left-white.ebfc5cfbfe89c3c66f1484a70021095b.svg",
+    "main.5706f515.css.map": "/hemomanager-front/static/css/main.5706f515.css.map",
+    "main.b1b37ea7.js.map": "/hemomanager-front/static/js/main.b1b37ea7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5706f515.css",
+    "static/js/main.b1b37ea7.js"
+  ]
+}
