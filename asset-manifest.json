@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hemomanager-front/static/css/main.5706f515.css",
-    "main.js": "/hemomanager-front/static/js/main.b1b37ea7.js",
+    "main.js": "/hemomanager-front/static/js/main.190b18a7.js",
     "static/media/meus-agend.png": "/hemomanager-front/static/media/meus-agend.8c276b83cb7edd547a4e.png",
     "static/media/orientation-img.png": "/hemomanager-front/static/media/orientation-img.33a2e41eb433347d5888.png",
     "static/media/about-img.png": "/hemomanager-front/static/media/about-img.4f7f6c8cdd1e794abdde.png",
@@ -19,10 +19,10 @@
     "static/media/arrow-left.svg": "/hemomanager-front/static/media/arrow-left.c470e748b86acfa2d1a7a8d76e96cf0e.svg",
     "static/media/arrow-left-white.svg": "/hemomanager-front/static/media/arrow-left-white.ebfc5cfbfe89c3c66f1484a70021095b.svg",
     "main.5706f515.css.map": "/hemomanager-front/static/css/main.5706f515.css.map",
-    "main.b1b37ea7.js.map": "/hemomanager-front/static/js/main.b1b37ea7.js.map"
+    "main.190b18a7.js.map": "/hemomanager-front/static/js/main.190b18a7.js.map"
   },
   "entrypoints": [
     "static/css/main.5706f515.css",
-    "static/js/main.b1b37ea7.js"
+    "static/js/main.190b18a7.js"
   ]
 }
