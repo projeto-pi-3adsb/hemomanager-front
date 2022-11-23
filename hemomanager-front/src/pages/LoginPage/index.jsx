@@ -12,8 +12,36 @@ import { RegisterDonor } from "../../components/RegisterDonor";
 export function LoginPage({ pageSelected }) {
   const [page, setPage] = useState(1 || pageSelected);
   const [user, setUser] = useState(1);
-
   const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [cnpj, setCnpj] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [zipNumber, setZipNumber] = useState(0);
+  const [startOperation, setStartOperation] = useState(0);
+  const [endOperation, setEndtOperation] = useState(0);
+
+  const hemocenter = {
+    name,
+    cnpj,
+    email,
+    password,
+    zipCode,
+    zipNumber,
+    startOperation,
+    endOperation,
+  };
+
+  function doSaveNewHemocenter(event) {
+    event.preventDefault();
+  }
+
+  function doSaveNewDonor(event) {
+    event.preventDefault();
+  }
 
   return (
     <>
@@ -61,9 +89,15 @@ export function LoginPage({ pageSelected }) {
 
           {page === 1 ? (
             user === 2 ? (
-              <RegisterHemocenter />
+              <RegisterHemocenter
+                name={() => setName()}
+                email={() => setEmail()}
+                cnpj={() => setCnpj()}
+                password={() => setPassword()}
+                method={() => doSaveNewHemocenter}
+              />
             ) : (
-              <RegisterDonor />
+              <RegisterDonor method={() => doSaveNewDonor} />
             )
           ) : (
             <Login />
@@ -79,7 +113,13 @@ export function LoginPage({ pageSelected }) {
             ""
           )}
           <section className={page === 2 ? "center" : ""}>
-            <BorderlessButton text={page === 1 ? "CADASTRAR" : "LOGIN"} />
+            <BorderlessButton
+              type="submit"
+              method={
+                doSaveNewHemocenter 
+              }
+              text={page === 1 ? "CADASTRAR" : "LOGIN"}
+            />
           </section>
         </LoginArea>
       </Container>

@@ -1,5 +1,5 @@
 {
-  "homepage": "http://samuckqadev.github.io/hemomanager-front",
+  "homepage": "https://samuckqadev.github.io/hemomanager-front",
   "name": "hemomanager-front",
   "version": "0.1.0",
   "private": true,
@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/styled-components": "^5.1.26",
+    "axios": "^1.2.0",
     "chart.js": "2.9.4",
     "material-dashboard-react": "^1.10.0",
     "primeflex": "^3.2.1",
@@ -27,8 +28,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "preddeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
+    "preddeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

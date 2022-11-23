@@ -1,9 +1,9 @@
 import { Input } from "../shared/Input";
 import { Container } from "./styles";
 
-export function RegisterDonor() {
+export function RegisterDonor({ method }) {
   return (
-    <Container>
+    <Container onSubmit={method}>
       <Input name="name" placeholder="Nome completo *" />
       <Input name="cpf" placeholder="CPF *" />
       <Input name="email" placeholder="Email *" />
