@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import bloodBagImg from "../../assets/blood-bag.svg";
+import notFoundImg from "../../assets/not-found.svg";
 import { BorderlessButton } from "../shared/BorderlessButton";
 import { useNavigate } from "react-router-dom";
 
@@ -10,12 +10,15 @@ export function NotFound() {
     <>
       <Container>
         <div>
-          <h1>
-            <p>Ops, parece que algo deu errado !</p>
-          </h1>
-          <img src={bloodBagImg} alt="" />
-          <h1>Página não encontrada!</h1>
-          <BorderlessButton text="Retornar" method={() => navigate(-1)} />
+          <img src={notFoundImg} alt="" />
+        </div>
+        <div>
+          <h1>404</h1>
+          <span>Ooops</span>
+          <p>A página que você procura não existe</p>
+          <div className="end-button">
+            <BorderlessButton text="VOLTAR" method={() => navigate(-1)} />
+          </div>
         </div>
       </Container>
     </>

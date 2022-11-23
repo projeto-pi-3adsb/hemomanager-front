@@ -4,40 +4,64 @@ export const Container = styled.div`
   height: 100vh;
   width: 90%;
   margin: auto;
-  background: var(--red);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
   border-radius: 8px;
   border: 2px solid var(--red);
-  gap: 2rem;
 
-  div {
+  div:nth-child(1) {
     display: flex;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 8px;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  div:nth-child(2) {
+    display: flex;
+    height: 50%;
+    width: 75%;
     justify-content: center;
     flex-direction: column;
     margin: auto;
-    background: var(--background);
-    border-radius: 8px;
-
-    padding: 4rem;
-
-    button {
-      margin: 4rem  auto;
-    }
+    gap: 1rem;
 
     h1 {
-      font-family: "Farro", sans-serif;
-      font-weight: 600;
-      font-size: 2.5rem;
-      margin: auto;
-      gap: 2rem;
+      font-size: 8rem;
+      font-weight: bold;
+      color: var(--background-button);
     }
 
-    img {
-      height: 20rem;
-      margin: auto;
+    span {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--background-button);
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--text-body);
+    }
+
+    .end-button {
+      display: flex;
+      height: 4rem;
+      align-items: center;
+
+
+      button {
+        margin-left: 12rem;
+        width: 13rem;
+        font-size: 1.5rem;
+        font-family: "Roboto", sans-serif;
+      }
     }
   }
 `;
