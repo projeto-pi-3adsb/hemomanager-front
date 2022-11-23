@@ -7,7 +7,7 @@ export const GlobalStyled = createGlobalStyle`
   --red-blood: #ED1C24; 
   --background-border-bar: #CECECE;
   --background-option-bar: #F5F5F5;
-  --cinza-claro: #ABABAB;
+  --gray-light: #ABABAB;
   --input-background: #e7e9ee;
   --input-border: #d5d5d5;
   --red: #e52e4d;
@@ -105,5 +105,39 @@ button{
 }
 h1, h2, h3, h4, h5, h6, strong {
   font-weight: 600;
+}
+
+
+.react-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  inset-inline-start: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.react-modal-content {
+  inline-size: 100%;
+  max-inline-size: 576px;
+  background: var(--background);
+  padding: 3rem;
+  position: relative;
+  border-radius: 0.25rem;
+  
+}
+.react-modal-close{
+  position: absolute;
+  inset-block-start: 1.5rem;
+  border: 0;
+  inset-inline-end: 1.5rem;
+  display: flex;
+  background: transparent;
+  transition: 0.2s;
+  &:hover{
+    filter: brightness(0.8);
+  }
 }
 `;

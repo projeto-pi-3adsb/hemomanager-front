@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 1rem;
   margin: auto;
-  margin-top: 1rem;
   height: 85vh;
   width: 80vw;
   display: block;
@@ -14,15 +12,10 @@ export const Header = styled.header`
   justify-content: start;
   flex-direction: column;
 
-  div {
-    display: flex;
-    align-items: center;
-
-    span {
-      font-weight: 700;
-      color: var(--red-blood);
-      font-size: 1.2rem;
-    }
+  span {
+    font-weight: 700;
+    color: var(--red-blood);
+    font-size: 1.2rem;
   }
 
   img {
@@ -31,7 +24,6 @@ export const Header = styled.header`
   }
 
   p {
-    margin-top: 1rem;
     font-size: 1.4rem;
     font-family: "Roboto", sans-serif;
   }
