@@ -1,5 +1,5 @@
 import React from "react";
-import {BoxImg} from "./style";
+import {BoxButton, BoxImg} from "./style";
 import ImgLateral from "../../assets/imgLateral.png"
 
 
@@ -8,6 +8,10 @@ export function CadastroDoador(){
         <>
         <BoxImg>
             <img src={ImgLateral} alt="ImgLateral" />
+            <BoxButton>
+                <button>CADASTRO</button>
+                <button>LOGIN</button>
+            </BoxButton>
         </BoxImg>
         </>
     )

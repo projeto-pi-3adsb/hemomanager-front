@@ -105,7 +105,7 @@ export function HomePage() {
             </span>
           </div>
           <div className="button-group">
-            <BorderlessButton text="INFO DO GOVERNO" />
+            <BorderlessButton text="VÍDEO INFORMATIVO" />
             <Link to="/quiz">
               <BorderlessButton text="RESPONDER QUIZ" />
             </Link>

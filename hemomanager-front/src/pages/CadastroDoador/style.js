@@ -9,3 +9,22 @@ export const BoxImg = styled.div`
     }
 `
 
+export const BoxButton = styled.div`
+    button{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 10px;
+        padding-right: 50px;
+        padding-left: 15px;
+        
+    }
+
+    display: flex;
+    align-items: center;
+    
+
+    height: 20%;
+    width: 30%;
+    background-color: blue;
+
+`
