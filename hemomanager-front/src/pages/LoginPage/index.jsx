@@ -19,19 +19,19 @@ export function LoginPage({ pageSelected }) {
   const [cnpj, setCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [zipNumber, setZipNumber] = useState(0);
   const [qtty, setQtty] = useState(0);
   const [number, setNumber] = useState(0);
+  const [phone, setPhone] = useState(0);
+  const [cpf, setCpf] = useState(0);
   const [startOperation, setStartOperation] = useState(0);
   const [endOperation, setEndOperation] = useState(0);
-
-
+  const [sex, setSex] = useState(0);
 
   function doSaveNewHemocenter() {
-
-
     const hemocenter = {
       name,
       cnpj,
@@ -42,35 +42,54 @@ export function LoginPage({ pageSelected }) {
       startOperation,
       endOperation,
     };
+    console.log("hemocenter", hemocenter);
 
-
-
-    console.log("hemocenter", hemocenter)
-
-    api.post("hemocenters/", hemocenter).then(() => {
-      setPage(2)
-    })
-      .catch((erro) => {
-        alert("deu erro", erro)
+    api
+      .post("hemocenters/", hemocenter)
+      .then(() => {
+        <h4>Success !</h4>;
+        setPage(2);
       })
-    // .then(() => navigate("/dashboard"))
-    // .then(() => alert("A requisicao ta vindo"))
-    // .catch((err) => {
-    // console.error(err)
-    // })
+      .catch((err) => {
+        alert("error: ", err);
+      });
+  }
+
+  function doSaveNewDonor() {
+    const donor = {
+      name,
+      cpf,
+      email,
+      birthDate,
+      phone,
+      password,
+      sex,
+    };
+
+    api
+      .post("donors/", donor)
+      .then(() => {
+        <h4>Success !</h4>;
+        setPage(2);
+      })
+      .catch((err) => {
+        console.log("error: ", err);
+      });
   }
 
   function doLogin(event) {
     const user = {
-      email, password
-    }
-    api.post("hemocenters/login", user).then(() => {
-      setPage()
-    })
-      .catch((erro) => {
-        alert("deu erro", erro)
+      email,
+      password,
+    };
+    api
+      .post("hemocenters/login", user)
+      .then(() => {
+        setPage();
       })
-
+      .catch((erro) => {
+        alert("deu erro", erro);
+      });
   }
 
   return (
@@ -134,12 +153,20 @@ export function LoginPage({ pageSelected }) {
               <RegisterDonor
                 setName={setName}
                 setEmail={setEmail}
-                setCnpj={setCnpj}
+                setCpf={setCpf}
+                setPhone={setPhone}
+                setBirthDate={setBirthDate}
                 setPassword={setPassword}
+                setConfirmPassword={setConfirmPassword}
+                setSex={setSex}
               />
             )
           ) : (
-            <Login    typeInputPassword="password" setEmail={setEmail} setPassword={setPassword} />
+            <Login
+              typeInputPassword="password"
+              setEmail={setEmail}
+              setPassword={setPassword}
+            />
           )}
 
           {page === 2 ? (
@@ -153,7 +180,13 @@ export function LoginPage({ pageSelected }) {
           )}
           <section className={page === 2 ? "center" : ""}>
             <BorderlessButton
-              doSomething={page === 1 ? () => doSaveNewHemocenter() : () => doLogin()}
+              doSomething={
+                page === 1
+                  ? user === 2
+                    ? () => doSaveNewHemocenter()
+                    : () => doSaveNewDonor()
+                  : () => doLogin()
+              }
               text={page === 1 ? "CADASTRAR" : "LOGIN"}
             />
           </section>

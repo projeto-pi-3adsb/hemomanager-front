@@ -10,7 +10,7 @@ export function RegisterDonor({ setName, setCpf, setEmail, setBirthDate, setPhon
       <Input doSomething={setBirthDate} nameInput="birthDate" typeInput="date" placeholderInput="Nascimento *" />
       <Input doSomething={setPhone} nameInput="phone" placeholderInput="Celular" />
       <Input doSomething={setPassword} nameInput="password" placeholderInput="Senha *" />
-      <Input doSomething={setConfirmPassword} nameInput="confirmPassword" placeholderInput="Confiramar senha *" />
+      <Input doSomething={setConfirmPassword} nameInput="confirmPassword" placeholderInput="Confirmar senha *" />
       <select onChange={(e) => setSex(e.target.value)}>
         <option value="MALE">Masculino</option>
         <option value="FEMALE">Feminino</option>

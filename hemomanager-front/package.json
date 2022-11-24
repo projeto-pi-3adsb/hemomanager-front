@@ -13,6 +13,7 @@
     "@types/styled-components": "^5.1.26",
     "axios": "^1.2.0",
     "chart.js": "2.9.4",
+    "dotenv": "^16.0.3",
     "material-dashboard-react": "^1.10.0",
     "primeflex": "^3.2.1",
     "primereact": "^8.6.1",
