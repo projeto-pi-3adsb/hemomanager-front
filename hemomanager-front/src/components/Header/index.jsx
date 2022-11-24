@@ -26,6 +26,9 @@ export function HeaderComponent(props) {
         <li>
           <a href={props.contact}>Contato</a>
         </li>
+        <li>
+          <a href={props.contact}>Doação de plaquetas</a>
+        </li>
       </ul>
       <ButtonGroup>
         <BorderlessButton text="Cadastro" />

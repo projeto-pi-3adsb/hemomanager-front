@@ -7,6 +7,7 @@ import { QuizPage } from "./pages/QuizPage";
 import { GlobalStyled } from "./styles/global";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { CadastroDoador } from "./pages/CadastroDoador/CadastroDoador";
+import { VideoPage } from "./pages/VideoPage/VideoPage";
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
         <Route exact path="/meus-agendamentos" element={<MeusAgendamentos />} />
         <Route exact path="/quiz" element={<QuizPage />} />
         <Route exact path="/cadastro-doador" element={<CadastroDoador />} />
+        <Route exact path="/video" element={<VideoPage/>} />
       </Routes>
       <GlobalStyled />
     </>
