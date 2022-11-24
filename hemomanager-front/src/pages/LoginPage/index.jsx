@@ -12,7 +12,7 @@ import { api } from "../../api";
 
 export function LoginPage({ pageSelected }) {
   const [page, setPage] = useState(1 || pageSelected);
-  const [user, setUser] = useState(1);
+  const [userType, setUserType] = useState(1);
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -31,7 +31,7 @@ export function LoginPage({ pageSelected }) {
   const [endOperation, setEndOperation] = useState(0);
   const [sex, setSex] = useState(0);
 
-  function doSaveNewHemocenter() {
+  async function doSaveNewHemocenter() {
     const hemocenter = {
       name,
       cnpj,
@@ -44,10 +44,11 @@ export function LoginPage({ pageSelected }) {
     };
     console.log("hemocenter", hemocenter);
 
-    api
+    await api
       .post("hemocenters/", hemocenter)
       .then(() => {
         <h4>Success !</h4>;
+
         setPage(2);
       })
       .catch((err) => {
@@ -66,10 +67,11 @@ export function LoginPage({ pageSelected }) {
       sex,
     };
 
+    console.log(donor);
+
     api
       .post("donors/", donor)
-      .then(() => {
-        <h4>Success !</h4>;
+      .then((data) => {
         setPage(2);
       })
       .catch((err) => {
@@ -77,15 +79,17 @@ export function LoginPage({ pageSelected }) {
       });
   }
 
-  function doLogin(event) {
+  function doLogin() {
     const user = {
       email,
       password,
     };
+
     api
-      .post("hemocenters/login", user)
+      .post(userType === 2 ? "hemocenter/login" : "donor/login", user)
       .then(() => {
-        setPage();
+        navigate("/dashboard");
+        sessionStorage.setItem(email, password);
       })
       .catch((erro) => {
         alert("deu erro", erro);
@@ -97,7 +101,7 @@ export function LoginPage({ pageSelected }) {
       <Container>
         <Welcome>
           <header>
-            <ButtonComeback doSomething={() => navigate(-1)} white />
+            <ButtonComeback method={() => navigate(-1)} white />
           </header>
           <div>
             <ul>
@@ -120,24 +124,24 @@ export function LoginPage({ pageSelected }) {
           </div>
         </Welcome>
         <LoginArea>
-          <h1 className={page === 1 ? "" : "center"}>
+          <h1>
             {page === 1
-              ? user === 1
+              ? userType === 1
                 ? "NOVO CADASTRO DE DOADOR"
                 : "NOVO CADASTRO DE HEMOCENTRO"
-              : "BEM VINDO NOVAMENTE!"}
-            {page === 1 ? (
+              : userType === 1
+              ? "BEM VINDO DOADOR"
+              : "SEJA BEM VINDO!"}
+            {
               <ProfileOption
-                method1={() => setUser(1)}
-                method2={() => setUser(2)}
+                method1={() => setUserType(1)}
+                method2={() => setUserType(2)}
               />
-            ) : (
-              " "
-            )}
+            }
           </h1>
 
           {page === 1 ? (
-            user === 2 ? (
+            userType === 2 ? (
               <RegisterHemocenter
                 setName={setName}
                 setEmail={setEmail}
@@ -182,7 +186,7 @@ export function LoginPage({ pageSelected }) {
             <BorderlessButton
               doSomething={
                 page === 1
-                  ? user === 2
+                  ? userType === 2
                     ? () => doSaveNewHemocenter()
                     : () => doSaveNewDonor()
                   : () => doLogin()
