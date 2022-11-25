@@ -1,7 +1,6 @@
-import { Bar,  HorizontalBar } from "react-chartjs-2";
+import { Bar, HorizontalBar } from "react-chartjs-2";
 
-export function Dashboard({ labels, labels2 }) {
-  
+export function Dashboard({ labelsBag, labelsSex }) {
   const options = {
     responsive: true,
     plugins: {
@@ -14,35 +13,32 @@ export function Dashboard({ labels, labels2 }) {
       },
     },
   };
-  
+
   const data = {
-    labels : labels ,
+    labels: labelsBag,
     datasets: [
       {
         label: "Quantidade de bolsas doadas",
-        data: labels.map(
+        data: labelsBag.map(
           () => 2,
-          () => 3),
+          () => 3
+        ),
         backgroundColor: "#fd37139b",
       },
     ],
   };
 
   const data2 = {
-    labels: labels2,
+    labels: labelsSex,
     datasets: [
       {
         label: "Doadores Femininos",
-        data: labels.map(
-          () => 1,
-        ),
+        data: labelsSex.map(() => 1),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: "Doadores Masculinos",
-        data: labels.map(
-          () => 1,
-        ),
+        data: labelsSex.map(() => 1),
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],

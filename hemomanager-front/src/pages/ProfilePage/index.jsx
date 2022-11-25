@@ -95,8 +95,8 @@ export function ProfilePage() {
         <div className="content">
           {page === 1 ? (
             <Dashboard
-              labels={labels}
-              labels2={labels2}
+              labelsBag={labels}
+              labelsSex={labels2}
             />
           ) : (
             () => {}
