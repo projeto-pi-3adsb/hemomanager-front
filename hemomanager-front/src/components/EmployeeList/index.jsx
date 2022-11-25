@@ -1,32 +1,61 @@
 import { BorderlessButton } from "../shared/BorderlessButton";
 import { Container } from "./styles";
 
-const employes = [
-  { name: "John", email: "james@gmail.com", role: "administrator" },
-  { name: "Ana", email: "ana@gmail.com", role: "Manager" },
-  { name: "Samuel", email: "tomimatu@gmail.com", role: "Developer" },
+const hours = [
+  {
+    date: new Date().getDate().toString(),
+    time: new Date().getHours(),
+    minuts: new Date().getMinutes().toFixed(1),
+  },
+  {
+    date: new Date().getDate().toString(),
+    time: new Date().getHours(),
+    minuts: new Date().getMinutes().toFixed(1),
+  },
+  {
+    date: new Date().getDate().toString(),
+    time: new Date().getHours(),
+    minuts: new Date().getMinutes().toFixed(1),
+  },
+  {
+    date: new Date().getDate().toString(),
+    time: new Date().getHours(),
+    minuts: new Date().getMinutes().toFixed(1),
+  },
+  {
+    date: new Date().getDate().toString(),
+    time: new Date().getHours(),
+    minuts: new Date().getMinutes().toFixed(1),
+  },
+  {
+    date: new Date().getDate().toString(),
+    time: new Date().getHours(),
+    minuts: new Date().getMinutes().toFixed(1),
+  },
+  ,
 ];
 
-export function EmployeeList({ isOpen }) {
+export function HourAvailableList({ isOpen }) {
   return (
     <Container>
       <h1>
-        <BorderlessButton method={isOpen } text="CADASTRAR FUNCIONARIO" />
+        <BorderlessButton doSomething={isOpen} text="CADASTRAR HORÁRIO" />
       </h1>
       <table>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Cargo</th>
+            <th>Dia</th>
+
+            <th>Horário</th>
           </tr>
         </thead>
         <tbody>
-          {employes.map((employee) => (
-            <tr key={employee.email}>
-              <td>{employee.name}</td>
-              <td>{employee.email}</td>
-              <td>{employee.role}</td>
+          {hours.map((hour) => (
+            <tr key={hour.email}>
+              <td>{hour.date}</td>
+              <td>
+                {hour.time}:{hour.minuts}
+              </td>
             </tr>
           ))}
         </tbody>

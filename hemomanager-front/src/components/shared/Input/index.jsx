@@ -2,8 +2,6 @@ import { InputDefault } from "./styles";
 
 export function Input({ typeInput, placeholderInput, valueInput, idInput, doSomething, nameInput }) {
 
-
-
   return (
     <InputDefault
       id={idInput}

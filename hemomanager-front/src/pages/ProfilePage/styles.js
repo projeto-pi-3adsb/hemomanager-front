@@ -104,7 +104,6 @@ export const Menu = styled.div`
   margin-bottom: 3.5rem;
   flex-direction: column;
 
-
   ul {
     width: 100%;
     height: 100%;
@@ -116,15 +115,22 @@ export const Menu = styled.div`
     }
 
     li {
-      margin: auto; 
+      margin: auto;
       display: flex;
       justify-content: center;
-      min-width: 90%;
-      
+
+      &:nth-child(2) {
+        button {
+          :first-child {
+            border-radius: 0 0 0 8px;
+          }
+          :last-child {
+            border-radius: 0;
+          }
+        }
+      }
 
       &:first-child {
-        border-radius: 8px 8px 0 0;
-
         button {
           border-radius: 8px 0 0 0;
 
@@ -135,13 +141,17 @@ export const Menu = styled.div`
       }
 
       &:last-child {
-        border-radius: 0 0px 8px 8px;
+        justify-content: center;
 
         button {
-          border-radius: 0 0 0 8px;
+          margin-left: 6rem;
 
           &:last-child {
-            border-radius: 0 0 8px 0;
+            border-radius: 0 0 8px 8px;
+
+            &:last-child:hover {
+              margin-left: 5rem;
+            }
           }
         }
       }
@@ -182,46 +192,7 @@ export const Menu = styled.div`
           border-radius: 8px;
           height: 7rem;
           width: 7rem;
-          background: var(--background);
           z-index: 9;
-        }
-      }
-    }
-  }
-
-  .user-menu {
-    &:first-child {
-      border-radius: 8px 8px 0 0;
-
-      button {
-        border-radius: 8px 0 0 0;
-
-        &:hover {
-          border-radius: 8px;
-        }
-
-        &:first-child {
-          border-radius: 8px 0 0 8px;
-        }
-      }
-    }
-
-    &:last-child {
-      border-radius: 0 0px 8px 8px;
-
-      button {
-        border-radius: 8px 0 0 8px;
-
-        &:hover {
-          border-radius: 8px;
-        }
-
-        &:last-child {
-          border-radius: 0 8px 8px 0;
-
-          &:hover {
-            border-radius: 8px;
-          }
         }
       }
     }

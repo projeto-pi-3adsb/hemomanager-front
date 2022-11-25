@@ -1,7 +1,7 @@
 import { Input } from "../shared/Input";
 import { Container } from "./styles";
 
-export function RegisterDonor({ setName, setCpf, setEmail, setBirthDate, setPhone, setSex, setPassword, setConfirmPassword, method }) {
+export function RegisterDonor({ setName, setCpf, setEmail, setBirthDate, setPhone, setSex, setPassword, setConfirmPassword }) {
   return (
     <Container>
       <Input doSomething={setName} nameInput="name" placeholderInput="Nome completo *" />

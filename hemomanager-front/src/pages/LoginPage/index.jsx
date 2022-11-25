@@ -16,6 +16,7 @@ export function LoginPage({ pageSelected }) {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
+  const [id, setId] = useState(0);
   const [cnpj, setCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +24,7 @@ export function LoginPage({ pageSelected }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [zipNumber, setZipNumber] = useState(0);
-  const [qtty, setQtty] = useState(0);
+  const [qttySimultServices, setQttyServices] = useState(0);
   const [number, setNumber] = useState(0);
   const [phone, setPhone] = useState(0);
   const [cpf, setCpf] = useState(0);
@@ -41,11 +42,12 @@ export function LoginPage({ pageSelected }) {
       zipNumber,
       startOperation,
       endOperation,
+      qttySimultServices,
     };
-    console.log("hemocenter", hemocenter);
+    console.log("hemocente", hemocenter);
 
     await api
-      .post("hemocenters/", hemocenter)
+      .post("hemocenter", hemocenter)
       .then(() => {
         <h4>Success !</h4>;
 
@@ -80,20 +82,31 @@ export function LoginPage({ pageSelected }) {
   }
 
   function doLogin() {
-    const user = {
+    const userLogin = {
       email,
       password,
     };
 
+    const user = {
+      id,
+      name,
+      email,
+    };
+
     api
-      .post(userType === 2 ? "hemocenter/login" : "donor/login", user)
-      .then(() => {
+      .post(userType === 2 ? "hemocenter/current" : "donor/current", userLogin)
+      .then((resp) => {
         navigate("/dashboard");
-        sessionStorage.setItem(email, password);
+        sessionStorage.setItem("name", resp.data.name);
+        sessionStorage.setItem("email", resp.data.email);
+        sessionStorage.setItem("password", resp.data.password);
+        console.log(resp);
       })
       .catch((erro) => {
         alert("deu erro", erro);
       });
+
+    console.log(sessionStorage.getItem("data".toString));
   }
 
   return (
@@ -149,9 +162,10 @@ export function LoginPage({ pageSelected }) {
                 setZipNumber={setZipNumber}
                 setZipCode={setZipCode}
                 setPassword={setPassword}
-                setQtty={setQtty}
+                setQtty={setQttyServices}
                 setStartOperation={setStartOperation}
                 setEndOperation={setEndOperation}
+                setQttyServices={setQttyServices}
               />
             ) : (
               <RegisterDonor

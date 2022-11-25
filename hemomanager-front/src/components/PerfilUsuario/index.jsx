@@ -3,6 +3,7 @@ import logoImg from "../../assets/logotypes/logo-2.png";
 import mirian from "../../assets/mirian.svg";
 import React from "react";
 import { Footer } from "../Footer";
+import { MenuDoador } from "../shared/Cards/MenuDoador";
 
 export function PerfilUsuario() {
   return (
@@ -14,19 +15,14 @@ export function PerfilUsuario() {
       </Header>
 
       <Perfil>
-        <img src={mirian} />
+        <img src={mirian} alt="" />
         <h1>Mirian</h1>
         <h4>29 anos</h4>
       </Perfil>
 
-      <BarraOpcoes>
-        <button>MEU PERFIL</button>
-        <button>MEUS AGENDAMENTOS</button>
-        <button>NOVOS AGENDAMENTOS</button>
-      </BarraOpcoes>
+      <MenuDoador/>
 
       <InputGroup></InputGroup>
-      <Footer />
     </>
   );
 }

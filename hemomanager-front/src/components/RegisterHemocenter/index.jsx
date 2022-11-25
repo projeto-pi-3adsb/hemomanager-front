@@ -2,8 +2,6 @@ import { Input } from "../shared/Input";
 import { Container } from "./styles";
 
 export function RegisterHemocenter({ setName, setCnpj, setEmail, setPassword, setStartOperation, setEndOperation, setQtty,setZipCode, setZipNumber}) {
-
-  console.log("A", setName, setCnpj, setEmail,)
   return (
     <Container>
       <Input doSomething={setName} nameInput="name" placeholderInput="Nome completo *" />

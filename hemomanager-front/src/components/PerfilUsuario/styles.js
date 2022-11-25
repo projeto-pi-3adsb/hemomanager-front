@@ -43,6 +43,8 @@ export const BarraOpcoes = styled.div`
   align-items: center;
   justify-content: space-around;
 
+
+
   button {
     border: 1px solid var(--background-border-bar);
     width: 248px;
@@ -54,10 +56,11 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 500px;
-  width: 800px;
+  height: 70vh;
+  width: 70%;
   border-radius: 9px;
   border: 1px solid var(--input-border);
-  margin: auto;
+  margin:2rem auto;
 `;
+
 export const Input = styled.input``;

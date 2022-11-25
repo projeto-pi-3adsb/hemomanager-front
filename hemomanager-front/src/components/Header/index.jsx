@@ -29,6 +29,7 @@ export function HeaderComponent(props) {
         <BorderlessButton
           doSomething={() => {
             navigate("/area-usuario");
+
           }}
           text="Cadastro"
         />
@@ -37,6 +38,7 @@ export function HeaderComponent(props) {
             navigate("/area-usuario");
           }}
           text="Login"
+          
         />
       </ButtonGroup>
     </HeaderStyle>

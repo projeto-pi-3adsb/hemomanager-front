@@ -46,12 +46,6 @@ export function ManagerMenu({
         </button>
       </li>
       <li>
-        <button onClick={method5}>
-          <i>
-            <PeopleCommunity24Filled />
-          </i>
-          <span>Funcionários</span>
-        </button>
         <button onClick={method6}>
           <i>
             <Wrench24Filled />

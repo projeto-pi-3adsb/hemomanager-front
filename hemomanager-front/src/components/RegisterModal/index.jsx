@@ -6,7 +6,17 @@ import { Container } from "./styles";
 
 Modal.setAppElement("#root");
 
-export function RegisterModal({ open, close }) {
+export function RegisterModal({
+  open,
+  close,
+  setTitle,
+  doSomething,
+  selectSomething,
+  placeholderDescription,
+  setType,
+  setText,
+  bloodBag,
+}) {
   return (
     <>
       <Modal
@@ -16,16 +26,30 @@ export function RegisterModal({ open, close }) {
         className="react-modal-content"
       >
         <Container>
-          <h2>Novo Funcionário</h2>
-          <Input type="text" placeholder="Nome Completo" />
-          <Input type="email" placeholder="Email" />
-          <Input type="number" placeholder="Celular" />
-          <select>
-            <option value="MANAGER">Gerente</option>
-            <option value="NURSE">Enfermeiro</option>
-            <option value="RECEPTIONIST">Recepcionista</option>
-          </select>
-          <BorderlessButton type="type" text="Cadastrar" />
+          <h2>{setTitle}</h2>
+          <div>
+            <Input typeInput="date" />
+            <Input typeInput="time" />
+          </div>
+          {bloodBag ? (
+            <select  onChange={(e) => selectSomething(e.target.value)}>
+              <option value="APos">A+</option>
+              <option value="ANeg">A-</option>
+              <option value="BPos">B+</option>
+              <option value="ABPos">AB+</option>
+              <option value="ABNeg">AB-</option>
+              <option value="OPos">O+</option>
+              <option value="ONeg">O-</option>
+            </select>
+          ) : (
+            ""
+          )}
+          <textarea
+            placeholder={placeholderDescription}
+            onChange={(e) => doSomething(e.target.value)}
+          ></textarea>
+
+          <BorderlessButton typeButton={setType} text={setText} />
         </Container>
       </Modal>
     </>
