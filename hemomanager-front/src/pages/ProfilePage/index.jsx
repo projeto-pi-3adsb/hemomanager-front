@@ -55,53 +55,10 @@ export function ProfilePage() {
     setIsOpenModal(false);
   }
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "",
-      },
-    },
-  };
+  
 
   const labels = ["A +", "A -", "B +", "B -", "AB +", "AB -", "O +", "O -"];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Quantidade de bolsas doadas",
-        data: labels.map(
-          () => Math.random(),
-          () => Math.random()
-        ),
-        backgroundColor: "#fd37139b",
-      },
-    ],
-  };
-
-  const data2 = {
-    labels,
-    datasets: [
-      {
-        label: "Doadores Femininos",
-        data: labels.map(
-          () => -Math.random(),
-          () => -Math.random()
-        ),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Doadores Masculinos",
-        data: labels.map(() => Math.random(), -Math.random()),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
+  const labels2 = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
   return (
     <Container>
@@ -137,7 +94,10 @@ export function ProfilePage() {
       <MainArea>
         <div className="content">
           {page === 1 ? (
-            <Dashboard data={data} data2={data2} options={options} />
+            <Dashboard
+              labels={labels}
+              labels2={labels2}
+            />
           ) : (
             () => {}
           )}
@@ -149,7 +109,11 @@ export function ProfilePage() {
       <RegisterModal
         setText="REGISTRAR"
         setTitle={
-          page === 3 ? "NOVO HORÁRIO" : "" || page === 4 ? "NOVA DOAÇÃO" : ""
+          page === 3
+            ? "NOVO HORÁRIO"
+            : "" || page === 4
+            ? "NOVA BOLSA DE SANGUE"
+            : ""
         }
         placeholderDescription="DESCRIÇÃO"
         doSomething={setDescription}
