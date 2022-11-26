@@ -32,7 +32,7 @@ export function LoginPage({ pageSelected }) {
   const [endOperation, setEndOperation] = useState(0);
   const [sex, setSex] = useState(0);
 
-  async function doSaveNewHemocenter() {
+  function doSaveNewHemocenter() {
     const hemocenter = {
       name,
       cnpj,
@@ -44,9 +44,10 @@ export function LoginPage({ pageSelected }) {
       endOperation,
       qttySimultServices,
     };
+    
     console.log("hemocente", hemocenter);
 
-    await api
+    api
       .post("hemocenter", hemocenter)
       .then(() => {
         <h4>Success !</h4>;
@@ -96,7 +97,8 @@ export function LoginPage({ pageSelected }) {
     api
       .post(userType === 2 ? "hemocenter/current" : "donor/current", userLogin)
       .then((resp) => {
-        navigate("/dashboard");
+        userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
+
         sessionStorage.setItem("name", resp.data.name);
         sessionStorage.setItem("email", resp.data.email);
         sessionStorage.setItem("password", resp.data.password);

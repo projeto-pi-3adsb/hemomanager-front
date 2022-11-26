@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Exit, MainArea, Menu, Profile } from "./styles";
+import { Avatar, Container, Exit, MainArea, Menu, Profile } from "./styles";
 
 import { ArrowCircleRight24Filled } from "@fluentui/react-icons";
 import {
@@ -55,21 +55,37 @@ export function ProfilePage() {
     setIsOpenModal(false);
   }
 
-  
+  const labels = [
+    "APos",
+    "ANeg",
+    "BPos",
+    "BNeg",
+    "ABNeg",
+    "ABNeg",
+    "OPos",
+    "ONeg",
+  ];
 
-  const labels = ["A +", "A -", "B +", "B -", "AB +", "AB -", "O +", "O -"];
-  const labels2 = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+  const labels2 = [
+    "Domingo",
+    "Segunda",
+    "Terça",
+    "Quarta",
+    "Quinta",
+    "Sexta",
+    "Sábado",
+  ];
 
   return (
     <Container>
       <Profile>
-        <div className="avatar">
+        <Avatar>
           <img src="https://www.github.com/samuckqadev.png" alt="" />
           <h1>
             <strong>{user.name}</strong>
             <span>{user.email}</span>
           </h1>
-        </div>
+        </Avatar>
         <Menu>
           <ul>
             <ManagerMenu
@@ -94,10 +110,7 @@ export function ProfilePage() {
       <MainArea>
         <div className="content">
           {page === 1 ? (
-            <Dashboard
-              labelsBag={labels}
-              labelsSex={labels2}
-            />
+            <Dashboard labelsBag={labels} labelsSex={labels2} />
           ) : (
             () => {}
           )}

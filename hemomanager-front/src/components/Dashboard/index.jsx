@@ -1,6 +1,12 @@
+import { type } from "@testing-library/user-event/dist/type";
+import { useEffect, useState } from "react";
 import { Bar, HorizontalBar } from "react-chartjs-2";
+import { api } from "../../api";
 
 export function Dashboard({ labelsBag, labelsSex }) {
+  const [types, setTypes] = useState([]);
+  const [values, setValues] = useState([]);
+
   const options = {
     responsive: true,
     plugins: {
@@ -14,15 +20,22 @@ export function Dashboard({ labelsBag, labelsSex }) {
     },
   };
 
+  useEffect(() => {
+    labelsBag.map((typeBag) =>
+      api
+        .get(`/stock/type/${typeBag}`)
+        .then((data) => setValues(values + data.datasets))
+    );
+  }, []);
+
+  console.log(values);
+
   const data = {
     labels: labelsBag,
     datasets: [
       {
         label: "Quantidade de bolsas doadas",
-        data: labelsBag.map(
-          () => 2,
-          () => 3
-        ),
+        data: labelsBag.map(() => types.length),
         backgroundColor: "#fd37139b",
       },
     ],

@@ -59,38 +59,38 @@ export const Profile = styled.div`
   height: 100vh;
   width: 25%;
   flex-direction: column;
+`;
 
-  .avatar {
-    width: 100%;
-    height: 15rem;
-    padding: 1rem;
-    gap: 1rem;
+export const Avatar = styled.div`
+  width: 100%;
+  height: 15rem;
+  padding: 1rem;
+  gap: 1rem;
 
+  display: flex;
+  flex-direction: column;
+
+  img {
+    margin: 0 auto;
+    height: 7rem;
+    padding: 2px;
+    border-radius: 50%;
+  }
+
+  h1 {
+    padding: 0.5rem;
+    gap: 0.5rem;
+    margin: auto 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    color: var(--gray);
+    font-size: 1.2rem;
 
-    img {
-      margin: 0 auto;
-      height: 7rem;
-      padding: 2px;
-      border-radius: 50%;
-    }
-
-    h1 {
-      padding: 0.5rem;
-      gap: 0.5rem;
-      margin: auto 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: var(--gray);
-      font-size: 1.2rem;
-
-      span {
-        font-size: 1rem;
-        text-align: center;
-        font-weight: normal;
-      }
+    span {
+      font-size: 1rem;
+      text-align: center;
+      font-weight: normal;
     }
   }
 `;
@@ -121,10 +121,13 @@ export const Menu = styled.div`
 
       &:nth-child(2) {
         button {
-          :first-child {
+          &:first-child {
             border-radius: 0 0 0 8px;
           }
-          :last-child {
+          &:hover {
+            border-radius: 8px;
+          }
+          &:last-child {
             border-radius: 0;
           }
         }

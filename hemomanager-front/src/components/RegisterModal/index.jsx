@@ -10,9 +10,7 @@ export function RegisterModal({
   open,
   close,
   setTitle,
-  doSomething,
   selectSomething,
-  placeholderDescription,
   setType,
   setText,
   bloodBag,
@@ -32,7 +30,7 @@ export function RegisterModal({
             <Input typeInput="time" />
           </div>
           {bloodBag ? (
-            <select  onChange={(e) => selectSomething(e.target.value)}>
+            <select onChange={(e) => selectSomething(e.target.value)}>
               <option value="APos">A+</option>
               <option value="ANeg">A-</option>
               <option value="BPos">B+</option>
@@ -44,10 +42,6 @@ export function RegisterModal({
           ) : (
             ""
           )}
-          <textarea
-            placeholder={placeholderDescription}
-            onChange={(e) => doSomething(e.target.value)}
-          ></textarea>
 
           <BorderlessButton typeButton={setType} text={setText} />
         </Container>
