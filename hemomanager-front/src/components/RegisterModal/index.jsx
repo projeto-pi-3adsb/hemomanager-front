@@ -33,6 +33,7 @@ export function RegisterModal({
           </div>
           {bloodBag ? (
             <select  onChange={(e) => selectSomething(e.target.value)}>
+              <option value="">Selecionar opção</option>
               <option value="APos">A+</option>
               <option value="ANeg">A-</option>
               <option value="BPos">B+</option>

@@ -17,7 +17,7 @@ export function Footer(props) {
   return (
     <Container id={props.id}>
       <Contato>
-        <h1>Entre em contato conosco através</h1>
+        <h1>Entre em contato conosco</h1>
         <ContatoGroup>
           <div>
             <img src={telefoneIcon} alt="" />
