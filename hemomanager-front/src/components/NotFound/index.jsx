@@ -14,7 +14,7 @@ export function NotFound() {
         </div>
         <div>
           <h1>404</h1>
-          <span>Ooops</span>
+          <span>Ooops...</span>
           <p>A página que você procura não existe</p>
           <div className="end-button">
             <BorderlessButton text="VOLTAR" doSomething={() => navigate(-1)} />

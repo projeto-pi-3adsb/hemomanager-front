@@ -34,15 +34,14 @@ export function StockList({ isOpen }) {
       <h1>
         <BorderlessButton
           doSomething={isOpen}
-          text="REGISTRAR NOVA BOLSA
-DE SANGUE"
+          text="INSERIR BOLSA"
         />
       </h1>
       <table>
         <thead>
           <tr>
-            <th>Tipo Sangíneo</th>
-            <th>Data de coleta</th>
+            <th>Tipo Sanguíneo</th>
+            <th>Data da Coleta</th>
             <th>Hora da Coleta</th>
           </tr>
         </thead>
