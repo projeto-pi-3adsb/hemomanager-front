@@ -13,7 +13,12 @@ export function RegisterModal({
   selectSomething,
   setType,
   setText,
+  setDate,
+  setTime,
   bloodBag,
+  doRegister,
+  hourRegister,
+
 }) {
   return (
     <>
@@ -26,25 +31,33 @@ export function RegisterModal({
         <Container>
           <h2>{setTitle}</h2>
           <div>
-            <Input typeInput="date" />
-            <Input typeInput="time" />
+            <Input doSomething={setDate} typeInput="date" />
+            {hourRegister ? (
+              <Input doSomething={setTime} typeInput="time" />
+            ) : (
+              ""
+            )}
           </div>
           {bloodBag ? (
-            <select  onChange={(e) => selectSomething(e.target.value)}>
+            <select onChange={(e) => selectSomething(e.target.value)}>
               <option value="">Selecionar opção</option>
-              <option value="APos">A+</option>
-              <option value="ANeg">A-</option>
-              <option value="BPos">B+</option>
-              <option value="ABPos">AB+</option>
-              <option value="ABNeg">AB-</option>
-              <option value="OPos">O+</option>
-              <option value="ONeg">O-</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
             </select>
           ) : (
             ""
           )}
 
-          <BorderlessButton typeButton={setType} text={setText} />
+          <BorderlessButton
+            doSomething={doRegister}
+            typeButton={setType}
+            text={setText}
+          />
         </Container>
       </Modal>
     </>

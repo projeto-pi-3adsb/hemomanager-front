@@ -1,6 +1,6 @@
 import { type } from "@testing-library/user-event/dist/type";
 import { useEffect, useState } from "react";
-import { Bar, HorizontalBar } from "react-chartjs-2";
+import { Bar, HorizontalBar, Line } from "react-chartjs-2";
 import { api } from "../../api";
 
 export function Dashboard({ labelsBag, labelsSex }) {
@@ -21,21 +21,17 @@ export function Dashboard({ labelsBag, labelsSex }) {
   };
 
   useEffect(() => {
-    labelsBag.map((typeBag) =>
-      api
-        .get(`/stock/type/${typeBag}`)
-        .then((data) => setValues(values + data.datasets))
-    );
+    api.get(`/stock/bloodType/${sessionStorage.id}`).then((data) => setValues(data.data));
   }, []);
 
   console.log(values);
 
   const data = {
-    labels: labelsBag,
+    labels: values.map((value)=> value.name),
     datasets: [
       {
         label: "Quantidade de bolsas doadas",
-        data: labelsBag.map(() => types.length),
+        data: values.map((value)=> value.counter),
         backgroundColor: "#fd37139b",
       },
     ],
@@ -46,7 +42,7 @@ export function Dashboard({ labelsBag, labelsSex }) {
     datasets: [
       {
         label: "Doadores Femininos",
-        data: labelsSex.map(() => 1),
+        data: labelsSex.map(() => 5),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
@@ -63,7 +59,7 @@ export function Dashboard({ labelsBag, labelsSex }) {
         <HorizontalBar height={90} options={options} data={data} />
       </div>
       <div className="chart">
-        <Bar height={90} options={options} data={data2} />
+        <Line height={90} options={options} data={data2} />
       </div>
     </>
   );

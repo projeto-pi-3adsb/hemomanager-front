@@ -44,7 +44,7 @@ export function LoginPage({ pageSelected }) {
       endOperation,
       qttySimultServices,
     };
-    
+
     console.log("hemocente", hemocenter);
 
     api
@@ -99,6 +99,7 @@ export function LoginPage({ pageSelected }) {
       .then((resp) => {
         userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
 
+        sessionStorage.setItem("id", resp.data.uuid);
         sessionStorage.setItem("name", resp.data.name);
         sessionStorage.setItem("email", resp.data.email);
         sessionStorage.setItem("password", resp.data.password);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Avatar, Container, Exit, MainArea, Menu, Profile } from "./styles";
 
 import { ArrowCircleRight24Filled } from "@fluentui/react-icons";
@@ -15,7 +15,7 @@ import {
 import { Dashboard } from "../../components/Dashboard";
 
 import { Schaduler } from "../../components/Scheduler";
-import { HourAvailableList } from "../../components/EmployeeList";
+import { HourAvailableList } from "../../components/HourAvailableList";
 import { RegisterModal } from "../../components/RegisterModal";
 
 import { ManagerMenu } from "../../components/ManagerMenu";
@@ -37,10 +37,13 @@ export function ProfilePage() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState(0);
 
+  const [bags, setBags] = useState([]);
+
   const [stockList, setStockList] = useState([]);
   const [counterAPos, setCounterAPos] = useState(0);
 
   const user = {
+    id: sessionStorage.getItem("id"),
     name: sessionStorage.getItem("name"),
     email: sessionStorage.getItem("email"),
   };
@@ -55,16 +58,18 @@ export function ProfilePage() {
     setIsOpenModal(false);
   }
 
-  const labels = [
-    "APos",
-    "ANeg",
-    "BPos",
-    "BNeg",
-    "ABNeg",
-    "ABNeg",
-    "OPos",
-    "ONeg",
-  ];
+  async function doRegisterNewBag() {
+    const bag = {
+      bloodType,
+      collectionDate: date,
+    };
+
+    await api.post(`/stock/${user.id}`, bag).catch((err) => {
+      alert("DEU ERRO PORRA:", err);
+    });
+  }
+
+  function doRegisterNewHour() {}
 
   const labels2 = [
     "Domingo",
@@ -109,14 +114,14 @@ export function ProfilePage() {
       </Profile>
       <MainArea>
         <div className="content">
-          {page === 1 ? (
-            <Dashboard labelsBag={labels} labelsSex={labels2} />
-          ) : (
-            () => {}
-          )}
+          {page === 1 ? <Dashboard labelsSex={labels2} /> : () => {}}
           {page === 2 ? <Schaduler /> : ""}
           {page === 3 ? <HourAvailableList isOpen={doIsOpenModalTrue} /> : ""}
-          {page === 4 ? <StockList isOpen={doIsOpenModalTrue} /> : ""}
+          {page === 4 ? (
+            <StockList  isOpen={doIsOpenModalTrue} />
+          ) : (
+            ""
+          )}
         </div>
       </MainArea>
       <RegisterModal
@@ -129,10 +134,13 @@ export function ProfilePage() {
             : ""
         }
         placeholderDescription="DESCRIÇÃO"
-        doSomething={setDescription}
+        setType="button"
+        doRegister={ page === 4 ? () => doRegisterNewBag() : () => doRegisterNewHour()}
+        selectSomething={setBloodType}
         setDate={setDate}
         setTime={setTime}
         close={doIsOpenModalFalse}
+        hourRegister={page === 3 ? true : false}
         bloodBag={page === 4 ? true : false}
         open={isOpenModal}
       />
