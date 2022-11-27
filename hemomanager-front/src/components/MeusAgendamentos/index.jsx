@@ -8,7 +8,8 @@ import { TituloAgendamento } from "../shared/Cards/TituloAgendamentos";
 export function MeusAgendamentos() {
   return (
     <>
-      <HeaderDoador />
+      <HeaderDoador>
+      </HeaderDoador>
       <MenuDoador/>
       <TituloAgendamento />
       <CardMeusAgend/>

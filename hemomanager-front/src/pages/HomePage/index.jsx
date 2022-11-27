@@ -105,18 +105,10 @@ export function HomePage() {
             </span>
           </div>
           <div className="button-group">
-            <a
-              href="http://www.prosangue.sp.gov.br/artigos/requisitos_basicos_para_doacao.html"
-              target={"_blank"}
-              rel="noreferrer"
-            >
-              <BorderlessButton text="INFO DO GOVERNO" />
-            </a>
-
-            <BorderlessButton
-              method={() => navigate("/quiz")}
-              text="RESPONDER QUIZ"
-            />
+            <BorderlessButton text="VÍDEO INFORMATIVO" />
+            <Link to="/quiz">
+              <BorderlessButton text="RESPONDER QUIZ" />
+            </Link>
           </div>
         </div>
         <div>
