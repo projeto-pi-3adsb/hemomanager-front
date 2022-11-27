@@ -34,10 +34,10 @@ export function Footer(props) {
         <img src={logoImg} alt="" />
         <div>
           <ul>
-            <Link>Homepage</Link>
+            <Link >Homepage</Link>
             <Link>Sobre nós</Link>
             <Link>Notícias</Link>
-            <Link>Depoimentos</Link>
+            <Link>Orintações</Link>
           </ul>
         </div>
         <button>Doar agora</button>

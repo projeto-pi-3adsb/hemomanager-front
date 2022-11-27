@@ -96,6 +96,7 @@ export function LoginPage({ pageSelected }) {
 
         const user = resp.data;
 
+        sessionStorage.setItem("id", user.uuid);
         sessionStorage.setItem("user", user.name);
         sessionStorage.setItem("email", user.email);
         sessionStorage.setItem("phone", user.phone);
