@@ -9,6 +9,7 @@ export const InputDefault = styled.input`
   background: transparent;
   font-weight: 400;
   font-size: 1rem;
+  outline: none;
 
   & + input {
     margin-block-start: 1rem;

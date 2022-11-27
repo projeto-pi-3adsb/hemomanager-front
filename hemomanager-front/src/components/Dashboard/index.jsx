@@ -21,17 +21,19 @@ export function Dashboard({ labelsBag, labelsSex }) {
   };
 
   useEffect(() => {
-    api.get(`/stock/bloodType/${sessionStorage.id}`).then((data) => setValues(data.data));
+    api
+      .get(`/stock/bloodType/${sessionStorage.id}`)
+      .then((data) => setValues(data.data));
   }, []);
 
   console.log(values);
 
   const data = {
-    labels: values.map((value)=> value.name),
+    labels: values.map((value) => value.name),
     datasets: [
       {
         label: "Quantidade de bolsas doadas",
-        data: values.map((value)=> value.counter),
+        data: values.map((value) => value.counter),
         backgroundColor: "#fd37139b",
       },
     ],
