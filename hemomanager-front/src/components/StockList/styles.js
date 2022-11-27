@@ -14,6 +14,21 @@ export const Container = styled.section`
       margin: 2rem 0 2.5rem 0;
     }
   }
+  
+  div {
+    ::-webkit-scrollbar {
+      background: var(--background-begie);
+      border-radius: 0.25rem;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 0.25rem;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--background-button);
+    }
+    overflow: auto;
+    height: 80vh;
+  }
 
   table {
     inline-size: 100%;
@@ -30,6 +45,7 @@ export const Container = styled.section`
       &:first-child {
         border-radius: 8px 0 0 8px;
       }
+
       &:last-child {
         border-radius: 0 8px 8px 0;
       }
@@ -44,12 +60,12 @@ export const Container = styled.section`
       border-radius: 0.25rem;
       text-align: center;
 
-      &.deposit {
-        color: var(--green);
+      &:first-child {
+        border-radius: 8px 0 0 8px;
       }
 
-      &.withdraw {
-        color: var(--red);
+      &:last-child {
+        border-radius: 0 8px 8px 0;
       }
     }
   }

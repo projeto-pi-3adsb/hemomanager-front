@@ -19,7 +19,7 @@ export function CardMeusAgend(props) {
       <ListCard>
         <BoxCard>
           <BoxImg>
-            <img src={Maps} id="mapa" />
+            <img src={Maps} />
           </BoxImg>
           <BoxText>
             <Title>HEMOCENTRO FLOR DO CAMPO</Title>
@@ -53,7 +53,7 @@ export function CardMeusAgend(props) {
         </BoxCard>
         <BoxCard>
           <BoxImg>
-            <img src={Maps} id="mapa" />
+            <img src={Maps}  />
           </BoxImg>
           <BoxText>
             <Title>HEMOCENTRO FLOR DO CAMPO</Title>

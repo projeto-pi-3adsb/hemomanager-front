@@ -9,13 +9,14 @@ export const InputDefault = styled.input`
   background: transparent;
   font-weight: 400;
   font-size: 1rem;
-
+  
   & + input {
     margin-block-start: 1rem;
   }
 
   &:focus-within {
     border: none;
+    font-weight: bold;
     color: var(--background-button);
     border-bottom: 2px solid var(--background-border-bar);
     outline: none;

@@ -35,7 +35,7 @@ export function HomePage() {
             Somos uma plataforma que visa facilitar a vida do doador na hora do
             seu agendamento, assim aumentando o nível de doadores no Brasil.
           </p>
-          <BorderlessButton text="AGENDER AGORA" />
+          <BorderlessButton  doSomething={()=> navigate("/area-usuario")} text="AGENDER AGORA" />
         </div>
         <div>
           <img src={homeImg} alt="" />

@@ -5,6 +5,7 @@ export const GlobalStyled = createGlobalStyle`
   --background: #FCFCFE;
   --background-button: #B83B25;
   --red-blood: #ED1C24; 
+  --background-beige: #f5f5f5;
   --background-border-bar: #CECECE;
   --background-option-bar: #F5F5F5;
   --gray-light: #ABABAB;

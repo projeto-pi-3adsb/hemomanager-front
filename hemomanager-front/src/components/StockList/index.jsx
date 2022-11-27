@@ -10,6 +10,8 @@ export function StockList({ isOpen }) {
     api
       .get(`/stock/full/${sessionStorage.id}`)
       .then((data) => setBags(data.data));
+
+    bags.map((bag) => console.log(bag));
   }, [setBags]);
 
   return (
@@ -17,22 +19,24 @@ export function StockList({ isOpen }) {
       <h1>
         <BorderlessButton doSomething={isOpen} text="INSERIR BOLSA" />
       </h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Tipo Sanguíneo</th>
-            <th>Data da Coleta</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bags.map((bag) => (
-            <tr key={bag.id}>
-              <td>{bag.typeBlood}</td>
-              <td>{bag.collectionDate}</td>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo Sanguíneo</th>
+              <th>Data da Coleta</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {bags?.map((bag) => (
+              <tr key={bag.uuid}>
+                <td>{bag.bloodType}</td>
+                <td>{bag.collectionDate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </Container>
   );
 }

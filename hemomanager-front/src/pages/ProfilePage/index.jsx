@@ -44,7 +44,7 @@ export function ProfilePage() {
 
   const user = {
     id: sessionStorage.getItem("id"),
-    name: sessionStorage.getItem("name"),
+    name: sessionStorage.getItem("user"),
     email: sessionStorage.getItem("email"),
   };
 

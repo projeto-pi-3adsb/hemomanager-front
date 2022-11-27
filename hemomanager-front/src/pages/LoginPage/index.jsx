@@ -11,7 +11,10 @@ import { RegisterDonor } from "../../components/RegisterDonor";
 import { api } from "../../api";
 
 export function LoginPage({ pageSelected }) {
-  const [page, setPage] = useState(1 || pageSelected);
+  const [page, setPage] = useState(
+    sessionStorage.getItem("page") === "1" ? 1 : 2
+  );
+
   const [userType, setUserType] = useState(1);
   const navigate = useNavigate();
 
@@ -70,11 +73,9 @@ export function LoginPage({ pageSelected }) {
       sex,
     };
 
-    console.log(donor);
-
     api
       .post("donors/", donor)
-      .then((data) => {
+      .then(() => {
         setPage(2);
       })
       .catch((err) => {
@@ -88,28 +89,23 @@ export function LoginPage({ pageSelected }) {
       password,
     };
 
-    const user = {
-      id,
-      name,
-      email,
-    };
-
     api
       .post(userType === 2 ? "hemocenter/current" : "donor/current", userLogin)
       .then((resp) => {
         userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
 
-        sessionStorage.setItem("id", resp.data.uuid);
-        sessionStorage.setItem("name", resp.data.name);
-        sessionStorage.setItem("email", resp.data.email);
-        sessionStorage.setItem("password", resp.data.password);
+        const user = resp.data;
+
+        sessionStorage.setItem("user", user.name);
+        sessionStorage.setItem("email", user.email);
+        sessionStorage.setItem("phone", user.phone);
+        sessionStorage.setItem("sex", user.sex);
+
         console.log(resp);
       })
       .catch((erro) => {
         alert("deu erro", erro);
       });
-
-    console.log(sessionStorage.getItem("data".toString));
   }
 
   return (
@@ -146,8 +142,8 @@ export function LoginPage({ pageSelected }) {
                 ? "NOVO CADASTRO DE DOADOR"
                 : "NOVO CADASTRO DE HEMOCENTRO"
               : userType === 1
-              ? "BEM VINDO DOADOR"
-              : "SEJA BEM VINDO!"}
+              ? "BEM VINDO DOADOR!"
+              : "BEM VINDO GESTOR!"}
             {
               <ProfileOption
                 method1={() => setUserType(1)}
@@ -185,6 +181,8 @@ export function LoginPage({ pageSelected }) {
           ) : (
             <Login
               typeInputPassword="password"
+              placeholderInput="Email"
+              placeholderInputPassword="Senha"
               setEmail={setEmail}
               setPassword={setPassword}
             />
