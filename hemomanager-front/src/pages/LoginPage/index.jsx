@@ -8,12 +8,106 @@ import { ButtonComeback } from "../../components/shared/ButtonComeback";
 import { Container, Link, LoginArea, Welcome } from "../LoginPage/styles";
 import { RegisterHemocenter } from "../../components/RegisterHemocenter";
 import { RegisterDonor } from "../../components/RegisterDonor";
+import { api } from "../../api";
 
 export function LoginPage({ pageSelected }) {
-  const [page, setPage] = useState(1 || pageSelected);
-  const [user, setUser] = useState(1);
+  const [page, setPage] = useState(
+    sessionStorage.getItem("page") === "1" ? 1 : 2
+  );
 
+  const [userType, setUserType] = useState(1);
   const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [id, setId] = useState(0);
+  const [cnpj, setCnpj] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [zipNumber, setZipNumber] = useState(0);
+  const [qttySimultServices, setQttyServices] = useState(0);
+  const [number, setNumber] = useState(0);
+  const [phone, setPhone] = useState(0);
+  const [cpf, setCpf] = useState(0);
+  const [startOperation, setStartOperation] = useState(0);
+  const [endOperation, setEndOperation] = useState(0);
+  const [sex, setSex] = useState(0);
+
+  function doSaveNewHemocenter() {
+    const hemocenter = {
+      name,
+      cnpj,
+      email,
+      password,
+      zipCode,
+      zipNumber,
+      startOperation,
+      endOperation,
+      qttySimultServices,
+    };
+
+    console.log("hemocente", hemocenter);
+
+    api
+      .post("hemocenter", hemocenter)
+      .then(() => {
+        <h4>Success !</h4>;
+
+        setPage(2);
+      })
+      .catch((err) => {
+        alert("error: ", err);
+      });
+  }
+
+  function doSaveNewDonor() {
+    const donor = {
+      name,
+      cpf,
+      email,
+      birthDate,
+      phone,
+      password,
+      sex,
+    };
+
+    api
+      .post("donors/", donor)
+      .then(() => {
+        setPage(2);
+      })
+      .catch((err) => {
+        console.log("error: ", err);
+      });
+  }
+
+  function doLogin() {
+    const userLogin = {
+      email,
+      password,
+    };
+
+    api
+      .post(userType === 2 ? "hemocenter/current" : "donor/current", userLogin)
+      .then((resp) => {
+        userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
+
+        const user = resp.data;
+
+        sessionStorage.setItem("id", user.uuid);
+        sessionStorage.setItem("user", user.name);
+        sessionStorage.setItem("email", user.email);
+        sessionStorage.setItem("phone", user.phone);
+        sessionStorage.setItem("sex", user.sex);
+
+        console.log(resp);
+      })
+      .catch((erro) => {
+        alert("deu erro", erro);
+      });
+  }
 
   return (
     <>
@@ -43,30 +137,56 @@ export function LoginPage({ pageSelected }) {
           </div>
         </Welcome>
         <LoginArea>
-          <h1 className={page === 1 ? "" : "center"}>
+          <h1>
             {page === 1
-              ? user === 1
+              ? userType === 1
                 ? "NOVO CADASTRO DE DOADOR"
                 : "NOVO CADASTRO DE HEMOCENTRO"
-              : "BEM VINDO NOVAMENTE!"}
-            {page === 1 ? (
+              : userType === 1
+              ? "BEM VINDO DOADOR!"
+              : "BEM VINDO GESTOR!"}
+            {
               <ProfileOption
-                method1={() => setUser(1)}
-                method2={() => setUser(2)}
+                method1={() => setUserType(1)}
+                method2={() => setUserType(2)}
               />
-            ) : (
-              " "
-            )}
+            }
           </h1>
 
           {page === 1 ? (
-            user === 2 ? (
-              <RegisterHemocenter />
+            userType === 2 ? (
+              <RegisterHemocenter
+                setName={setName}
+                setEmail={setEmail}
+                setCnpj={setCnpj}
+                setZipNumber={setZipNumber}
+                setZipCode={setZipCode}
+                setPassword={setPassword}
+                setQtty={setQttyServices}
+                setStartOperation={setStartOperation}
+                setEndOperation={setEndOperation}
+                setQttyServices={setQttyServices}
+              />
             ) : (
-              <RegisterDonor />
+              <RegisterDonor
+                setName={setName}
+                setEmail={setEmail}
+                setCpf={setCpf}
+                setPhone={setPhone}
+                setBirthDate={setBirthDate}
+                setPassword={setPassword}
+                setConfirmPassword={setConfirmPassword}
+                setSex={setSex}
+              />
             )
           ) : (
-            <Login />
+            <Login
+              typeInputPassword="password"
+              placeholderInput="Email"
+              placeholderInputPassword="Senha"
+              setEmail={setEmail}
+              setPassword={setPassword}
+            />
           )}
 
           {page === 2 ? (
@@ -79,7 +199,16 @@ export function LoginPage({ pageSelected }) {
             ""
           )}
           <section className={page === 2 ? "center" : ""}>
-            <BorderlessButton text={page === 1 ? "CADASTRAR" : "LOGIN"} />
+            <BorderlessButton
+              doSomething={
+                page === 1
+                  ? userType === 2
+                    ? () => doSaveNewHemocenter()
+                    : () => doSaveNewDonor()
+                  : () => doLogin()
+              }
+              text={page === 1 ? "CADASTRAR" : "LOGIN"}
+            />
           </section>
         </LoginArea>
       </Container>

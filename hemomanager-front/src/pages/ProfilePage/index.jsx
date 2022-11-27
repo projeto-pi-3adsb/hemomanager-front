@@ -1,8 +1,7 @@
-import { Container, Exit, MainArea, Menu, Profile } from "./styles";
+import { useState } from "react";
+import { Avatar, Container, Exit, MainArea, Menu, Profile } from "./styles";
 
-import {
-  ArrowCircleRight24Filled,
-} from "@fluentui/react-icons";
+import { ArrowCircleRight24Filled } from "@fluentui/react-icons";
 import {
   Chart,
   CategoryScale,
@@ -14,13 +13,15 @@ import {
 } from "chart.js";
 
 import { Dashboard } from "../../components/Dashboard";
-import { useState } from "react";
+
 import { Schaduler } from "../../components/Scheduler";
-import { EmployeeList } from "../../components/EmployeeList";
+import { HourAvailableList } from "../../components/HourAvailableList";
 import { RegisterModal } from "../../components/RegisterModal";
-import { DonorMenu } from "../../components/DonorMenu";
+
 import { ManagerMenu } from "../../components/ManagerMenu";
-import { UserSettings } from "../../components/UserSettings";
+
+import { api } from "../../api";
+import { StockList } from "../../components/StockList";
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -29,8 +30,23 @@ Chart.register = () => (
 
 export function ProfilePage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
-
   const [page, setPage] = useState(1);
+
+  const [description, setDescription] = useState("Description");
+  const [bloodType, setBloodType] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState(0);
+
+  const [bags, setBags] = useState([]);
+
+  const [stockList, setStockList] = useState([]);
+  const [counterAPos, setCounterAPos] = useState(0);
+
+  const user = {
+    id: sessionStorage.getItem("id"),
+    name: sessionStorage.getItem("user"),
+    email: sessionStorage.getItem("email"),
+  };
 
   function doIsOpenModalTrue() {
     console.log("TO aberto");
@@ -42,110 +58,49 @@ export function ProfilePage() {
     setIsOpenModal(false);
   }
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "",
-      },
-    },
-  };
+  async function doRegisterNewBag() {
+    const bag = {
+      bloodType,
+      collectionDate: date,
+    };
 
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
+    await api.post(`/stock/${user.id}`, bag).catch((err) => {
+      alert("DEU ERRO PORRA:", err);
+    });
+  }
+
+  function doRegisterNewHour() {}
+
+  const labels2 = [
+    "Domingo",
+    "Segunda",
+    "Terça",
+    "Quarta",
+    "Quinta",
+    "Sexta",
+    "Sábado",
   ];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Quantidade de bolsas doadas",
-        data: labels.map(() => Math.random(), Math.random()),
-        backgroundColor: "#fd37139b",
-      },
-    ],
-  };
-
-  const data2 = {
-    labels,
-    datasets: [
-      {
-        label: "Doadores Femininos",
-        data: labels.map(() => Math.random(), -Math.random()),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Doadores Masculinos",
-        data: labels.map(() => Math.random(), -Math.random()),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
-
-  const user1 = {
-    id: 1,
-    name: "John Doe",
-    email: "johndoe@example.com",
-    senha: "teste123",
-    birth: "2001-03-06",
-    gender: "male",
-    role: "donor",
-  };
-
-  const user2 = {
-    id: 1,
-    name: "John Doe",
-    email: "johndoe@example.com",
-    senha: "teste123",
-    birth: "2001-03-06",
-    gender: "male",
-    role: "administrator",
-  };
 
   return (
     <Container>
       <Profile>
-        <div className="avatar">
+        <Avatar>
           <img src="https://www.github.com/samuckqadev.png" alt="" />
           <h1>
-            <strong>{user1.name}</strong>
-            <span>{user1.email}</span>
+            <strong>{user.name}</strong>
+            <span>{user.email}</span>
           </h1>
-        </div>
+        </Avatar>
         <Menu>
-          <ul className={user1.role === "donkor" ? "user-menu" : ""}>
-
-            {user1.role === "donokr" ? (
-              <DonorMenu
-                method1={() => setPage(2)}
-                method2={() => setPage(6)}
-              />
-            ) : (
-              ""
-            )}
-
-            {user1.role === "donor" ? (
-              <ManagerMenu
-                method1={() => setPage(1)}
-                method2={() => setPage(2)}
-                method3={() => setPage(3)}
-                method4={() => setPage(4)}
-                method5={() => setPage(5)}
-                method6={() => setPage(6)}
-              />
-            ) : (
-              ""
-            )}
+          <ul>
+            <ManagerMenu
+              method1={() => setPage(1)}
+              method2={() => setPage(2)}
+              method3={() => setPage(3)}
+              method4={() => setPage(4)}
+              method5={() => setPage(5)}
+              method6={() => setPage(6)}
+            />
           </ul>
         </Menu>
         <Exit>
@@ -159,17 +114,36 @@ export function ProfilePage() {
       </Profile>
       <MainArea>
         <div className="content">
-          {page === 1 ? (
-            <Dashboard data={data} data2={data2} options={options} />
-          ) : (
-            () => {}
-          )}
+          {page === 1 ? <Dashboard labelsSex={labels2} /> : () => {}}
           {page === 2 ? <Schaduler /> : ""}
-          {page === 5 ? <EmployeeList isOpen={doIsOpenModalTrue} /> : ""}
-          {page === 6 ? <UserSettings /> : ""}
+          {page === 3 ? <HourAvailableList isOpen={doIsOpenModalTrue} /> : ""}
+          {page === 4 ? (
+            <StockList  isOpen={doIsOpenModalTrue} />
+          ) : (
+            ""
+          )}
         </div>
       </MainArea>
-      <RegisterModal close={doIsOpenModalFalse} open={isOpenModal} />
+      <RegisterModal
+        setText="REGISTRAR"
+        setTitle={
+          page === 3
+            ? "NOVO HORÁRIO"
+            : "" || page === 4
+            ? "NOVA BOLSA DE SANGUE"
+            : ""
+        }
+        placeholderDescription="DESCRIÇÃO"
+        setType="button"
+        doRegister={ page === 4 ? () => doRegisterNewBag() : () => doRegisterNewHour()}
+        selectSomething={setBloodType}
+        setDate={setDate}
+        setTime={setTime}
+        close={doIsOpenModalFalse}
+        hourRegister={page === 3 ? true : false}
+        bloodBag={page === 4 ? true : false}
+        open={isOpenModal}
+      />
     </Container>
   );
 }

@@ -22,7 +22,7 @@ export function ManagerMenu({
           <i>
             <Board28Filled />
           </i>
-          <span>Dashboard </span>
+          <span>Dashboard</span>
         </button>
         <button onClick={method2}>
           <i>
@@ -46,12 +46,6 @@ export function ManagerMenu({
         </button>
       </li>
       <li>
-        <button onClick={method5}>
-          <i>
-            <PeopleCommunity24Filled />
-          </i>
-          <span>Funcionários</span>
-        </button>
         <button onClick={method6}>
           <i>
             <Wrench24Filled />

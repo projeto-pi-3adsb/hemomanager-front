@@ -2,7 +2,6 @@ import { Footer } from "../../components/Footer";
 import { HeaderComponent } from "../../components/Header";
 import { Container, About, FireImg, Orientation } from "./styles";
 import homeImg from "../../assets/home-img.png";
-import fireImg from "../../assets/fire-img.png";
 import weight from "../../assets/weight.png";
 import orientationImg from "../../assets/orientation-img.png";
 import schaduleImg from "../../assets/schadule.png";
@@ -12,10 +11,20 @@ import aboutImg from "../../assets/about-img.png";
 import comunication from "../../assets/comunication.png";
 import bloodDrop from "../../assets/blood-drop.svg";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function HomePage() {
   const navigate = useNavigate();
+
+  function doGoToLogin() {
+    navigate("/area-usuario");
+    sessionStorage.setItem("page", 2);
+  }
+
+  function doGoToRegister() {
+    navigate("/area-usuario");
+    sessionStorage.setItem("page", 1);
+  }
 
   return (
     <>
@@ -36,7 +45,10 @@ export function HomePage() {
             Somos uma plataforma que visa facilitar a vida do doador na hora do
             seu agendamento, assim aumentando o nível de doadores no Brasil.
           </p>
-          <BorderlessButton text="AGENDER AGORA" />
+          <BorderlessButton
+            doSomething={() => doGoToLogin()}
+            text="AGENDAR AGORA"
+          />
         </div>
         <div>
           <img src={homeImg} alt="" />
@@ -60,7 +72,10 @@ export function HomePage() {
             Hemocentros que estão dispostas a receber a doação, e à você,
             doador, que irá contribuir conosco.
           </p>
-          <BorderlessButton text="SEJA UM DOADOR" />
+          <BorderlessButton
+            doSomething={() => doGoToRegister()}
+            text="SEJA UM DOADOR"
+          />
         </div>
       </About>
       <Orientation id="orientation">

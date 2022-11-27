@@ -1,7 +1,21 @@
 import { InputDefault } from "./styles";
 
-export function Input({ type, placeholder, value, id }) {
+export function Input({
+  typeInput,
+  placeholderInput,
+  valueInput,
+  idInput,
+  doSomething,
+  nameInput,
+}) {
   return (
-    <InputDefault id={id} type={type} placeholder={placeholder} value={value} />
+    <InputDefault
+      id={idInput}
+      name={nameInput}
+      type={typeInput}
+      defaultValue={valueInput}
+      placeholder={placeholderInput}
+      onInput={(e) => doSomething(e.target.value)}
+    />
   );
 }

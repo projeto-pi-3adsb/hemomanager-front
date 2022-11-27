@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Scheduler from "react-mui-scheduler";
-import { Container } from "./styles";
+
 
 export function Schaduler(props) {
   const [state] = useState({
@@ -12,7 +12,6 @@ export function Schaduler(props) {
       maxWidth: 840,
       minHeight: 840,
       maxHeight: 840,
-
     },
     alertProps: {
       open: true,

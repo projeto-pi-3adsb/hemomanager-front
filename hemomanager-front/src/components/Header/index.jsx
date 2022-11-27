@@ -7,9 +7,21 @@ import { BorderlessButton } from "../shared/BorderlessButton";
 export function HeaderComponent(props) {
   const navigate = useNavigate();
 
+  function doGoToLogin() {
+    navigate("/area-usuario");
+    sessionStorage.setItem("page", 2);
+  }
+
+  function doGoToRegister() {
+    navigate("/area-usuario");
+    sessionStorage.setItem("page", 1);
+  }
+
   return (
     <HeaderStyle>
-      <Link to="/">{props.button ? <ButtonComeback /> : false}</Link>
+      <Link to="/hemomanager-front">
+        {props.button ? <ButtonComeback /> : false}
+      </Link>
       <ul>
         <img src={logo} alt="" />
         <li>
@@ -30,17 +42,10 @@ export function HeaderComponent(props) {
       </ul>
       <ButtonGroup>
         <BorderlessButton
-          method={() => {
-            navigate("/area-usuario");
-          }}
+          doSomething={() => doGoToRegister()}
           text="Cadastro"
         />
-        <BorderlessButton
-          method={() => {
-            navigate("/area-usuario");
-          }}
-          text="Login"
-        />
+        <BorderlessButton doSomething={() => doGoToLogin()} text="Login" />
       </ButtonGroup>
     </HeaderStyle>
   );

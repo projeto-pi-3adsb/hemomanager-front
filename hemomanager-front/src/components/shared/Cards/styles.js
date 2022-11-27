@@ -12,12 +12,7 @@ export const BoxCard = styled.div`
 `;
 
 export const BoxImg = styled.div`
-  #mapa {
-    margin-top: 3px;
-    margin-bottom: 10px;
-    width: 100%;
-    border-radius: 10px;
-  }
+ 
 `;
 
 export const BoxText = styled.div`
@@ -106,14 +101,13 @@ export const ButtonAgendEsquerda = styled.button`
   height: 100%;
   width: 50%;
   display: flex;
-  background-color: #b83b25;
+  background-color: var(--background-button);
   margin-right: 10px;
   border: none;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
 
-  
 `;
 
 export const ButtonAgendDireita = styled.button`
