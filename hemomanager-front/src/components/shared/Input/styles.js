@@ -9,7 +9,6 @@ export const InputDefault = styled.input`
   background: transparent;
   font-weight: 400;
   font-size: 1rem;
-  outline: none;
 
   & + input {
     margin-block-start: 1rem;
@@ -18,5 +17,7 @@ export const InputDefault = styled.input`
   &:focus-within {
     border: none;
     color: var(--background-button);
+    border-bottom: 2px solid var(--background-border-bar);
+    outline: none;
   }
 `;

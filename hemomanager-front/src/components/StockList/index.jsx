@@ -8,10 +8,9 @@ export function StockList({ isOpen }) {
 
   useEffect(() => {
     api
-      .get(`/stock/bloodType/${sessionStorage.id}`)
+      .get(`/stock/full/${sessionStorage.id}`)
       .then((data) => setBags(data.data));
   }, [setBags]);
-
 
   return (
     <Container>
@@ -27,9 +26,9 @@ export function StockList({ isOpen }) {
         </thead>
         <tbody>
           {bags.map((bag) => (
-            <tr>
+            <tr key={bag.id}>
               <td>{bag.typeBlood}</td>
-              <td>{bag.date}</td>
+              <td>{bag.collectionDate}</td>
             </tr>
           ))}
         </tbody>
