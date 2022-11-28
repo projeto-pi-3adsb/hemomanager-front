@@ -121,9 +121,10 @@ export function HomePage() {
           </div>
           <div className="button-group">
             <BorderlessButton text="VÍDEO INFORMATIVO" />
-            <Link to="/quiz">
-              <BorderlessButton text="RESPONDER QUIZ" />
-            </Link>
+            <BorderlessButton
+              doSomething={() => navigate("/quiz")}
+              text="RESPONDER QUIZ"
+            />
           </div>
         </div>
         <div>
