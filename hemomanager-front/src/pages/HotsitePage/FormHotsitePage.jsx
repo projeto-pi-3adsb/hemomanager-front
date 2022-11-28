@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { HeaderComponent } from "../../components/Header";
 import { Container,  InputGroup ,Header, Title } from "./styles";
 import bloodDrop from "../../assets/blood-drop.svg";
-import { Border } from "../../components/shared/Border/Border";
 import { Input } from "../../components/shared/Input";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
 import { useNavigate } from "react-router-dom";
 
-export function HotsitePage() {
+export function FormHotsitePage() {
     const navigate = useNavigate();
     const [name, setName] = useState(sessionStorage.getItem("user"));
     const [email, setEmail] = useState(sessionStorage.getItem("email"));

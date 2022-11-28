@@ -5,13 +5,11 @@ export const Container = styled.div`
   margin: auto;
   height: 100vh;
   width: 80vw;
-  display: block;
 `;
 
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
-  margin-left: 87px;
 
   div {
     display: flex;
@@ -45,23 +43,21 @@ export const Title = styled.strong`
 `;
 
 export const InputGroup = styled.div`
-  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   padding: 0 6rem;
-  height: 100vh;
-  max-width: 980px;
-  border-radius: 9px;
-  border: 1px solid var(--input-border);
-  margin: 2rem auto;
+  border-radius: 0.5rem;
+  border: 1px solid var(--background-border-bar);
+  width: 100%;
+  height: 90vh;
+  margin-top: 4rem;
 
   div {
     display: flex;
     border-bottom: 2px solid var(--input-border);
     margin-bottom: 2rem;
-
-    gap: 1rem;
+    margin-top: 2rem;
 
     span {
       font-family: "Roboto", sans-serif;
@@ -85,4 +81,87 @@ export const InputGroup = styled.div`
   }
 `;
 
-export const Input = styled.input``;
+export const BoxUpload = styled.div`
+  padding: 0 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--background-border-bar);
+  width: 100%;
+  height: 90vh;
+  margin-top: 4rem;
+
+  div .upload {
+    justify-content: center;
+    width: 50%;
+    height: 40vh;
+    margin-top: 20px;
+    padding: 0 3rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--background-border-bar);
+  }
+
+  h2 {
+    margin-top: 20px;
+    color: #666666;
+  }
+
+`
+
+export const BoxList = styled.div`
+  margin-top: 30px;
+
+  table {
+      inline-size: 100%;
+      border-spacing: 0 0.5rem;
+
+      th {
+        color: var(--shape);
+        background-color: var(--background-button);
+        font-weight: 400;
+        padding: 1rem 2rem;
+        line-height: 1.8rem;
+        text-align: center;
+
+        &:first-child {
+          border-radius: 8px 0 0 8px;
+        }
+
+        &:last-child {
+          border-radius: 0 8px 8px 0;
+        }
+      }
+
+      td {
+        padding: 1rem 2rem;
+        line-height: 1.8rem;
+        border: 0;
+        background: var(--background-option-bar);
+        color: var(--background-button);
+        border-radius: 0.25rem;
+        text-align: center;
+
+        &:first-child {
+          border-radius: 8px 0 0 8px;
+        }
+
+        &:last-child {
+          border-radius: 0 8px 8px 0;
+        }
+      }
+    }
+  `;
+
+  export const BoxButton = styled.div`
+    display: flex;
+    justify-content: flex-end;
+
+    div {
+      width: 30%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around; 
+
+    }
+ 
+  `
+
