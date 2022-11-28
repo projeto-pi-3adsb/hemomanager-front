@@ -9,6 +9,7 @@ import { Container, Link, LoginArea, Welcome } from "../LoginPage/styles";
 import { RegisterHemocenter } from "../../components/RegisterHemocenter";
 import { RegisterDonor } from "../../components/RegisterDonor";
 import { api } from "../../api";
+import { MessageModal } from "../../components/MessageModal";
 
 export function LoginPage({ pageSelected }) {
   const [page, setPage] = useState(
@@ -35,6 +36,18 @@ export function LoginPage({ pageSelected }) {
   const [endOperation, setEndOperation] = useState(0);
   const [sex, setSex] = useState(0);
 
+  const [isOpen, setIsOpen] = useState(true);
+
+  function doIsOpenModalTrue() {
+    console.log("TO aberto");
+    setIsOpen(true);
+  }
+
+  function doIsOpenModalFalse() {
+    console.log("TO FECHADO");
+    setIsOpen(false);
+  }
+
   function doSaveNewHemocenter() {
     const hemocenter = {
       name,
@@ -53,8 +66,6 @@ export function LoginPage({ pageSelected }) {
     api
       .post("hemocenter", hemocenter)
       .then(() => {
-        <h4>Success !</h4>;
-
         setPage(2);
       })
       .catch((err) => {
@@ -105,7 +116,7 @@ export function LoginPage({ pageSelected }) {
         console.log(resp);
       })
       .catch((erro) => {
-        alert("deu erro", erro);
+        <h1>ERRO</h1>
       });
   }
 

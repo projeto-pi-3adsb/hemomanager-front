@@ -1,16 +1,14 @@
 import React from "react";
 import { DefaultPlayer as Video } from "react-html5video";
-import "react-html5video/dist/styles.css"
+import "react-html5video/dist/styles.css";
 import { BoxBorder } from "./style";
-import videoUrl from "../../../../src/video/video.mp4";
+import ReactPlayer from "react-player";
 
 export function Border() {
   return (
     <>
       <BoxBorder>
-        <Video autoPlay loop>
-          <source src={videoUrl} type="video/webm" />
-        </Video>
+        <ReactPlayer url="https://www.youtube.com/watch?v=5NlFrG3ZPJY" />
       </BoxBorder>
     </>
   );
