@@ -19,9 +19,7 @@ export function HeaderComponent(props) {
 
   return (
     <HeaderStyle>
-      <Link to="/hemomanager-front">
-        {props.button ? <ButtonComeback /> : false}
-      </Link>
+      {props.button ? <ButtonComeback method={() => navigate(-1)} /> : false}
       <ul>
         <img src={logo} alt="" />
         <li>

@@ -120,10 +120,14 @@ export function HomePage() {
             </span>
           </div>
           <div className="button-group">
-            <BorderlessButton text="VÍDEO INFORMATIVO" />
-            <Link to="/quiz">
-              <BorderlessButton text="RESPONDER QUIZ" />
-            </Link>
+            <BorderlessButton
+              doSomething={() => navigate("/video")}
+              text="VÍDEO INFORMATIVO"
+            />
+            <BorderlessButton
+              doSomething={() => navigate("/quiz")}
+              text="RESPONDER QUIZ"
+            />
           </div>
         </div>
         <div>

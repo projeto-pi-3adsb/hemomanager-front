@@ -23,6 +23,8 @@ import { ManagerMenu } from "../../components/ManagerMenu";
 import { api } from "../../api";
 import { StockList } from "../../components/StockList";
 
+
+
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
@@ -32,18 +34,13 @@ export function ProfilePage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [page, setPage] = useState(1);
 
-  const [description, setDescription] = useState("Description");
   const [bloodType, setBloodType] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState(0);
 
-  const [bags, setBags] = useState([]);
-
-  const [stockList, setStockList] = useState([]);
-  const [counterAPos, setCounterAPos] = useState(0);
 
   const user = {
-    id: sessionStorage.getItem("id"),
+    uuid: sessionStorage.getItem("id"),
     name: sessionStorage.getItem("user"),
     email: sessionStorage.getItem("email"),
   };
@@ -58,18 +55,37 @@ export function ProfilePage() {
     setIsOpenModal(false);
   }
 
-  async function doRegisterNewBag() {
+  function doRegisterNewBag() {
     const bag = {
       bloodType,
       collectionDate: date,
     };
 
-    await api.post(`/stock/${user.id}`, bag).catch((err) => {
-      alert("DEU ERRO PORRA:", err);
+    api
+      .post(`/stock/${user.uuid}`, bag)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  }
+
+  async function doRegisterNewHour() {
+    const hour = {
+      uuid: sessionStorage.getItem("id"),
+      time,
+      date,
+    };
+
+    console.log("CUrrent Hour: ", hour);
+
+    await api.post(`/schedules/${hour.uuid}`, hour).catch((err) => {
+      console.log(err);
     });
   }
 
-  function doRegisterNewHour() {}
+
 
   const labels2 = [
     "Domingo",
@@ -117,11 +133,7 @@ export function ProfilePage() {
           {page === 1 ? <Dashboard labelsSex={labels2} /> : () => {}}
           {page === 2 ? <Schaduler /> : ""}
           {page === 3 ? <HourAvailableList isOpen={doIsOpenModalTrue} /> : ""}
-          {page === 4 ? (
-            <StockList  isOpen={doIsOpenModalTrue} />
-          ) : (
-            ""
-          )}
+          {page === 4 ? <StockList isOpen={doIsOpenModalTrue} /> : ""}
         </div>
       </MainArea>
       <RegisterModal
@@ -135,7 +147,9 @@ export function ProfilePage() {
         }
         placeholderDescription="DESCRIÇÃO"
         setType="button"
-        doRegister={ page === 4 ? () => doRegisterNewBag() : () => doRegisterNewHour()}
+        doRegister={() =>
+          page === 3 ? doRegisterNewHour() : doRegisterNewBag()
+        }
         selectSomething={setBloodType}
         setDate={setDate}
         setTime={setTime}
