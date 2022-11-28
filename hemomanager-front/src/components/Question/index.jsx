@@ -3,10 +3,8 @@ import { BorderlessButton } from "../shared/BorderlessButton";
 import { Container } from "./styles";
 
 export function Question(props) {
-
-
   function doAnswerTrue() {
-    props.setAnswer(true)
+    props.setAnswer(true);
     props.setCounter(props.counter + 1);
   }
 
@@ -19,9 +17,9 @@ export function Question(props) {
     <Container>
       <h4>{props.indexQuestion}</h4>
       <div>
-        <BorderlessButton text="Sim" method={doAnswerTrue} />
+        <BorderlessButton text="Sim" doSomething={doAnswerTrue} />
 
-        <BorderlessButton text="Não" method={doAnswerFalse} />
+        <BorderlessButton text="Não" doSomething={doAnswerFalse} />
       </div>
     </Container>
   );
