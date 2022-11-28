@@ -1,13 +1,15 @@
-import { BarraOpcoes } from "../../PerfilUsuario/styles";
+import { BarraOpcoes, Container } from "../../PerfilUsuario/styles";
+
+import { BorderlessButton } from "../BorderlessButton";
 
 export function MenuDoador(props) {
   return (
-    <div className="container">
+    <Container>
       <BarraOpcoes>
-        <button>MEU PERFIL</button>
-        <button>MEUS AGENDAMENTOS</button>
-        <button>NOVOS AGENDAMENTOS</button>
+        <BorderlessButton text="MEU PERFIL" />
+        <BorderlessButton text="MEUS AGENDAMENTOS" />
+        <BorderlessButton text="NOVOS AGENDAMENTOS" />
       </BarraOpcoes>
-    </div>
+    </Container>
   );
 }

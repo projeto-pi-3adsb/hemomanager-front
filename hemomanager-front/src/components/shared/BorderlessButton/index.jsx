@@ -1,6 +1,10 @@
 import React from "react";
 import { Button } from "./styles";
 
-export function BorderlessButton(props) {
-  return <Button onClick={props.method}>{props.text}</Button>;
+export function BorderlessButton({ text, typeButton, doSomething }) {
+  return (
+    <Button type={typeButton} onClick={doSomething}>
+      {text}
+    </Button>
+  );
 }

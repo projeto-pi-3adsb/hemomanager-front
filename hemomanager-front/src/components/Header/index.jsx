@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import { ButtonGroup, HeaderStyle } from "./styles";
 import logo from "../../assets/logotypes/logo-2.png";
 import { ButtonComeback } from "../shared/ButtonComeback";
@@ -7,12 +5,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { BorderlessButton } from "../shared/BorderlessButton";
 
 export function HeaderComponent(props) {
-  const [colorMenu, setColorMenu] = useState(false);
   const navigate = useNavigate();
+
+  function doGoToLogin() {
+    navigate("/area-usuario");
+    sessionStorage.setItem("page", 2);
+  }
+
+  function doGoToRegister() {
+    navigate("/area-usuario");
+    sessionStorage.setItem("page", 1);
+  }
 
   return (
     <HeaderStyle>
-      <Link to="/">{props.button ? <ButtonComeback /> : false}</Link>
+      <Link to="/hemomanager-front">
+        {props.button ? <ButtonComeback /> : false}
+      </Link>
       <ul>
         <img src={logo} alt="" />
         <li>
@@ -32,8 +41,11 @@ export function HeaderComponent(props) {
         </li>
       </ul>
       <ButtonGroup>
-        <BorderlessButton text="Cadastro" />
-        <BorderlessButton text="Login" />
+        <BorderlessButton
+          doSomething={() => doGoToRegister()}
+          text="Cadastro"
+        />
+        <BorderlessButton doSomething={() => doGoToLogin()} text="Login" />
       </ButtonGroup>
     </HeaderStyle>
   );

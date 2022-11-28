@@ -1,22 +1,23 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  max-width: 1124px;
+  height: 100%;
+  margin: 0 auto;
+`;
 export const Header = styled.div`
   background-color: var(--background);
   align-items: center;
   display: flex;
   justify-content: space-between;
   height: 80px;
-  width: 100%;
-`;
-export const Button = styled.button`
-  background-color: var(--background-button);
-  font-family: "Roboto", sans-serif;
-  border: none;
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  width: 75px;
-  height: 35px;
+  max-width: 1280px;
+  padding: 0 1rem;
+  margin: 0 auto;
+
+  button {
+    width: 6rem;
+  }
 `;
 
 export const Perfil = styled.div`
@@ -30,34 +31,67 @@ export const Perfil = styled.div`
     font-size: 2rem;
   }
   img {
-    height: 200px;
+    height: 8rem;
   }
 `;
 
 export const BarraOpcoes = styled.div`
-  margin: 4rem auto;
-  width: 75vw;
-  height: 15vh;
-  background-color: var(--background-option-bar);
+  margin: 3rem auto;
+  max-width: 980px;
+  background-color: var(--background-beige);
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 8px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+
+  gap: 2rem;
 
   button {
-    border: 1px solid var(--background-border-bar);
-    width: 248px;
-    height: 48px;
+    height: 2.5rem;
+    width: 14rem;
   }
 `;
 
 export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  height: 500px;
-  width: 800px;
+  padding: 0 6rem;
+  height: 70vh;
+  max-width: 980px;
   border-radius: 9px;
   border: 1px solid var(--input-border);
-  margin: auto;
+  margin: 2rem auto;
+
+  div {
+    display: flex;
+    border-bottom: 2px solid var(--input-border);
+    margin-bottom: 2rem;
+
+    gap: 1rem;
+
+    span {
+      font-family: "Roboto", sans-serif;
+      width: 60%;
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      font-family: "Roboto", sans-serif;
+      width: 40%;
+      border: none;
+      display: flex;
+      text-align: start;
+      justify-content: flex-end;
+
+      &:focus-within {
+        border: none;
+      }
+    }
+  }
 `;
+
 export const Input = styled.input``;
