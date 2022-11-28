@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
+import { api } from "../../api";
 import { BorderlessButton } from "../shared/BorderlessButton";
 import { Container } from "./styles";
 
+export function HourAvailableList({ isOpen }) {
+  const [hours, setHours] = useState([]);
 
-export function HourAvailableList({ isOpen, hours }) {
+  
+
+
   return (
     <Container>
       <h1>
@@ -12,7 +18,6 @@ export function HourAvailableList({ isOpen, hours }) {
         <thead>
           <tr>
             <th>Dia</th>
-
             <th>Horário</th>
           </tr>
         </thead>
@@ -20,9 +25,7 @@ export function HourAvailableList({ isOpen, hours }) {
           {hours.map((hour) => (
             <tr key={hour.type}>
               <td>{hour.date}</td>
-              <td>
-               {hour.hour}
-              </td>
+              <td>{hour.hour}</td>
             </tr>
           ))}
         </tbody>
@@ -30,4 +33,3 @@ export function HourAvailableList({ isOpen, hours }) {
     </Container>
   );
 }
-

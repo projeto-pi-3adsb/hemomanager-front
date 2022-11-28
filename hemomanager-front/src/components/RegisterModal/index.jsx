@@ -19,7 +19,6 @@ export function RegisterModal({
   bloodBag,
   doRegister,
   hourRegister,
-
 }) {
   return (
     <>

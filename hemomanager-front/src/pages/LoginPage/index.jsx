@@ -9,6 +9,7 @@ import { Container, Link, LoginArea, Welcome } from "../LoginPage/styles";
 import { RegisterHemocenter } from "../../components/RegisterHemocenter";
 import { RegisterDonor } from "../../components/RegisterDonor";
 import { api } from "../../api";
+import { MessageModal } from "../../components/MessageModal";
 
 export function LoginPage({ pageSelected }) {
   const [page, setPage] = useState(
@@ -33,7 +34,19 @@ export function LoginPage({ pageSelected }) {
   const [cpf, setCpf] = useState(0);
   const [startOperation, setStartOperation] = useState(0);
   const [endOperation, setEndOperation] = useState(0);
-  const [sex, setSex] = useState(0);
+  const [sex, setSex] = useState("");
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  function doIsOpenModalTrue() {
+    console.log("TO aberto");
+    setIsOpen(true);
+  }
+
+  function doIsOpenModalFalse() {
+    console.log("TO FECHADO");
+    setIsOpen(false);
+  }
 
   function doSaveNewHemocenter() {
     const hemocenter = {
@@ -48,14 +61,11 @@ export function LoginPage({ pageSelected }) {
       qttySimultServices,
     };
 
-    console.log("hemocente", hemocenter);
-
     api
-      .post("hemocenter", hemocenter)
+      .post("/hemocenter", hemocenter)
       .then(() => {
-        <h4>Success !</h4>;
-
         setPage(2);
+        console.table(hemocenter);
       })
       .catch((err) => {
         alert("error: ", err);
@@ -65,21 +75,24 @@ export function LoginPage({ pageSelected }) {
   function doSaveNewDonor() {
     const donor = {
       name,
-      cpf,
       email,
-      birthDate,
-      phone,
       password,
+      cpf,
+      birthDate,
       sex,
+      phone,
+      valid: false,
     };
 
     api
-      .post("donors/", donor)
+      .post("/donor", donor)
       .then(() => {
         setPage(2);
+        console.table(donor);
       })
       .catch((err) => {
-        console.log("error: ", err);
+        alert("error: ", err);
+        console.table(donor);
       });
   }
 
@@ -90,7 +103,7 @@ export function LoginPage({ pageSelected }) {
     };
 
     api
-      .post(userType === 2 ? "hemocenter/current" : "donor/current", userLogin)
+      .post(userType === 2 ? "/hemocenter/current/" : "donor/current", userLogin)
       .then((resp) => {
         userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
 
@@ -105,7 +118,7 @@ export function LoginPage({ pageSelected }) {
         console.log(resp);
       })
       .catch((erro) => {
-        alert("deu erro", erro);
+        console.log(userLogin);
       });
   }
 
