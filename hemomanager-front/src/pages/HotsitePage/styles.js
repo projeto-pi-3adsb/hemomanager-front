@@ -50,13 +50,12 @@ export const InputGroup = styled.div`
   border-radius: 0.5rem;
   border: 1px solid var(--background-border-bar);
   width: 100%;
-  height: 90vh;
-  margin-top: 4rem;
+  height: 85vh;
+  margin-top: 2rem;
 
   div {
     display: flex;
     border-bottom: 2px solid var(--input-border);
-    margin-bottom: 2rem;
     margin-top: 2rem;
 
     span {
@@ -151,17 +150,9 @@ export const BoxList = styled.div`
   `;
 
   export const BoxButton = styled.div`
+    margin-top: 20px;
+    justify-content: right;
     display: flex;
-    justify-content: flex-end;
-
-    div {
-      width: 30%;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-around; 
-
-    }
- 
+    
   `
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HeaderComponent } from "../../components/Header";
-import { Container,  InputGroup ,Header, Title } from "./styles";
+import { Container,  InputGroup ,Header, Title, BoxButton } from "./styles";
 import bloodDrop from "../../assets/blood-drop.svg";
 import { Input } from "../../components/shared/Input";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
@@ -70,8 +70,10 @@ export function FormHotsitePage() {
           <span>Fez o uso de ácido acetilsalicílico ou anti-inflamatórios?</span>
           <Input valueInput={sex} doSomething={setSex} />
         </div>
-        <BorderlessButton doSomething={() => doGoToRegister()}text="ENVIAR" />
       </InputGroup>
+      <BoxButton>
+            <BorderlessButton doSomething={() => doGoToRegister()}text="ENVIAR" />
+        </BoxButton>
       </Container>
     </>
   );
