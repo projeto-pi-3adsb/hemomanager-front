@@ -22,7 +22,8 @@ import { ManagerMenu } from "../../components/ManagerMenu";
 
 import { api } from "../../api";
 import { StockList } from "../../components/StockList";
-import { MessageModal } from "../../components/MessageModal";
+
+
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -31,17 +32,12 @@ Chart.register = () => (
 
 export function ProfilePage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [page, setPage] = useState(4);
+  const [page, setPage] = useState(1);
 
-  const [description, setDescription] = useState("Description");
   const [bloodType, setBloodType] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState(0);
 
-  const [bags, setBags] = useState([]);
-
-  const [stockList, setStockList] = useState([]);
-  const [counterAPos, setCounterAPos] = useState(0);
 
   const user = {
     uuid: sessionStorage.getItem("id"),
@@ -59,15 +55,20 @@ export function ProfilePage() {
     setIsOpenModal(false);
   }
 
-  async function doRegisterNewBag() {
+  function doRegisterNewBag() {
     const bag = {
       bloodType,
       collectionDate: date,
     };
 
-    await api.post(`/stock/${user.id}`, bag).catch((err) => {
-      alert(err.message);
-    });
+    api
+      .post(`/stock/${user.uuid}`, bag)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   }
 
   async function doRegisterNewHour() {
@@ -79,12 +80,12 @@ export function ProfilePage() {
 
     console.log("CUrrent Hour: ", hour);
 
-    await api.post(`/scheduleHemocenter/${hour.uu}`, hour).catch((err) => {
+    await api.post(`/schedules/${hour.uuid}`, hour).catch((err) => {
       console.log(err);
     });
   }
 
-  function doRegisterNewHour() {}
+
 
   const labels2 = [
     "Domingo",
@@ -146,7 +147,9 @@ export function ProfilePage() {
         }
         placeholderDescription="DESCRIÇÃO"
         setType="button"
-        doRegister={() => doRegisterNewHour()}
+        doRegister={() =>
+          page === 3 ? doRegisterNewHour() : doRegisterNewBag()
+        }
         selectSomething={setBloodType}
         setDate={setDate}
         setTime={setTime}

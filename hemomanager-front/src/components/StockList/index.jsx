@@ -29,7 +29,7 @@ export function StockList({ isOpen }) {
           </thead>
           <tbody>
             {bags?.map((bag) => (
-              <tr key={bag.uuid}>
+              <tr key={bag.counter}>
                 <td>{bag.bloodType}</td>
                 <td>{bag.collectionDate}</td>
               </tr>

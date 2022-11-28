@@ -34,7 +34,7 @@ export function LoginPage({ pageSelected }) {
   const [cpf, setCpf] = useState(0);
   const [startOperation, setStartOperation] = useState(0);
   const [endOperation, setEndOperation] = useState(0);
-  const [sex, setSex] = useState(0);
+  const [sex, setSex] = useState("");
 
   const [isOpen, setIsOpen] = useState(true);
 
@@ -61,12 +61,11 @@ export function LoginPage({ pageSelected }) {
       qttySimultServices,
     };
 
-    console.log("hemocente", hemocenter);
-
     api
-      .post("hemocenter", hemocenter)
+      .post("/hemocenter", hemocenter)
       .then(() => {
         setPage(2);
+        console.table(hemocenter);
       })
       .catch((err) => {
         alert("error: ", err);
@@ -76,21 +75,24 @@ export function LoginPage({ pageSelected }) {
   function doSaveNewDonor() {
     const donor = {
       name,
-      cpf,
       email,
-      birthDate,
-      phone,
       password,
+      cpf,
+      birthDate,
       sex,
+      phone,
+      valid: false,
     };
 
     api
-      .post("donors/", donor)
+      .post("/donor", donor)
       .then(() => {
         setPage(2);
+        console.table(donor);
       })
       .catch((err) => {
-        console.log("error: ", err);
+        alert("error: ", err);
+        console.table(donor);
       });
   }
 
@@ -101,7 +103,7 @@ export function LoginPage({ pageSelected }) {
     };
 
     api
-      .post(userType === 2 ? "hemocenter/current" : "donor/current", userLogin)
+      .post(userType === 2 ? "/hemocenter/current/" : "donor/current", userLogin)
       .then((resp) => {
         userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
 
@@ -116,7 +118,7 @@ export function LoginPage({ pageSelected }) {
         console.log(resp);
       })
       .catch((erro) => {
-        <h1>ERRO</h1>
+        console.log(userLogin);
       });
   }
 
