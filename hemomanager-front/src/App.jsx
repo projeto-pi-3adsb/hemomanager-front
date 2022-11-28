@@ -20,6 +20,7 @@ export function App() {
         <Route exact path="/cadastro-doador" element={<CadastroDoador />} />
         <Route exact path="/video" element={<VideoPage/>} />
         <Route exact path="/novo-agendamento" element={<NovoAgendamento />} />
+        <Route exact path="/video" element={<VideoPage/>} />
       </Routes>
       <GlobalStyled />
     </>
