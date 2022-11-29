@@ -29,10 +29,10 @@ export function App() {
         <Route path="/cadastro-doador" element={<CadastroDoador />} />
         <Route path="/video" element={<VideoPage />} />
         <Route path="/novo-agendamento" element={<NovoAgendamento />} />
+        <Route path="/cadastro-doador" element={<CadastroDoador />} />
+        <Route path="/video" element={<VideoPage />} />
+        <Route path="/novo-agendamento" element={<NovoAgendamento />} />
         <Route path="*" element={<NotFound />} />
-        <Route exact path="/cadastro-doador" element={<CadastroDoador />} />
-        <Route exact path="/video" element={<VideoPage/>} />
-        <Route exact path="/novo-agendamento" element={<NovoAgendamento />} />
         <Route exact path="/form-hotsite" element={<FormHotsitePage/>} />
         <Route exact path="/upload-hotsite" element={<UploadHotsitePage/>} />
       </Routes>
