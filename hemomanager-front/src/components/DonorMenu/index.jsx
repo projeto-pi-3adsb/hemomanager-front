@@ -1,22 +1,17 @@
-import { CalendarLtr28Filled, Wrench24Filled } from "@fluentui/react-icons";
 
-export function DonorMenu({ method1, method2 }) {
+
+
+import { BarraOpcoes, Container } from "../PerfilUsuario/styles";
+import { BorderlessButton } from "../shared/BorderlessButton";
+
+export function MenuDoador({ method1, method2, method3 }) {
   return (
-    <>
-      <li>
-        <button onClick={method1}>
-          <i>
-            <CalendarLtr28Filled />
-          </i>
-          <span>Agendamentos</span>
-        </button>
-        <button onClick={method2}>
-          <i>
-            <Wrench24Filled />
-          </i>
-          <span>Configurações</span>
-        </button>
-      </li>
-    </>
+    <Container>
+      <BarraOpcoes>
+        <BorderlessButton doSomething={method1} text="MEU PERFIL" />
+        <BorderlessButton doSomething={method2} text="MEUS AGENDAMENTOS" />
+        <BorderlessButton doSomething={method3} text="NOVOS AGENDAMENTOS" />
+      </BarraOpcoes>
+    </Container>
   );
 }

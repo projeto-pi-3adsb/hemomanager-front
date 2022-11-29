@@ -22,8 +22,7 @@ import { ManagerMenu } from "../../components/ManagerMenu";
 
 import { api } from "../../api";
 import { StockList } from "../../components/StockList";
-
-
+import { useNavigate } from "react-router";
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -31,6 +30,8 @@ Chart.register = () => (
 );
 
 export function ProfilePage() {
+  const navigate = useNavigate();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -38,12 +39,20 @@ export function ProfilePage() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState(0);
 
+  const [error, setError] = useState(false);
+  const [send, setSend] = useState(null);
 
   const user = {
     uuid: sessionStorage.getItem("id"),
     name: sessionStorage.getItem("user"),
     email: sessionStorage.getItem("email"),
   };
+
+  function validateError() {
+    setError(true);
+    setSend(false);
+    setTimeout(() => setError(null), 3000);
+  }
 
   function doIsOpenModalTrue() {
     console.log("TO aberto");
@@ -63,29 +72,43 @@ export function ProfilePage() {
 
     api
       .post(`/stock/${user.uuid}`, bag)
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
+        setSend(true);
+        setError(true);
+        setTimeout(() => setError(null), 3000);
+        console.table(bag);
       })
-      .catch((err) => {
-        alert(err.message);
+      .catch((err) => {});
+  }
+
+  function doRegisterNewHour() {
+    const hour = {
+      hemocenterId: user.uuid,
+      shcduleDate: date,
+      scheduleTime: time,
+    };
+
+    console.log("Current Hour: ", hour);
+
+    api
+      .post(`hemocenter/scheduleHemocenter/`, hour)
+      .then((data) => {
+        setSend(true);
+        console.log(data);
+      })
+      .catch((error) => {
+        validateError();
+        console.log(hour);
+        console.error(error.response.status);
       });
   }
 
-  async function doRegisterNewHour() {
-    const hour = {
-      uuid: sessionStorage.getItem("id"),
-      time,
-      date,
-    };
-
-    console.log("CUrrent Hour: ", hour);
-
-    await api.post(`/schedules/${hour.uuid}`, hour).catch((err) => {
-      console.log(err);
-    });
+  function logOut() {
+    sessionStorage.clear();
+    sessionStorage.setItem("page", 2);
+    navigate("/area-usuario");
   }
-
-
 
   const labels2 = [
     "Domingo",
@@ -120,7 +143,7 @@ export function ProfilePage() {
           </ul>
         </Menu>
         <Exit>
-          <button>
+          <button onClick={() => logOut()}>
             <span>Sair</span>
             <i>
               <ArrowCircleRight24Filled />
@@ -137,6 +160,7 @@ export function ProfilePage() {
         </div>
       </MainArea>
       <RegisterModal
+        error={error}
         setText="REGISTRAR"
         setTitle={
           page === 3
@@ -145,7 +169,6 @@ export function ProfilePage() {
             ? "NOVA BOLSA DE SANGUE"
             : ""
         }
-        placeholderDescription="DESCRIÇÃO"
         setType="button"
         doRegister={() =>
           page === 3 ? doRegisterNewHour() : doRegisterNewBag()
@@ -157,6 +180,7 @@ export function ProfilePage() {
         hourRegister={page === 3 ? true : false}
         bloodBag={page === 4 ? true : false}
         open={isOpenModal}
+        send={send}
       />
     </Container>
   );

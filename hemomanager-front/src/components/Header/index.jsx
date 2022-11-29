@@ -35,7 +35,7 @@ export function HeaderComponent(props) {
           <a href={props.contact}>Contato</a>
         </li>
         <li>
-          <a href={props.contact}>Doação de plaquetas</a>
+          <a href={props.platelets}>Doação de plaquetas</a>
         </li>
       </ul>
       <ButtonGroup>
