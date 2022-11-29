@@ -2,7 +2,7 @@ import {
   Board28Filled,
   CalendarLtr28Filled,
   Clock24Filled,
-  PeopleCommunity24Filled,
+
   ReceiptBag24Filled,
   Wrench24Filled,
 } from "@fluentui/react-icons";

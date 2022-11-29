@@ -9,9 +9,9 @@ import { Container, Link, LoginArea, Welcome } from "../LoginPage/styles";
 import { RegisterHemocenter } from "../../components/RegisterHemocenter";
 import { RegisterDonor } from "../../components/RegisterDonor";
 import { api } from "../../api";
-import { MessageModal } from "../../components/MessageModal";
+import { MaxDialog } from "../../components/shared/Dialog";
 
-export function LoginPage({ pageSelected }) {
+export function LoginPage() {
   const [page, setPage] = useState(
     sessionStorage.getItem("page") === "1" ? 1 : 2
   );
@@ -103,7 +103,10 @@ export function LoginPage({ pageSelected }) {
     };
 
     api
-      .post(userType === 2 ? "/hemocenter/current/" : "donor/current", userLogin)
+      .post(
+        userType === 2 ? "/hemocenter/current/" : "/donor/current/",
+        userLogin
+      )
       .then((resp) => {
         userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
 
@@ -117,7 +120,11 @@ export function LoginPage({ pageSelected }) {
 
         console.log(resp);
       })
-      .catch((erro) => {
+      .catch((error) => {
+        if (error.response.status === 404) {
+          doIsOpenModalTrue();
+          console.table(error.response.status);
+        }
         console.log(userLogin);
       });
   }
@@ -158,6 +165,7 @@ export function LoginPage({ pageSelected }) {
               : userType === 1
               ? "BEM VINDO DOADOR!"
               : "BEM VINDO GESTOR!"}
+
             {
               <ProfileOption
                 method1={() => setUserType(1)}
@@ -165,7 +173,7 @@ export function LoginPage({ pageSelected }) {
               />
             }
           </h1>
-
+          <p>Erro c</p>
           {page === 1 ? (
             userType === 2 ? (
               <RegisterHemocenter
@@ -224,6 +232,7 @@ export function LoginPage({ pageSelected }) {
             />
           </section>
         </LoginArea>
+        <MaxDialog isClose={doIsOpenModalFalse} isOpen={doIsOpenModalTrue} />
       </Container>
     </>
   );

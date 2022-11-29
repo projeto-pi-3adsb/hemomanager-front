@@ -2,7 +2,6 @@ import Modal from "react-modal";
 import { BorderlessButton } from "../shared/BorderlessButton";
 import { Input } from "../shared/Input";
 
-
 import { Container } from "./styles";
 
 Modal.setAppElement("#root");

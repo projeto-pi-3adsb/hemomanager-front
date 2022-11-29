@@ -1,60 +1,88 @@
-import { Header, InputGroup, Perfil } from "./styles";
 import logoImg from "../../assets/logotypes/logo-2.png";
 import mirian from "../../assets/mirian.svg";
 import React, { useState } from "react";
 
-import { MenuDoador } from "../shared/Cards/MenuDoador";
-
 import { BorderlessButton } from "../shared/BorderlessButton";
-import { Input } from "../shared/Input";
+
+import { EditProfile } from "../editProfile";
+import { SchedulesUser } from "../ShedulesUser";
+import { useNavigate } from "react-router-dom";
+import { Content, Header, Perfil } from "./styles";
+import { MenuDoador } from "../DonorMenu";
+import { NewSchedule } from "../NewSchedule";
 
 export function PerfilUsuario() {
+  const navigate = useNavigate();
+
+  const [page, setPage] = useState(1);
+  const [isEdit, setIsEdit] = useState(false);
+
   const [name, setName] = useState(sessionStorage.getItem("user"));
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
   const [phone, setPhone] = useState(sessionStorage.getItem("phone"));
   const [sex, setSex] = useState(sessionStorage.getItem("sex"));
 
-  const user = {
-    name,
-    email,
-    phone,
-    sex,
-  };
-
-  {
-    console.log(user);
+  function logOut() {
+    sessionStorage.clear();
+    sessionStorage.setItem("page", 2);
+    navigate("/area-usuario");
   }
 
   return (
     <>
       <Header>
         <img src={logoImg} alt="" />
-        <BorderlessButton text="Sair" />
+        <BorderlessButton doSomething={() => logOut()} text="Sair" />
       </Header>
       <Perfil>
         <img src={mirian} alt="" />
         <h1>{name}</h1>
       </Perfil>
-      <MenuDoador />
+      <MenuDoador
+        method1={() => setPage(1)}
+        method2={() => setPage(2)}
+        method3={() => setPage(3)}
+      />
 
-      <InputGroup>
-        <div>
-          <span>Nome Completo</span>
-          <Input valueInput={name} doSomething={setName} />
-        </div>
-        <div>
-          <span>Email</span>
-          <Input valueInput={email} doSomething={setEmail} />
-        </div>
-        <div>
-          <span>Celular</span>
-          <Input valueInput={phone} doSomething={setPhone} />
-        </div>
-        <div>
-          <span>Sexo</span>
-          <Input valueInput={sex} doSomething={setSex} />
-        </div>
-      </InputGroup>
+      <Content>
+        {page === 1 ? (
+          <h1>
+            <BorderlessButton
+              doSomething={() => setIsEdit(true)}
+              text="EDITAR"
+            />
+          </h1>
+        ) : (
+          ""
+        )}
+        {page === 1 ? (
+          <EditProfile
+            name={name}
+            email={email}
+            phone={phone}
+            sex={sex}
+            setEmail={setEmail}
+            setName={setName}
+            setPhone={setPhone}
+            setSex={setSex}
+            isEdit={!isEdit}
+          />
+        ) : (
+          ""
+        )}
+        {page === 2 ? <SchedulesUser /> : ""}
+        {page === 3 ? <NewSchedule /> : ""}
+        {isEdit ? (
+          <div className="edit">
+            <BorderlessButton
+              doSomething={() => setIsEdit(false)}
+              text="SALVAR"
+            />
+          </div>
+        ) : (
+          ""
+        )}
+      </Content>
     </>
   );
 }

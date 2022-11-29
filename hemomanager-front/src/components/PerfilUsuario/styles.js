@@ -5,6 +5,7 @@ export const Container = styled.div`
   height: 100%;
   margin: 0 auto;
 `;
+
 export const Header = styled.div`
   background-color: var(--background);
   align-items: center;
@@ -53,45 +54,34 @@ export const BarraOpcoes = styled.div`
   }
 `;
 
-export const InputGroup = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 6rem;
+  padding: 1rem 2rem;
   height: 70vh;
   max-width: 980px;
   border-radius: 9px;
   border: 1px solid var(--input-border);
   margin: 2rem auto;
 
-  div {
+  h1 {
     display: flex;
-    border-bottom: 2px solid var(--input-border);
-    margin-bottom: 2rem;
+    height: 6rem;
+    height: 10%;
+    flex: 1;
+    justify-content: flex-end;
+    width: 100%;
+  }
 
-    gap: 1rem;
+  .edit {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
 
-    span {
-      font-family: "Roboto", sans-serif;
-      width: 60%;
-      display: flex;
-      align-items: center;
-    }
-
-    input {
-      font-family: "Roboto", sans-serif;
-      width: 40%;
-      border: none;
-      display: flex;
-      text-align: start;
-      justify-content: flex-end;
-
-      &:focus-within {
-        border: none;
-      }
-    }
+  .my-schedule {
+    padding: 1rem 4rem;
   }
 `;
-
-export const Input = styled.input``;

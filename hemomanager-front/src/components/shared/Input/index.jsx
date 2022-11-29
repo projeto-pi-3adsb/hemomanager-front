@@ -7,6 +7,7 @@ export function Input({
   idInput,
   doSomething,
   nameInput,
+  setDisabled,
 }) {
   return (
     <InputDefault
@@ -16,6 +17,7 @@ export function Input({
       defaultValue={valueInput}
       placeholder={placeholderInput}
       onInput={(e) => doSomething(e.target.value)}
+      disabled={setDisabled}
     />
   );
 }

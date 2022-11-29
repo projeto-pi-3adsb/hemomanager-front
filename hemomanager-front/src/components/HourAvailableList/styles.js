@@ -43,14 +43,6 @@ export const Container = styled.section`
       color: var(--background-button);
       border-radius: 0.25rem;
       text-align: center;
-
-      &.deposit {
-        color: var(--green);
-      }
-
-      &.withdraw {
-        color: var(--red);
-      }
     }
   }
 `;

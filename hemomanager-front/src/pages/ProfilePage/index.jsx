@@ -22,8 +22,7 @@ import { ManagerMenu } from "../../components/ManagerMenu";
 
 import { api } from "../../api";
 import { StockList } from "../../components/StockList";
-
-
+import { useNavigate } from "react-router";
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -31,13 +30,14 @@ Chart.register = () => (
 );
 
 export function ProfilePage() {
+  const navigate = useNavigate();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [page, setPage] = useState(1);
 
   const [bloodType, setBloodType] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState(0);
-
 
   const user = {
     uuid: sessionStorage.getItem("id"),
@@ -65,27 +65,33 @@ export function ProfilePage() {
       .post(`/stock/${user.uuid}`, bag)
       .then(function (response) {
         console.log(response);
+        console.table(bag);
       })
       .catch((err) => {
         alert(err.message);
+        console.table(bag);
       });
   }
 
-  async function doRegisterNewHour() {
+  function doRegisterNewHour() {
     const hour = {
       uuid: sessionStorage.getItem("id"),
       time,
       date,
     };
 
-    console.log("CUrrent Hour: ", hour);
+    console.log("Current Hour: ", hour);
 
-    await api.post(`/schedules/${hour.uuid}`, hour).catch((err) => {
+    api.post(`/schedules/${hour.uuid}`, hour).catch((err) => {
       console.log(err);
     });
   }
 
-
+  function logOut() {
+    sessionStorage.clear();
+    sessionStorage.setItem("page", 2);
+    navigate("/area-usuario");
+  }
 
   const labels2 = [
     "Domingo",
@@ -120,7 +126,7 @@ export function ProfilePage() {
           </ul>
         </Menu>
         <Exit>
-          <button>
+          <button onClick={() => logOut()}>
             <span>Sair</span>
             <i>
               <ArrowCircleRight24Filled />
@@ -145,7 +151,6 @@ export function ProfilePage() {
             ? "NOVA BOLSA DE SANGUE"
             : ""
         }
-        placeholderDescription="DESCRIÇÃO"
         setType="button"
         doRegister={() =>
           page === 3 ? doRegisterNewHour() : doRegisterNewBag()
