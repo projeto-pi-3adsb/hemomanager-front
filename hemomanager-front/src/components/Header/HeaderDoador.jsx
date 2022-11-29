@@ -1,6 +1,7 @@
 import bannerMeusAgend from '../../assets/meus-agend.png'
+import "../../styles/styleMeusAgen.css";
 
-export function HeaderDoador(props) {
+export function HeaderDoador() {
     return (<div className="container">
         <header>
         <div>
