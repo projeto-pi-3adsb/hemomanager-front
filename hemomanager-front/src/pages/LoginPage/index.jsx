@@ -104,7 +104,7 @@ export function LoginPage() {
 
     api
       .post(
-        userType === 2 ? "/hemocenter/current/" : "/donor/current/",
+        userType === 2 ? "/hemocenter/current/" : "donor/current",
         userLogin
       )
       .then((resp) => {
@@ -120,11 +120,7 @@ export function LoginPage() {
 
         console.log(resp);
       })
-      .catch((error) => {
-        if (error.response.status === 404) {
-          doIsOpenModalTrue();
-          console.table(error.response.status);
-        }
+      .catch((erro) => {
         console.log(userLogin);
       });
   }

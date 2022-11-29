@@ -73,7 +73,9 @@ export function PerfilUsuario() {
           )}
           {page === 2 ? <SchedulesUser /> : ""}
           {page === 3 ? <NewSchedule /> : ""}
-          {isEdit ? (
+         
+        </div>
+        {isEdit ? (
             <div className="edit">
               <BorderlessButton
                 doSomething={() => setIsEdit(false)}
@@ -83,7 +85,6 @@ export function PerfilUsuario() {
           ) : (
             ""
           )}
-        </div>
       </Content>
     </>
   );

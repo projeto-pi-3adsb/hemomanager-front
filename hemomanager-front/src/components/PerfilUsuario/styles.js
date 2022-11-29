@@ -63,16 +63,17 @@ export const Content = styled.div`
   max-width: 980px;
   border-radius: 9px;
   border: 1px solid var(--input-border);
-  margin: 2rem auto;
+  margin: 0 auto;
 
   div{
-    height: 100%;
+    height: 100%
+    height: 5rem;
+''
   }
 
   h1 {
     display: flex;
     height: 10%;
-    flex: 1;
     justify-content: flex-end;
     width: 100%;
   }
@@ -81,7 +82,6 @@ export const Content = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    height: 100%;
   }
 
   .my-schedule {

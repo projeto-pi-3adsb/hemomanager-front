@@ -48,6 +48,12 @@ export function ProfilePage() {
     email: sessionStorage.getItem("email"),
   };
 
+  function validateError() {
+    setError(true);
+    setSend(false);
+    setTimeout(() => setError(null), 3000);
+  }
+
   function doIsOpenModalTrue() {
     console.log("TO aberto");
     setIsOpenModal(true);
@@ -73,12 +79,7 @@ export function ProfilePage() {
         setTimeout(() => setError(null), 3000);
         console.table(bag);
       })
-      .catch((err) => {
-        setError(true);
-        setSend(false);
-        setTimeout(() => setError(null), 3000);
-        console.table(bag);
-      });
+      .catch((err) => {});
   }
 
   function doRegisterNewHour() {
@@ -97,8 +98,7 @@ export function ProfilePage() {
         console.log(data);
       })
       .catch((error) => {
-        setError(true);
-        setSend(false);
+        validateError();
         console.log(hour);
         console.error(error.response.status);
       });

@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   flex-direction: column;
-  height: 80%;
-  width: 90%;
-  margin: 1rem auto;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
   flex-wrap: wrap;
-  overflow: auto;
+
 
   div {
     display: flex;
-    margin: 2rem;
+    margin: auto;
     height: 4rem;
     border-bottom: 2px solid var(--input-border);
     margin-bottom: 2rem;
