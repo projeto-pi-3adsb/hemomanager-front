@@ -88,7 +88,8 @@ export const BoxUpload = styled.div`
   height: 90vh;
   margin-top: 4rem;
 
-  div .upload {
+`
+export const Upload = styled.div`
     justify-content: center;
     width: 50%;
     height: 40vh;
@@ -96,20 +97,20 @@ export const BoxUpload = styled.div`
     padding: 0 3rem;
     border-radius: 0.5rem;
     border: 1px solid var(--background-border-bar);
-  }
+    display: flex;
 
-  h2 {
+    h2 {
     margin-top: 20px;
     color: #666666;
   }
-
 `
 
 export const BoxList = styled.div`
   margin-top: 30px;
+  width: 100%;
 
   table {
-      inline-size: 100%;
+      inline-size: 110%;
       border-spacing: 0 0.5rem;
 
       th {
@@ -119,40 +120,32 @@ export const BoxList = styled.div`
         padding: 1rem 2rem;
         line-height: 1.8rem;
         text-align: center;
-
-        &:first-child {
-          border-radius: 8px 0 0 8px;
-        }
-
-        &:last-child {
-          border-radius: 0 8px 8px 0;
-        }
+        border-radius: 8px 8px 8px 8px;
       }
 
       td {
         padding: 1rem 2rem;
         line-height: 1.8rem;
-        border: 0;
         background: var(--background-option-bar);
         color: var(--background-button);
         border-radius: 0.25rem;
         text-align: center;
-
-        &:first-child {
-          border-radius: 8px 0 0 8px;
-        }
-
-        &:last-child {
-          border-radius: 0 8px 8px 0;
-        }
+        flex-wrap: wrap;
+        display: flex;
       }
     }
   `;
 
   export const BoxButton = styled.div`
     margin-top: 20px;
-    justify-content: right;
-    display: flex;
+    margin-left: 30px;
+    background-color: brown;
+    width: 50%;
+
+    div {
+      justify-content: right;
+      display: flex;
+    }
     
   `
 

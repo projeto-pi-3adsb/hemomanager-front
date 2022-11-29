@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HeaderComponent } from "../../components/Header";
-import { Container, Header, Title, BoxUpload, BoxList, BoxButton } from "./styles";
+import { Container, Header, Title, BoxUpload, BoxList, BoxButton, Upload } from "./styles";
 import bloodDrop from "../../assets/blood-drop.svg";
 import { useNavigate } from "react-router-dom";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
@@ -25,9 +25,9 @@ export function UploadHotsitePage() {
           <p>VOCÊ TAMBÉM PODE FAZER O UPLOUD DO SEU FORMULÁRIO!</p>
         </Header>
         <BoxUpload>
-          <div className="upload">
-            <h2>FAÇA O UPLOUD DO SEU DOCUMENTO AQUI!!</h2>
-          </div>
+          <Upload>
+          <h2>FAÇA O UPLOUD DO SEU DOCUMENTO AQUI!!</h2>
+          </Upload>
           <BoxList>
             <table>
               <thead>
