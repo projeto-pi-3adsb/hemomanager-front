@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { HeaderComponent } from "../../components/Header";
 import { Container, Header, Title } from "./style";
 import bloodDrop from "../../assets/blood-drop.svg";
+import { Question } from "../../components/Question";
 import { Border } from "../../components/shared/Border/Border";
 
 export function VideoPage() {
