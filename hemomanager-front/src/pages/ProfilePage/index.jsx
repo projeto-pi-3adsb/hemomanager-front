@@ -39,6 +39,9 @@ export function ProfilePage() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState(0);
 
+  const [error, setError] = useState(false);
+  const [send, setSend] = useState(null);
+
   const user = {
     uuid: sessionStorage.getItem("id"),
     name: sessionStorage.getItem("user"),
@@ -63,28 +66,42 @@ export function ProfilePage() {
 
     api
       .post(`/stock/${user.uuid}`, bag)
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
+        setSend(true);
+        setError(true);
+        setTimeout(() => setError(null), 3000);
         console.table(bag);
       })
       .catch((err) => {
-        alert(err.message);
+        setError(true);
+        setSend(false);
+        setTimeout(() => setError(null), 3000);
         console.table(bag);
       });
   }
 
   function doRegisterNewHour() {
     const hour = {
-      uuid: sessionStorage.getItem("id"),
-      time,
-      date,
+      hemocenterId: user.uuid,
+      shcduleDate: date,
+      scheduleTime: time,
     };
 
     console.log("Current Hour: ", hour);
 
-    api.post(`/schedules/${hour.uuid}`, hour).catch((err) => {
-      console.log(err);
-    });
+    api
+      .post(`hemocenter/scheduleHemocenter/`, hour)
+      .then((data) => {
+        setSend(true);
+        console.log(data);
+      })
+      .catch((error) => {
+        setError(true);
+        setSend(false);
+        console.log(hour);
+        console.error(error.response.status);
+      });
   }
 
   function logOut() {
@@ -143,6 +160,7 @@ export function ProfilePage() {
         </div>
       </MainArea>
       <RegisterModal
+        error={error}
         setText="REGISTRAR"
         setTitle={
           page === 3
@@ -162,6 +180,7 @@ export function ProfilePage() {
         hourRegister={page === 3 ? true : false}
         bloodBag={page === 4 ? true : false}
         open={isOpenModal}
+        send={send}
       />
     </Container>
   );

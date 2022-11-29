@@ -84,9 +84,15 @@ export const Container = styled.div`
     align-items: center;
     height: 50%;
     width: 100%;
-
-    padding: 0 4rem;
+    flex-direction: column;
+    padding: 0 2rem;
   }
+`;
+
+export const Confirm = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 `;
 
 export const Box = styled.div`

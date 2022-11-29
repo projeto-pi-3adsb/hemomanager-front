@@ -57,18 +57,20 @@ export const BarraOpcoes = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   padding: 1rem 2rem;
-  height: 70vh;
+  height: 75vh;
   max-width: 980px;
   border-radius: 9px;
   border: 1px solid var(--input-border);
   margin: 2rem auto;
 
+  div{
+    height: 100%;
+  }
+
   h1 {
     display: flex;
-    height: 6rem;
     height: 10%;
     flex: 1;
     justify-content: flex-end;
@@ -79,6 +81,7 @@ export const Content = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    height: 100%;
   }
 
   .my-schedule {

@@ -173,7 +173,7 @@ export function LoginPage() {
               />
             }
           </h1>
-          <p>Erro c</p>
+
           {page === 1 ? (
             userType === 2 ? (
               <RegisterHemocenter

@@ -1,7 +1,8 @@
 // Commonjs
 import OwlCarousel from "react-owl-carousel";
+import { BorderlessButton } from "../shared/BorderlessButton";
 import { Input } from "../shared/Input";
-import { Box, Container } from "./styles";
+import { Box, Confirm, Container } from "./styles";
 
 export function NewSchedule() {
   return (
@@ -82,27 +83,10 @@ export function NewSchedule() {
                 <Input typeInput="radio" />
               </section>
             </Box>
-            <Box>
-              <h1>
-                <span>Hemocentro da tia</span>
-                <p>Quinta-Feira</p>
-              </h1>
-              <section>
-                <h1>15:56H</h1>
-                <Input typeInput="radio" />
-              </section>
-            </Box>
-            <Box>
-              <h1>
-                <span>Hemocentro da tia</span>
-                <p>Quinta-Feira</p>
-              </h1>
-              <section>
-                <h1>15:56H</h1>
-                <Input typeInput="radio" />
-              </section>
-            </Box>
           </OwlCarousel>
+          <Confirm>
+            <BorderlessButton text="AGENDAR" />
+          </Confirm>
         </div>
       </Container>
     </>

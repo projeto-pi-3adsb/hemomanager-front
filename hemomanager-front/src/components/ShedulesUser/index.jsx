@@ -12,7 +12,7 @@ export function SchedulesUser() {
   const imgs = [
     {
       id: 1,
-      title: "Hmocentro Blood Donate",
+      title: "Hemocentro Blood Donate",
       descrition: "Rua Haddcock lobo, vila brasilandia",
     },
     {

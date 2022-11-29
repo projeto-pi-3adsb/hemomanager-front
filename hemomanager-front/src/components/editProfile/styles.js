@@ -7,11 +7,11 @@ export const Container = styled.div`
   margin: 1rem auto;
   flex-wrap: wrap;
   overflow: auto;
-  flex: 1 auto;
 
   div {
     display: flex;
     margin: 2rem;
+    height: 4rem;
     border-bottom: 2px solid var(--input-border);
     margin-bottom: 2rem;
 

@@ -6,9 +6,6 @@ import { Container } from "./styles";
 export function HourAvailableList({ isOpen }) {
   const [hours, setHours] = useState([]);
 
-  
-
-
   return (
     <Container>
       <h1>

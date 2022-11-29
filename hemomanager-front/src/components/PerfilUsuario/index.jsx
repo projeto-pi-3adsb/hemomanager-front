@@ -45,43 +45,45 @@ export function PerfilUsuario() {
       />
 
       <Content>
-        {page === 1 ? (
-          <h1>
-            <BorderlessButton
-              doSomething={() => setIsEdit(true)}
-              text="EDITAR"
+        <div>
+          {page === 1 ? (
+            <h1>
+              <BorderlessButton
+                doSomething={() => setIsEdit(true)}
+                text="EDITAR"
+              />
+            </h1>
+          ) : (
+            ""
+          )}
+          {page === 1 ? (
+            <EditProfile
+              name={name}
+              email={email}
+              phone={phone}
+              sex={sex}
+              setEmail={setEmail}
+              setName={setName}
+              setPhone={setPhone}
+              setSex={setSex}
+              isEdit={!isEdit}
             />
-          </h1>
-        ) : (
-          ""
-        )}
-        {page === 1 ? (
-          <EditProfile
-            name={name}
-            email={email}
-            phone={phone}
-            sex={sex}
-            setEmail={setEmail}
-            setName={setName}
-            setPhone={setPhone}
-            setSex={setSex}
-            isEdit={!isEdit}
-          />
-        ) : (
-          ""
-        )}
-        {page === 2 ? <SchedulesUser /> : ""}
-        {page === 3 ? <NewSchedule /> : ""}
-        {isEdit ? (
-          <div className="edit">
-            <BorderlessButton
-              doSomething={() => setIsEdit(false)}
-              text="SALVAR"
-            />
-          </div>
-        ) : (
-          ""
-        )}
+          ) : (
+            ""
+          )}
+          {page === 2 ? <SchedulesUser /> : ""}
+          {page === 3 ? <NewSchedule /> : ""}
+          {isEdit ? (
+            <div className="edit">
+              <BorderlessButton
+                doSomething={() => setIsEdit(false)}
+                text="SALVAR"
+              />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </Content>
     </>
   );
