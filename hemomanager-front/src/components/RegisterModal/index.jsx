@@ -2,7 +2,6 @@ import Modal from "react-modal";
 import { BorderlessButton } from "../shared/BorderlessButton";
 import { Input } from "../shared/Input";
 
-
 import { Container } from "./styles";
 
 Modal.setAppElement("#root");
@@ -19,6 +18,8 @@ export function RegisterModal({
   bloodBag,
   doRegister,
   hourRegister,
+  error,
+  send,
 }) {
   return (
     <>
@@ -30,6 +31,15 @@ export function RegisterModal({
       >
         <Container>
           <h2>{setTitle}</h2>
+
+          <h1 className={!error ? "hidden" : ""}>
+            <strong className={!send ? "failed" : "success"}>
+              {!send
+                ? "Opss, algo deu errado, verifique novamente."
+                : "Inserido com sucesso!"}
+            </strong>
+          </h1>
+
           <div>
             <Input doSomething={setDate} typeInput="date" />
             {hourRegister ? (

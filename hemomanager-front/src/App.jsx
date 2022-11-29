@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import { MeusAgendamentos } from "./components/MeusAgendamentos";
 
 import { QuizPage } from "./pages/QuizPage";
 
@@ -23,7 +22,6 @@ export function App() {
         <Route path="/hemomanager" element={<HomePage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/area-usuario" element={<LoginPage />} />
-        <Route path="/agendamento" element={<MeusAgendamentos />} />
         <Route path="/perfil-usuario" element={<PerfilUsuario />} />
         <Route path="/dashboard" element={<ProfilePage />} />
         <Route path="/cadastro-doador" element={<CadastroDoador />} />

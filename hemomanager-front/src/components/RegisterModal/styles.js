@@ -18,6 +18,30 @@ export const Container = styled.form`
     margin-block-end: 2rem;
   }
 
+  .success {
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    color: var(--shape);
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    background-color: var(--green);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .failed {
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    color: var(--shape);
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    background-color: var(--red);
+  }
+
   textarea {
     inline-size: 100%;
     padding: 1rem;
