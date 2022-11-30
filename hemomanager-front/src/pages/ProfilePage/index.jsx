@@ -153,6 +153,10 @@ export function ProfilePage() {
       .catch((error) => {
         validateError();
         console.log("Erro: ", error);
+
+        
+
+        
       });
   }
 
@@ -187,6 +191,7 @@ export function ProfilePage() {
     api.post(`/hemocenter/current/`, { email, password }).catch((error) => {
       console.log(error);
       console.log(hemocenter);
+   
     });
   }
   function logOut() {
@@ -318,7 +323,10 @@ export function ProfilePage() {
         page={page}
         isEdit={isEdit}
       />
-       <MaxDialogProfileUser isOpen={isOpenModalEdit} isClose={doIsOpenModalConfirmFalse} />
+      <MaxDialogProfileUser
+        isOpen={isOpenModalEdit}
+        isClose={doIsOpenModalConfirmFalse}
+      />
     </Container>
   );
 }

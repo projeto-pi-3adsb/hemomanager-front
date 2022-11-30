@@ -12,6 +12,7 @@ export const Container = styled.div`
 
     input {
       width: 16rem;
+      padding: 0;
     }
 
     .focused {
