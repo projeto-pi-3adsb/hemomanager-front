@@ -68,7 +68,6 @@ export const Content = styled.div`
   div{
     height: 100%
     height: 5rem;
-''
   }
 
   h1 {
