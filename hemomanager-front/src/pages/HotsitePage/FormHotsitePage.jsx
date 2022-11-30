@@ -56,7 +56,7 @@ export function FormHotsitePage() {
             />
           </div>
           <div>
-            <span>Celular</span>
+            <span>Email</span>
             <Input
               valueInput={phone}
               doSomething={setPhone}
@@ -64,7 +64,7 @@ export function FormHotsitePage() {
             />
           </div>
           <div>
-            <span>Idade de 18 a 69 anos</span>
+            <span>CPF</span>
             <Input
               valueInput={email}
               doSomething={setEmail}
@@ -72,7 +72,7 @@ export function FormHotsitePage() {
             />
           </div>
           <div>
-            <span>Tem mais de 50 quilos?</span>
+            <span>Data de Nascimento</span>
             <Input
               valueInput={sex}
               doSomething={setSex}
@@ -80,7 +80,7 @@ export function FormHotsitePage() {
             />
           </div>
           <div>
-            <span>Fez doação de sangue nos últimos 6 meses?</span>
+            <span>Gênero</span>
             <Input
               valueInput={sex}
               doSomething={setSex}
@@ -88,19 +88,12 @@ export function FormHotsitePage() {
             />
           </div>
           <div>
-            <span>Teve 3 ou mais gestações?</span>
+            <span>Telefone</span>
             <Input
               valueInput={sex}
               doSomething={setSex}
               placeholderInput={sex}
             />
-
-          </div>
-          <div>
-            <span>
-              Fez o uso de ácido acetilsalicílico ou anti-inflamatórios?
-            </span>
-            <Input valueInput={sex} doSomething={setSex} />
           </div>
         </InputGroup>
         <BoxButton>
