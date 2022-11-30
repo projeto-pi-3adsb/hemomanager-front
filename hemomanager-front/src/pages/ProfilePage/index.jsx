@@ -23,6 +23,8 @@ import { ManagerMenu } from "../../components/ManagerMenu";
 import { api } from "../../api";
 import { StockList } from "../../components/StockList";
 import { useNavigate } from "react-router";
+import { EditProfileManager } from "../../components/editProfileManager";
+import { BorderlessButton } from "../../components/shared/BorderlessButton";
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -42,11 +44,45 @@ export function ProfilePage() {
   const [error, setError] = useState(false);
   const [send, setSend] = useState(null);
 
+  const id = sessionStorage.getItem("id");
+  const [name, setName] = useState(sessionStorage.getItem("user"));
+  const [email, setEmail] = useState(sessionStorage.getItem("email"));
+  const [password, setPassword] = useState(sessionStorage.getItem("password"));
+  const [cpnj, setCnpj] = useState(sessionStorage.getItem("cnpj"));
+  const [zipCode, setZipCode] = useState(sessionStorage.getItem("zipCode"));
+  const [zipNumber, setZipNumber] = useState(
+    sessionStorage.getItem("zipNumber")
+  );
+  const [startOperation, setStartOperation] = useState(
+    sessionStorage.getItem("startOperation")
+  );
+  const [endOperation, setEndOperation] = useState(
+    sessionStorage.getItem("endOperation")
+  );
+  const [qttySimultServices, setQttySimultServices] = useState(
+    sessionStorage.getItem("qttySimultServices")
+  );
+
+  const [cep, setCep] = useState(sessionStorage.getItem("cep"));
+  const [sex, setSex] = useState(sessionStorage.getItem("sex"));
+
   const user = {
     uuid: sessionStorage.getItem("id"),
     name: sessionStorage.getItem("user"),
     email: sessionStorage.getItem("email"),
   };
+
+  const [isEdit, setIsEdit] = useState(false);
+
+  const [isFocused, setIsFocused] = useState(false);
+
+  function doFocused() {
+    setIsFocused(true);
+  }
+
+  function doWithoutFocused() {
+    setIsFocused(false);
+  }
 
   function validateError() {
     setError(true);
@@ -158,10 +194,45 @@ export function ProfilePage() {
       </Profile>
       <MainArea>
         <div className="content">
-          {page === 1 ? <Dashboard labelsSex={labels2} /> : () => {}}
+          {
+            <h1>
+              <BorderlessButton text="EDITAR" />
+            </h1>
+          }
+          {page === 1 ? <Dashboard labelsSex={labels2} /> : ""}
           {page === 2 ? <Schaduler /> : ""}
           {page === 3 ? <HourAvailableList isOpen={doIsOpenModalTrue} /> : ""}
           {page === 4 ? <StockList isOpen={doIsOpenModalTrue} /> : ""}
+          {page === 6 ? (
+            <EditProfileManager
+              name={name}
+              email={email}
+              password={password}
+              setPassword={setPassword}
+              cep={cep}
+              startOperation={startOperation}
+              setStartOperation={setStartOperation}
+              qtty={qttySimultServices}
+              setQttySimultServices={setQttySimultServices}
+              setEmail={setEmail}
+              setName={setName}
+              zipNumber={zipNumber}
+              setZipNumber={setZipNumber}
+              isEdit={!isEdit}
+              focused={isFocused}
+              setFocused={
+                isFocused ? () => doWithoutFocused() : () => doFocused()
+              }
+              isPassword={isFocused ? "text" : "password"}
+            />
+          ) : (
+            ""
+          )}
+          {
+            <h2>
+              <BorderlessButton text="SALVAR" />
+            </h2>
+          }
         </div>
       </MainArea>
       <RegisterModal

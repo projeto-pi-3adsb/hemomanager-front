@@ -13,7 +13,7 @@ export function SchedulesCard({ title, description, doCancel }) {
           <BorderlessButton
             icon={<Delete20Filled />}
             doSomething={doCancel}
-            text="CANCELAR AGEDAMENTO"
+            text="CANCELAR AGENDAMENTO"
           />
         </div>
       </Container>

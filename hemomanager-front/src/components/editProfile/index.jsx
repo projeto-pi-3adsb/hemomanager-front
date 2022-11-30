@@ -66,6 +66,7 @@ export function EditProfile({
           <option value="MALE">Masculino</option>
           <option value="FEMALE">Feminino</option>
         </select>
+
       </div>
     </Container>
   );

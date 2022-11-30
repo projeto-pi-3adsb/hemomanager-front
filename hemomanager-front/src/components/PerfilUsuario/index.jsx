@@ -48,10 +48,6 @@ export function PerfilUsuario() {
     setIsOpen(false);
   }
 
-  function validateError() {
-    setError(true);
-    setTimeout(() => setError(false), 3000);
-  }
 
   function logOut() {
     sessionStorage.clear();
