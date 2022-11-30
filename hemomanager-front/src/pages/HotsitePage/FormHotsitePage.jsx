@@ -8,10 +8,12 @@ import { useNavigate } from "react-router-dom";
 
 export function FormHotsitePage() {
   const navigate = useNavigate();
+
   const [name, setName] = useState("XXXXXXXXXXXXXXXXXXXX");
   const [email, setEmail] = useState("XXXXXXXXXXXXXXXXXXXX");
   const [phone, setPhone] = useState("XXXXXXXXXXXXXXXXXXXX");
   const [sex, setSex] = useState("XXXXXXXXXXXXXXXXXXXX");
+
 
   const user = {
     name,
@@ -25,7 +27,9 @@ export function FormHotsitePage() {
   }
 
   function doGoToRegister() {
+
     navigate("/upload-hotsite");
+
     sessionStorage.setItem("page", 1);
   }
 
@@ -44,6 +48,7 @@ export function FormHotsitePage() {
         <InputGroup>
           <div>
             <span>Nome Completo</span>
+
             <Input
               valueInput={name}
               doSomething={setName}
@@ -89,6 +94,7 @@ export function FormHotsitePage() {
               doSomething={setSex}
               placeholderInput={sex}
             />
+
           </div>
           <div>
             <span>

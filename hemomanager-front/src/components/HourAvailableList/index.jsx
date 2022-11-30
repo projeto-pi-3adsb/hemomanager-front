@@ -8,6 +8,7 @@ export function HourAvailableList({ isOpen }) {
 
 
 
+
   useEffect(() => {
     api.get(`/schedules/${sessionStorage.id}`)
     .then((data) => {
@@ -15,6 +16,7 @@ export function HourAvailableList({ isOpen }) {
     });
     console.log(hours);
   }, [setHours]);
+
 
   return (
     <Container>
