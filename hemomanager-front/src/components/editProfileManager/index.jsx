@@ -63,7 +63,7 @@ export function EditProfileManager({
         <span>Inicio da operação</span>
         <Input
           setDisabled={isEdit}
-          typeInput="number"
+          typeInput="time"
           valueInput={startOperation}
           doSomething={setStartOperation}
         />
@@ -72,7 +72,7 @@ export function EditProfileManager({
         <span>Fim da operação</span>
         <Input
           setDisabled={isEdit}
-          typeInput="number"
+          typeInput="time"
           valueInput={endOperation}
           doSomething={setEndOperation}
         />
@@ -81,7 +81,7 @@ export function EditProfileManager({
         <span>CEP</span>
         <Input
           setDisabled={isEdit}
-          typeInput="number"
+          typeInput="text"
           valueInput={cep}
           doSomething={setCep}
         />
@@ -95,7 +95,6 @@ export function EditProfileManager({
           doSomething={setZipNumber}
         />
       </div>
-      <button>DASD</button>
     </Container>
   );
 }

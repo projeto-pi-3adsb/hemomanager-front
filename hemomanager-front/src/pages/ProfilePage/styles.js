@@ -31,7 +31,6 @@ export const MainArea = styled.div`
       height: 4rem;
       align-items: center;
       width: 100%;
-      background: red;
       display: flex;
       justify-content: flex-end;
     }
@@ -42,7 +41,7 @@ export const MainArea = styled.div`
       height: 10rem;
       align-items: center;
       width: 100%;
-      background: red;
+
       display: flex;
       justify-content: flex-end;
     }

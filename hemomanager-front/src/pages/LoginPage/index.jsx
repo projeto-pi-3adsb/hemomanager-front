@@ -137,14 +137,16 @@ export function LoginPage() {
         }
 
         if (userType === 2) {
-          sessionStorage.setItem("id", user.uuid);
-          sessionStorage.setItem("user", user.name);
           sessionStorage.setItem("email", user.email);
-          sessionStorage.setItem("cnpj", user.cnpj);
+          sessionStorage.setItem("user", user.name);
           sessionStorage.setItem("password", user.password);
-          sessionStorage.setItem("ZipNumber", user.zipNumber);
+          sessionStorage.setItem("id", user.uuid);
+          sessionStorage.setItem("cnpj", user.cnpj);
           sessionStorage.setItem("ZipCode", user.zipCode);
-          sessionStorage.setItem("starOperation", user.startOperation);
+          sessionStorage.setItem("ZipNumber", user.zipNumber);
+          sessionStorage.setItem("startOperation", user.startOperation);
+
+
           sessionStorage.setItem("endOperation", user.endOperation);
           sessionStorage.setItem("services", user.qttySimultServices);
         }

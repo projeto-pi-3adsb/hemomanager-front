@@ -25,6 +25,7 @@ import { StockList } from "../../components/StockList";
 import { useNavigate } from "react-router";
 import { EditProfileManager } from "../../components/editProfileManager";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
+import { MaxDialogProfileUser } from "../../components/shared/DialogProfileUser";
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -35,6 +36,7 @@ export function ProfilePage() {
   const navigate = useNavigate();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
   const [page, setPage] = useState(1);
 
   const [bloodType, setBloodType] = useState("");
@@ -49,9 +51,9 @@ export function ProfilePage() {
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
   const [password, setPassword] = useState(sessionStorage.getItem("password"));
   const [cpnj, setCnpj] = useState(sessionStorage.getItem("cnpj"));
-  const [zipCode, setZipCode] = useState(sessionStorage.getItem("zipCode"));
+  const [zipCode, setZipCode] = useState(sessionStorage.getItem("ZipCode"));
   const [zipNumber, setZipNumber] = useState(
-    sessionStorage.getItem("zipNumber")
+    sessionStorage.getItem("ZipNumber")
   );
   const [startOperation, setStartOperation] = useState(
     sessionStorage.getItem("startOperation")
@@ -60,10 +62,9 @@ export function ProfilePage() {
     sessionStorage.getItem("endOperation")
   );
   const [qttySimultServices, setQttySimultServices] = useState(
-    sessionStorage.getItem("qttySimultServices")
+    sessionStorage.getItem("services")
   );
 
-  const [cep, setCep] = useState(sessionStorage.getItem("cep"));
   const [sex, setSex] = useState(sessionStorage.getItem("sex"));
 
   const user = {
@@ -96,13 +97,23 @@ export function ProfilePage() {
     setTimeout(() => setError(null), 3000);
   }
 
-  function doIsOpenModalTrue() {
+  function doIsOpenModalConfirmTrue() {
     console.log("TO aberto");
     setIsOpenModal(true);
   }
 
+  function doIsOpenModalConfirmFalse() {
+    console.log("TO aberto");
+    setIsOpenModalEdit(false);
+  }
+
+  function doIsOpenModalTrue() {
+    console.log("TO aberto");
+    setIsOpenModalEdit(true);
+  }
+
   function doIsOpenModalFalse() {
-    console.log("TO FECHADO");
+    console.log("TO aberto");
     setIsOpenModal(false);
   }
 
@@ -145,6 +156,39 @@ export function ProfilePage() {
       });
   }
 
+  function doEditData() {
+    const hemocenter = {
+      name,
+      email,
+      password,
+      id,
+      cpnj,
+      zipCode,
+      zipNumber,
+      startOperation,
+      endOperation,
+      qttySimultServices,
+    };
+
+    api
+      .put(`/hemocenter/${id}`, hemocenter)
+      .then(() => {
+        sessionStorage.setItem("userType", 2);
+        setIsEdit(false);
+        doIsOpenModalConfirmTrue();
+        setTimeout(() => {
+          doIsOpenModalConfirmFalse();
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log("Erro no edit:", error);
+      });
+
+    api.post(`/hemocenter/current/`, { email, password }).catch((error) => {
+      console.log(error);
+      console.log(hemocenter);
+    });
+  }
   function logOut() {
     sessionStorage.clear();
     sessionStorage.setItem("page", 2);
@@ -194,11 +238,16 @@ export function ProfilePage() {
       </Profile>
       <MainArea>
         <div className="content">
-          {
+          {page === 6 ? (
             <h1>
-              <BorderlessButton text="EDITAR" />
+              <BorderlessButton
+                doSomething={() => setIsEdit(true)}
+                text="EDITAR"
+              />
             </h1>
-          }
+          ) : (
+            ""
+          )}
           {page === 1 ? <Dashboard labelsSex={labels2} /> : ""}
           {page === 2 ? <Schaduler /> : ""}
           {page === 3 ? <HourAvailableList isOpen={doIsOpenModalTrue} /> : ""}
@@ -209,10 +258,11 @@ export function ProfilePage() {
               email={email}
               password={password}
               setPassword={setPassword}
-              cep={cep}
               startOperation={startOperation}
-              setStartOperation={setStartOperation}
+              endOperation={endOperation}
               qtty={qttySimultServices}
+              setStartOperation={setStartOperation}
+              setEndOperation={setEndOperation}
               setQttySimultServices={setQttySimultServices}
               setEmail={setEmail}
               setName={setName}
@@ -223,17 +273,25 @@ export function ProfilePage() {
               setFocused={
                 isFocused ? () => doWithoutFocused() : () => doFocused()
               }
+              cep={zipCode}
               isPassword={isFocused ? "text" : "password"}
             />
           ) : (
             ""
           )}
-          {
+          {isEdit ? (
             <h2>
-              <BorderlessButton text="SALVAR" />
+              <BorderlessButton
+                doSomething={() => doEditData()}
+                text="SALVAR"
+              />
             </h2>
-          }
+          ) : (
+            ""
+          )}
         </div>
+        {console.log(startOperation)}
+        {console.log(zipCode)}
       </MainArea>
       <RegisterModal
         error={error}
@@ -258,7 +316,9 @@ export function ProfilePage() {
         open={isOpenModal}
         send={send}
         page={page}
+        isEdit={isEdit}
       />
+       <MaxDialogProfileUser isOpen={isOpenModalEdit} isClose={doIsOpenModalConfirmFalse} />
     </Container>
   );
 }
