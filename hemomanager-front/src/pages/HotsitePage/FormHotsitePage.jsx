@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 export function FormHotsitePage() {
   const navigate = useNavigate();
-  const [name, setName] = useState(sessionStorage.getItem("user"));
-  const [email, setEmail] = useState(sessionStorage.getItem("email"));
-  const [phone, setPhone] = useState(sessionStorage.getItem("phone"));
-  const [sex, setSex] = useState(sessionStorage.getItem("sex"));
+  const [name, setName] = useState("XXXXXXXXXXXXXXXXXXXX");
+  const [email, setEmail] = useState("XXXXXXXXXXXXXXXXXXXX");
+  const [phone, setPhone] = useState("XXXXXXXXXXXXXXXXXXXX");
+  const [sex, setSex] = useState("XXXXXXXXXXXXXXXXXXXX");
 
   const user = {
     name,
@@ -25,7 +25,7 @@ export function FormHotsitePage() {
   }
 
   function doGoToRegister() {
-    navigate("/area-usuario");
+    navigate("/upload-hotsite");
     sessionStorage.setItem("page", 1);
   }
 
@@ -44,27 +44,51 @@ export function FormHotsitePage() {
         <InputGroup>
           <div>
             <span>Nome Completo</span>
-            <Input valueInput={name} doSomething={setName} />
+            <Input
+              valueInput={name}
+              doSomething={setName}
+              placeholderInput={sex}
+            />
           </div>
           <div>
             <span>Celular</span>
-            <Input valueInput={phone} doSomething={setPhone} />
+            <Input
+              valueInput={phone}
+              doSomething={setPhone}
+              placeholderInput={sex}
+            />
           </div>
           <div>
             <span>Idade de 18 a 69 anos</span>
-            <Input valueInput={email} doSomething={setEmail} />
+            <Input
+              valueInput={email}
+              doSomething={setEmail}
+              placeholderInput={sex}
+            />
           </div>
           <div>
             <span>Tem mais de 50 quilos?</span>
-            <Input valueInput={sex} doSomething={setSex} />
+            <Input
+              valueInput={sex}
+              doSomething={setSex}
+              placeholderInput={sex}
+            />
           </div>
           <div>
             <span>Fez doação de sangue nos últimos 6 meses?</span>
-            <Input valueInput={sex} doSomething={setSex} />
+            <Input
+              valueInput={sex}
+              doSomething={setSex}
+              placeholderInput={sex}
+            />
           </div>
           <div>
             <span>Teve 3 ou mais gestações?</span>
-            <Input valueInput={sex} doSomething={setSex} />
+            <Input
+              valueInput={sex}
+              doSomething={setSex}
+              placeholderInput={sex}
+            />
           </div>
           <div>
             <span>

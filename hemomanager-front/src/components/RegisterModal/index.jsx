@@ -20,6 +20,8 @@ export function RegisterModal({
   hourRegister,
   error,
   send,
+  code,
+  page,
 }) {
   return (
     <>
@@ -35,8 +37,12 @@ export function RegisterModal({
           <h1 className={!error ? "hidden" : ""}>
             <strong className={!send ? "failed" : "success"}>
               {!send
-                ? "Opss, algo deu errado, verifique novamente."
-                : "Inserido com sucesso!"}
+                ? page === 3
+                  ? "Este horário já foi cadastrado"
+                  : "Apenas data atual ou menor"
+                : page === 3
+                ? "Horário inserido com sucesso!"
+                : "Bolsa inserida com sucesso!"}
             </strong>
           </h1>
 

@@ -96,6 +96,20 @@ export const LoginArea = styled.div`
     color: var(--text-body);
   }
 
+  .error {
+    width: 90%;
+    margin: 2rem auto;
+    margin-top: -3rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    color: var(--shape);
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--red);
+  }
+
   section {
     display: flex;
     justify-content: end;

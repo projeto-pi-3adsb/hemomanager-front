@@ -20,7 +20,7 @@ export function HeaderComponent(props) {
   return (
     <HeaderStyle>
       {props.button ? <ButtonComeback method={() => navigate(-1)} /> : false}
-      <ul>
+      <ul className="">
         <img src={logo} alt="" />
         <li>
           <a href={props.home}>Home</a>
@@ -35,7 +35,7 @@ export function HeaderComponent(props) {
           <a href={props.contact}>Contato</a>
         </li>
         <li>
-          <a href={props.platelets}>Doação de plaquetas</a>
+          <a onClick={() => navigate("/form-hotsite")}>Doação de plaquetas</a>
         </li>
       </ul>
       <ButtonGroup>

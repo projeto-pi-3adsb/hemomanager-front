@@ -11,9 +11,11 @@ import emailIcon from "../../assets/email.svg";
 import telefoneIcon from "../../assets/telefone.svg";
 import logoImg from "../../assets/logotypes/logo-3.svg";
 import arrowImg from "../../assets/up-arrow.svg";
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export function Footer(props) {
+  const navigate = useNavigate();
+
   return (
     <Container id={props.id}>
       <Contato>
@@ -34,13 +36,13 @@ export function Footer(props) {
         <img src={logoImg} alt="" />
         <div>
           <ul>
-            <Link >Homepage</Link>
-            <Link>Sobre nós</Link>
-            <Link>Notícias</Link>
-            <Link>Orintações</Link>
+            <a href="#home">Homepage</a>
+            <a href="#about">Sobre nós</a>
+            <a onClick={() => navigate("/video")}>Notícias</a>
+            <a href="#home">Orientações</a>
           </ul>
         </div>
-        <button>Doar agora</button>
+        <button onClick={()=> navigate("/area-usuario")}>Doar agora</button>
       </MenuFooter>
       <Reservados>
         <span>@2022 HEMOMANAGER. Todos os direitos reservados</span>

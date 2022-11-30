@@ -1,6 +1,7 @@
+import { DonutLarge } from "@mui/icons-material";
 import { type } from "@testing-library/user-event/dist/type";
 import { useEffect, useState } from "react";
-import { Bar, HorizontalBar, Line } from "react-chartjs-2";
+import { Pie, HorizontalBar, Line } from "react-chartjs-2";
 import { api } from "../../api";
 
 export function Dashboard({ labelsBag, labelsSex }) {
@@ -61,7 +62,7 @@ export function Dashboard({ labelsBag, labelsSex }) {
         <HorizontalBar height={90} options={options} data={data} />
       </div>
       <div className="chart">
-        <Line height={90} options={options} data={data2} />
+        <Pie height={90} options={options} data={data2} />
       </div>
     </>
   );

@@ -13,6 +13,7 @@ import { CadastroDoador } from "./pages/CadastroDoador/CadastroDoador";
 import { VideoPage } from "./pages/VideoPage/VideoPage";
 import { FormHotsitePage } from "./pages/HotsitePage/FormHotsitePage";
 import { UploadHotsitePage } from "./pages/HotsitePage/UploadHotsitePage";
+ 
 
 export function App() {
   return (
