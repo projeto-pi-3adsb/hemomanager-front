@@ -16,10 +16,11 @@ export function LoginPage() {
   const [page, setPage] = useState(
     sessionStorage.getItem("page") === "1" ? 1 : 2
   );
-
+  
   const [userType, setUserType] = useState(
     sessionStorage.getItem("userType") === "1" ? 1 : 2
   );
+
 
   const [error, setError] = useState(false);
 

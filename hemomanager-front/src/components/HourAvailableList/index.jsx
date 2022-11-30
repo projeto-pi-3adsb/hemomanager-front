@@ -14,6 +14,7 @@ export function HourAvailableList({ isOpen }) {
     .then((data) => {
       setHours(data.data);
       console.log("AGENDAMENTO:", data.data);
+
     });
     console.log(hours);
   }, [setHours]);

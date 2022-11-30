@@ -98,6 +98,7 @@ export function ProfilePage() {
   }
 
   function doIsOpenModalConfirmTrue() {
+
     console.log("TO aberto");
     setIsOpenModal(true);
   }
@@ -153,10 +154,6 @@ export function ProfilePage() {
       .catch((error) => {
         validateError();
         console.log("Erro: ", error);
-
-        
-
-        
       });
   }
 
@@ -326,6 +323,7 @@ export function ProfilePage() {
       <MaxDialogProfileUser
         isOpen={isOpenModalEdit}
         isClose={doIsOpenModalConfirmFalse}
+
       />
     </Container>
   );
