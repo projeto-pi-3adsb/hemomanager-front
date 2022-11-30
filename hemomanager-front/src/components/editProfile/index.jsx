@@ -34,7 +34,13 @@ export function EditProfile({
       <div>
         <span>Sexo</span>
         <select disabled={isEdit} onChange={(e) => setSex(e.target.value)}>
-          <option value="">{sex === "MALE" ? "Masculino" : "Feminino"}</option>
+          {isEdit ? (
+            <option value="">
+              {sex === "MALE" ? "Masculino" : "Feminino"}
+            </option>
+          ) : (
+            ""
+          )}
           <option value="MALE">Masculino</option>
           <option value="FEMALE">Feminino</option>
         </select>

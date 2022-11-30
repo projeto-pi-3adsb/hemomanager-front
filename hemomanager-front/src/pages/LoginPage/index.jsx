@@ -112,13 +112,22 @@ export function LoginPage() {
 
         const user = resp.data;
 
-        sessionStorage.setItem("id", user.uuid);
-        sessionStorage.setItem("user", user.name);
-        sessionStorage.setItem("email", user.email);
-        sessionStorage.setItem("phone", user.phone);
-        sessionStorage.setItem("sex", user.sex);
+        if (userType === 1) {
+          sessionStorage.setItem("id", user.uuid);
+          sessionStorage.setItem("user", user.name);
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("phone", user.phone);
+          sessionStorage.setItem("sex", user.sex);
+        }
 
-        console.log(resp);
+        if (userType === 2) {
+          sessionStorage.setItem("id", user.uuid);
+          sessionStorage.setItem("user", user.name);
+          sessionStorage.setItem("cnpj", user.cnpj);
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("ZipCode", user.ZipCode);
+          sessionStorage.setItem("sex", user.sex);
+        }
       })
       .catch((erro) => {
         console.log(userLogin);

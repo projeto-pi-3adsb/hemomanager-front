@@ -30,6 +30,7 @@ export const Container = styled.div`
       height: 3rem;
       border-radius: 8px;
       margin: 0 0 10rem;
+      font-size: 1.2rem;
     }
   }
 

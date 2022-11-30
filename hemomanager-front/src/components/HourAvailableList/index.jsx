@@ -6,6 +6,10 @@ import { Container } from "./styles";
 export function HourAvailableList({ isOpen }) {
   const [hours, setHours] = useState([]);
 
+  useEffect(() =>{
+    api.get("")
+  },[])
+
   return (
     <Container>
       <h1>
