@@ -7,6 +7,41 @@ export const Container = styled.div`
   width: 100%;
   flex-wrap: wrap;
 
+  .password {
+    input {
+      width: 16rem;
+      margin: auto 0;
+    }
+
+    .focused {
+      background: var(--background-button);
+      color: var(--shape);
+      border-radius: 50%;
+    }
+
+    button {
+      border: none;
+      background: none;
+      display: flex;
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+      height: 2rem;
+      width: 2rem;
+
+      &:hover {
+        background: var(--background-button);
+        color: var(--shape);
+        border-radius: 50%;
+      }
+    }
+
+    button:disabled {
+      background: none;
+      color: var(--black);
+      border-radius: 50%;
+    }
+  }
 
   div {
     display: flex;
@@ -26,6 +61,7 @@ export const Container = styled.div`
 
     input,
     select {
+      margin: auto;
       font-family: "Roboto", sans-serif;
       width: 40%;
       border: none;

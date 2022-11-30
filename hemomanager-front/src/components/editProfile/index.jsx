@@ -1,3 +1,4 @@
+import { Eye24Filled, Eye28Filled } from "@fluentui/react-icons";
 import { Input } from "../shared/Input";
 import { Container } from "./styles";
 
@@ -7,10 +8,15 @@ export function EditProfile({
   email,
   setEmail,
   phone,
+  password,
+  setPassword,
   setPhone,
   sex,
   setSex,
   isEdit,
+  focused,
+  setFocused,
+  isPassword,
 }) {
   return (
     <Container>
@@ -21,6 +27,22 @@ export function EditProfile({
       <div>
         <span>Email</span>
         <Input setDisabled={isEdit} valueInput={email} doSomething={setEmail} />
+      </div>
+      <div className="password">
+        <span>Senha</span>
+        <Input
+          setDisabled={isEdit}
+          typeInput={isPassword}
+          valueInput={password}
+          doSomething={setPassword}
+        />
+        <button
+          className={focused ? "focused" : ""}
+          disabled={isEdit}
+          onClick={setFocused}
+        >
+          <Eye24Filled />
+        </button>
       </div>
       <div>
         <span>Celular</span>

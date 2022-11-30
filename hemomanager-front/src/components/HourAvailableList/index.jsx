@@ -13,6 +13,7 @@ export function HourAvailableList({ isOpen }) {
     api.get(`/schedules/${sessionStorage.id}`)
     .then((data) => {
       setHours(data.data);
+      console.log("AGENDAMENTO:", data.data);
     });
     console.log(hours);
   }, [setHours]);

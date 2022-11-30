@@ -125,6 +125,7 @@ export function LoginPage() {
         if (userType === 1) {
           sessionStorage.setItem("id", user.uuid);
           sessionStorage.setItem("user", user.name);
+          sessionStorage.setItem("password", user.password);
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("phone", user.phone);
           sessionStorage.setItem("sex", user.sex);
@@ -133,6 +134,7 @@ export function LoginPage() {
         if (userType === 2) {
           sessionStorage.setItem("id", user.uuid);
           sessionStorage.setItem("user", user.name);
+          sessionStorage.setItem("password", user.password);
           sessionStorage.setItem("cnpj", user.cnpj);
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("ZipCode", user.ZipCode);

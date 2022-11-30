@@ -17,7 +17,10 @@ export function PerfilUsuario() {
   const [page, setPage] = useState(1);
   const [isEdit, setIsEdit] = useState(false);
 
+  const [isFocused, setIsFocused] = useState(false);
+
   const [name, setName] = useState(sessionStorage.getItem("user"));
+  const [password, setPassword] = useState(sessionStorage.getItem("password"));
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
   const [phone, setPhone] = useState(sessionStorage.getItem("phone"));
   const [sex, setSex] = useState(sessionStorage.getItem("sex"));
@@ -26,6 +29,14 @@ export function PerfilUsuario() {
     sessionStorage.clear();
     sessionStorage.setItem("page", 2);
     navigate("/area-usuario");
+  }
+
+  function doFocused() {
+    setIsFocused(true);
+  }
+
+  function doWithoutFocused() {
+    setIsFocused(false);
   }
 
   return (
@@ -60,6 +71,8 @@ export function PerfilUsuario() {
             <EditProfile
               name={name}
               email={email}
+              password={password}
+              setPassword={setPassword}
               phone={phone}
               sex={sex}
               setEmail={setEmail}
@@ -67,24 +80,28 @@ export function PerfilUsuario() {
               setPhone={setPhone}
               setSex={setSex}
               isEdit={!isEdit}
+              focused={isFocused}
+              setFocused={
+                isFocused ? () => doWithoutFocused() : () => doFocused()
+              }
+              isPassword={isFocused ? "text" : "password"}
             />
           ) : (
             ""
           )}
           {page === 2 ? <SchedulesUser /> : ""}
           {page === 3 ? <NewSchedule /> : ""}
-         
         </div>
         {isEdit ? (
-            <div className="edit">
-              <BorderlessButton
-                doSomething={() => setIsEdit(false)}
-                text="SALVAR"
-              />
-            </div>
-          ) : (
-            ""
-          )}
+          <div className="edit">
+            <BorderlessButton
+              doSomething={() => setIsEdit(false)}
+              text="SALVAR"
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </Content>
     </>
   );
