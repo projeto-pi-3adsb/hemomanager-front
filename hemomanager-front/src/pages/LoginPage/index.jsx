@@ -17,7 +17,9 @@ export function LoginPage() {
     sessionStorage.getItem("page") === "1" ? 1 : 2
   );
 
-  const [userType, setUserType] = useState(1);
+  const [userType, setUserType] = useState(
+    sessionStorage.getItem("userType") === "1" ? 1 : 2
+  );
 
   const [error, setError] = useState(false);
 
@@ -123,22 +125,28 @@ export function LoginPage() {
         const user = resp.data;
 
         if (userType === 1) {
-          sessionStorage.setItem("id", user.uuid);
+          sessionStorage.setItem("id", user.id);
           sessionStorage.setItem("user", user.name);
           sessionStorage.setItem("password", user.password);
           sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("birth", user.birthDate);
+          sessionStorage.setItem("cpf", user.cpf);
           sessionStorage.setItem("phone", user.phone);
           sessionStorage.setItem("sex", user.sex);
+          sessionStorage.valid("validDonor", false);
         }
 
         if (userType === 2) {
-          sessionStorage.setItem("id", user.uuid);
+          sessionStorage.setItem("id", user.id);
           sessionStorage.setItem("user", user.name);
-          sessionStorage.setItem("password", user.password);
-          sessionStorage.setItem("cnpj", user.cnpj);
           sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("cnpj", user.cnpj);
+          sessionStorage.setItem("password", user.password);
+          sessionStorage.setItem("ZipNumber", user.ZipNumber);
           sessionStorage.setItem("ZipCode", user.ZipCode);
-          sessionStorage.setItem("sex", user.sex);
+          sessionStorage.setItem("starOperation", user.startOperation);
+          sessionStorage.setItem("endOperation", user.endOperation);
+          sessionStorage.setItem("services", user.qttySimultServices);
         }
       })
       .catch((erro) => {
