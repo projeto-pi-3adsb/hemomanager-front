@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { HeaderComponent } from "../../components/Header";
-import Papa from "papaparse";
-import Dropzone from "react-dropzone";
 import {api} from "../../api";
 import {
   Container,
@@ -31,16 +29,16 @@ export function UploadHotsitePage() {
     sessionStorage.setItem("page", 1);
   }
 
-  const handleUpload = (files) => {
-    Papa.parse(files[0], {
-      header: true,
-      skipEmptyLines: true,
-      complete: function (results) {
-        console.log(results.data)
-        salvarCSV(results.data)
-      }
-    })
-  }
+  // const handleUpload = (files) => {
+  //   Papa.parse(files[0], {
+  //     header: true,
+  //     skipEmptyLines: true,
+  //     complete: function (results) {
+  //       console.log(results.data)
+  //       salvarCSV(results.data)
+  //     }
+  //   })
+  // }
 
   function salvarCSV(dados) {
     if (dados.length != 0) {
@@ -67,7 +65,7 @@ export function UploadHotsitePage() {
           <p>VOCÊ TAMBÉM PODE FAZER O UPLOUD DO SEU FORMULÁRIO!</p>
         </Header>
         <BoxUpload>
-          <Dropzone                 
+          {/* <Dropzone
             accept="text/csv"
             onDropAccepted={handleUpload}>
           <Upload>
@@ -87,7 +85,7 @@ export function UploadHotsitePage() {
             )
           }
 
-          </Dropzone>
+          </Dropzone> */}
           <BoxList>
             <table>
               <thead>

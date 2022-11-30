@@ -98,7 +98,7 @@ export function PerfilUsuario() {
   return (
     <>
       <Header>
-        <img src={logoImg} alt="" />
+        <img src={logoImg} onClick={() => navigate('/hemomanager')} alt="" />
         <BorderlessButton doSomething={() => logOut()} text="Sair" />
       </Header>
       <Perfil>
