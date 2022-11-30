@@ -2,21 +2,27 @@ import { Eye24Filled, Eye28Filled } from "@fluentui/react-icons";
 import { Input } from "../shared/Input";
 import { Container } from "./styles";
 
-export function EditProfile({
+export function EditProfileManager({
+  cep,
+  setCep,
   name,
   setName,
   email,
   setEmail,
-  phone,
+  qtty,
   password,
   setPassword,
-  setPhone,
-  sex,
-  setSex,
+  setQtty,
   isEdit,
   focused,
   setFocused,
   isPassword,
+  setStartOperation,
+  startOperation,
+  endOperation,
+  setEndOperation,
+  zipNumber,
+  setZipNumber,
 }) {
   return (
     <Container>
@@ -45,28 +51,49 @@ export function EditProfile({
         </button>
       </div>
       <div>
-        <span>Celular</span>
+        <span>Quantidade de atedimentos simultâneos</span>
         <Input
           setDisabled={isEdit}
           typeInput="number"
-          valueInput={phone}
-          doSomething={setPhone}
+          valueInput={qtty}
+          doSomething={setQtty}
         />
       </div>
       <div>
-        <span>Sexo</span>
-        <select disabled={isEdit} onChange={(e) => setSex(e.target.value)}>
-          {isEdit ? (
-            <option value="">
-              {sex === "MALE" ? "Masculino" : "Feminino"}
-            </option>
-          ) : (
-            ""
-          )}
-          <option value="MALE">Masculino</option>
-          <option value="FEMALE">Feminino</option>
-        </select>
-
+        <span>Inicio da operação</span>
+        <Input
+          setDisabled={isEdit}
+          typeInput="time"
+          valueInput={startOperation}
+          doSomething={setStartOperation}
+        />
+      </div>
+      <div>
+        <span>Fim da operação</span>
+        <Input
+          setDisabled={isEdit}
+          typeInput="time"
+          valueInput={endOperation}
+          doSomething={setEndOperation}
+        />
+      </div>
+      <div>
+        <span>CEP</span>
+        <Input
+          setDisabled={isEdit}
+          typeInput="text"
+          valueInput={cep}
+          doSomething={setCep}
+        />
+      </div>
+      <div>
+        <span>Número</span>
+        <Input
+          setDisabled={isEdit}
+          typeInput="number"
+          valueInput={zipNumber}
+          doSomething={setZipNumber}
+        />
       </div>
     </Container>
   );
