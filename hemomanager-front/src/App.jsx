@@ -28,6 +28,8 @@ export function App() {
         <Route path="/form-hotsite" element={<FormHotsitePage />} />
         <Route path="/upload-hotsite" element={<UploadHotsitePage />} />
         <Route path="*" element={<NotFound />} />
+        <Route exact path="/form-hotsite" element={<FormHotsitePage/>} />
+        <Route exact path="/upload-hotsite" element={<UploadHotsitePage/>} />
       </Routes>
       <GlobalStyled />
     </>
