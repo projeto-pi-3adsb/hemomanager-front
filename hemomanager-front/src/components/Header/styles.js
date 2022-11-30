@@ -13,6 +13,10 @@ export const HeaderStyle = styled.header`
   font-size: 1.2rem;
   font-weight: bold;
   font-family: "Farro", sans-serif;
+  
+  .invisible {
+    display: none;
+  }
 
   ul {
     display: flex;
@@ -23,7 +27,7 @@ export const HeaderStyle = styled.header`
       text-decoration: none;
       color: var(--black);
 
-      &:hover{
+      &:hover {
         color: var(--red);
         transition: 0.2s;
       }
@@ -37,7 +41,6 @@ export const HeaderStyle = styled.header`
       cursor: pointer;
     }
   }
-
 `;
 
 export const ButtonGroup = styled.div`

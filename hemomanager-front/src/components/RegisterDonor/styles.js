@@ -39,4 +39,16 @@ export const Container = styled.div`
     padding-left: 0;
     color: var(--black);
   }
+
+  .error {
+    width: 90%;
+    margin-top: -5rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    color: var(--shape);
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--red);
+  }
 `;

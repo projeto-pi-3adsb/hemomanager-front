@@ -12,12 +12,14 @@ import { api } from "../../api";
 import { MaxDialog } from "../../components/shared/Dialog";
 
 export function LoginPage() {
+  const navigate = useNavigate();
   const [page, setPage] = useState(
     sessionStorage.getItem("page") === "1" ? 1 : 2
   );
 
   const [userType, setUserType] = useState(1);
-  const navigate = useNavigate();
+
+  const [error, setError] = useState(false);
 
   const [name, setName] = useState("");
   const [id, setId] = useState(0);
@@ -36,7 +38,7 @@ export function LoginPage() {
   const [endOperation, setEndOperation] = useState(0);
   const [sex, setSex] = useState("");
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   function doIsOpenModalTrue() {
     console.log("TO aberto");
@@ -46,6 +48,11 @@ export function LoginPage() {
   function doIsOpenModalFalse() {
     console.log("TO FECHADO");
     setIsOpen(false);
+  }
+
+  function validateError() {
+    setError(true);
+    setTimeout(() => setError(false), 3000);
   }
 
   function doSaveNewHemocenter() {
@@ -68,7 +75,7 @@ export function LoginPage() {
         console.table(hemocenter);
       })
       .catch((err) => {
-        alert("error: ", err);
+        validateError();
       });
   }
 
@@ -91,8 +98,7 @@ export function LoginPage() {
         console.table(donor);
       })
       .catch((err) => {
-        alert("error: ", err);
-        console.table(donor);
+        validateError();
       });
   }
 
@@ -108,7 +114,11 @@ export function LoginPage() {
         userLogin
       )
       .then((resp) => {
-        userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
+        doIsOpenModalTrue();
+
+        setTimeout(() => {
+          userType === 2 ? navigate("/dashboard") : navigate("/perfil-usuario");
+        }, 2000);
 
         const user = resp.data;
 
@@ -130,6 +140,7 @@ export function LoginPage() {
         }
       })
       .catch((erro) => {
+        validateError();
         console.log(userLogin);
       });
   }
@@ -162,6 +173,13 @@ export function LoginPage() {
           </div>
         </Welcome>
         <LoginArea>
+          {page === 2 ? (
+            <h1 className={error ? "error" : ""}>
+              {error ? "Email ou senha inválidos, tente novamente!" : ""}
+            </h1>
+          ) : (
+            ""
+          )}
           <h1>
             {page === 1
               ? userType === 1
@@ -203,6 +221,7 @@ export function LoginPage() {
                 setPassword={setPassword}
                 setConfirmPassword={setConfirmPassword}
                 setSex={setSex}
+                error={error}
               />
             )
           ) : (
@@ -214,7 +233,6 @@ export function LoginPage() {
               setPassword={setPassword}
             />
           )}
-
           {page === 2 ? (
             <Link>
               Ainda não possui cadastro? Clique em{" "}
@@ -237,7 +255,7 @@ export function LoginPage() {
             />
           </section>
         </LoginArea>
-        <MaxDialog isClose={doIsOpenModalFalse} isOpen={doIsOpenModalTrue} />
+        <MaxDialog isOpen={isOpen} isClose={doIsOpenModalFalse} />
       </Container>
     </>
   );

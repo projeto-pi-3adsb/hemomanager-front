@@ -54,6 +54,12 @@ export function ProfilePage() {
     setTimeout(() => setError(null), 3000);
   }
 
+  function validateSuccess() {
+    setSend(true);
+    setError(true);
+    setTimeout(() => setError(null), 3000);
+  }
+
   function doIsOpenModalTrue() {
     console.log("TO aberto");
     setIsOpenModal(true);
@@ -73,13 +79,14 @@ export function ProfilePage() {
     api
       .post(`/stock/${user.uuid}`, bag)
       .then((response) => {
-        console.log(response);
-        setSend(true);
-        setError(true);
-        setTimeout(() => setError(null), 3000);
+        validateSuccess();
+
         console.table(bag);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        validateError();
+        console.log(err.status);
+      });
   }
 
   function doRegisterNewHour() {
@@ -93,14 +100,12 @@ export function ProfilePage() {
 
     api
       .post(`hemocenter/scheduleHemocenter/`, hour)
-      .then((data) => {
-        setSend(true);
-        console.log(data);
+      .then(() => {
+        validateSuccess();
       })
       .catch((error) => {
         validateError();
-        console.log(hour);
-        console.error(error.response.status);
+        console.log("Erro: ", error);
       });
   }
 
@@ -181,6 +186,7 @@ export function ProfilePage() {
         bloodBag={page === 4 ? true : false}
         open={isOpenModal}
         send={send}
+        page={page}
       />
     </Container>
   );

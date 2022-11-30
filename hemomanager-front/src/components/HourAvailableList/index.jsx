@@ -6,9 +6,17 @@ import { Container } from "./styles";
 export function HourAvailableList({ isOpen }) {
   const [hours, setHours] = useState([]);
 
-  useEffect(() =>{
-    api.get("")
-  },[])
+
+
+
+  useEffect(() => {
+    api.get(`/schedules/${sessionStorage.id}`)
+    .then((data) => {
+      setHours(data.data);
+    });
+    console.log(hours);
+  }, [setHours]);
+
 
   return (
     <Container>
@@ -23,12 +31,14 @@ export function HourAvailableList({ isOpen }) {
           </tr>
         </thead>
         <tbody>
-          {hours.map((hour) => (
-            <tr key={hour.type}>
-              <td>{hour.date}</td>
-              <td>{hour.hour}</td>
-            </tr>
-          ))}
+          {hours.length > 0
+            ? hours.map((hour) => (
+                <tr key={hour.uuid}>
+                  <td>{hour.shceduleDate}</td>
+                  <td>{hour.shceduleTime}</td>
+                </tr>
+              ))
+            : null}
         </tbody>
       </table>
     </Container>
