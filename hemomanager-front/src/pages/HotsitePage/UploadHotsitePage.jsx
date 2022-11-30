@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { HeaderComponent } from "../../components/Header";
+import Papa from "papaparse";
+import Dropzone from "react-dropzone";
+import {api} from "../../api";
 import {
   Container,
   Header,
@@ -27,6 +30,30 @@ export function UploadHotsitePage() {
     navigate("/area-usuario");
     sessionStorage.setItem("page", 1);
   }
+
+  const handleUpload = (files) => {
+    Papa.parse(files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        console.log(results.data)
+        salvarCSV(results.data)
+      }
+    })
+  }
+
+  function salvarCSV(dados) {
+    if (dados.length != 0) {
+      api.post(`/upload-csv`, dados)
+        .then(async function (respostaObtida) {
+          console.log(respostaObtida)
+        })
+        .catch((errorOcorrido) => {
+          console.log(errorOcorrido)
+        });
+    }
+  }
+
   return (
     <>
       <HeaderComponent button={true} />
@@ -40,10 +67,27 @@ export function UploadHotsitePage() {
           <p>VOCÊ TAMBÉM PODE FAZER O UPLOUD DO SEU FORMULÁRIO!</p>
         </Header>
         <BoxUpload>
+          <Dropzone                 
+            accept="text/csv"
+            onDropAccepted={handleUpload}>
           <Upload>
             <h2>FAÇA O UPLOUD DO SEU DOCUMENTO AQUI!!</h2>
               <div></div>
-          </Upload>
+          </Upload> {
+            ({ getRootProps, getInputProps }) => (
+              <div
+              {...getRootProps()}
+            >
+              <input
+                {...getInputProps()}
+                type="file"
+                name="file"
+              />
+            </div>
+            )
+          }
+
+          </Dropzone>
           <BoxList>
             <table>
               <thead>
