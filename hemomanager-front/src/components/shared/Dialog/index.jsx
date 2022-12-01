@@ -25,7 +25,7 @@ export function MaxDialog({ isOpen, isClose, doClose }) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <h1>Login Efetado com sucesso!</h1>
+            <h1>Login Efetuado com sucesso!</h1>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
