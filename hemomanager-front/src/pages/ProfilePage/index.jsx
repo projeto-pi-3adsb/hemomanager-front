@@ -100,7 +100,7 @@ export function ProfilePage() {
   function doIsOpenModalConfirmTrue() {
 
     console.log("TO aberto");
-    setIsOpenModal(true);
+    setIsOpenModalEdit(true);
   }
 
   function doIsOpenModalConfirmFalse() {
@@ -110,7 +110,7 @@ export function ProfilePage() {
 
   function doIsOpenModalTrue() {
     console.log("TO aberto");
-    setIsOpenModalEdit(true);
+    setIsOpenModal(true);
   }
 
   function doIsOpenModalFalse() {
@@ -191,6 +191,7 @@ export function ProfilePage() {
    
     });
   }
+
   function logOut() {
     sessionStorage.clear();
     sessionStorage.setItem("page", 2);
