@@ -156,7 +156,7 @@ export function PerfilUsuario() {
           {page === 2 ? <SchedulesUser /> : ""}
           {page === 3 ? <NewSchedule /> : ""}
         </div>
-        {isEdit ? (
+        {isEdit && page === 1 ? (
           <div className="edit">
             <BorderlessButton doSomething={() => doEditData()} text="SALVAR" />
           </div>

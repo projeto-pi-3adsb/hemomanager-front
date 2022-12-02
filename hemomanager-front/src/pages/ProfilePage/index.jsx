@@ -40,8 +40,8 @@ export function ProfilePage() {
   const [page, setPage] = useState(1);
 
   const [bloodType, setBloodType] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState(0);
+  const [scheduleDate, setScheduleDate] = useState("");
+  const [scheduleTime, setScheduleTime] = useState(0);
 
   const [error, setError] = useState(false);
   const [send, setSend] = useState(null);
@@ -68,9 +68,9 @@ export function ProfilePage() {
   const [sex, setSex] = useState(sessionStorage.getItem("sex"));
 
   const user = {
-    uuid: sessionStorage.getItem("id"),
-    name: sessionStorage.getItem("user"),
-    email: sessionStorage.getItem("email"),
+    id,
+    name,
+    email,
   };
 
   const [isEdit, setIsEdit] = useState(false);
@@ -98,9 +98,8 @@ export function ProfilePage() {
   }
 
   function doIsOpenModalConfirmTrue() {
-
     console.log("TO aberto");
-    setIsOpenModal(true);
+    setIsOpenModalEdit(true);
   }
 
   function doIsOpenModalConfirmFalse() {
@@ -110,50 +109,55 @@ export function ProfilePage() {
 
   function doIsOpenModalTrue() {
     console.log("TO aberto");
-    setIsOpenModalEdit(true);
+    setIsOpenModal(true);
   }
 
   function doIsOpenModalFalse() {
     console.log("TO aberto");
+    setScheduleDate("");
+    setScheduleTime("");
     setIsOpenModal(false);
   }
 
   function doRegisterNewBag() {
     const bag = {
       bloodType,
-      collectionDate: date,
+      collectionDate: scheduleDate,
     };
 
     api
-      .post(`/stock/${user.uuid}`, bag)
+      .post(`/stock/${user.id}`, bag)
       .then((response) => {
         validateSuccess();
-
-        console.table(bag);
+        console.log("Insert Bag RESPONSE: ", response);
       })
       .catch((err) => {
         validateError();
-        console.log(err.status);
+        console.log("Insert Bag ERROR: ", err);
       });
   }
 
   function doRegisterNewHour() {
     const hour = {
-      hemocenterId: user.uuid,
-      shcduleDate: date,
-      scheduleTime: time,
+      hemocenterId: user.id,
+      scheduledDate: scheduleDate,
+      scheduledTime: scheduleTime,
     };
 
     console.log("Current Hour: ", hour);
 
     api
-      .post(`hemocenter/scheduleHemocenter/`, hour)
+      .post(`/hemocenter/scheduleHemocenter`, hour)
       .then(() => {
         validateSuccess();
+        setScheduleDate("");
+        setScheduleTime("");
+        console.log(hour);
       })
       .catch((error) => {
         validateError();
         console.log("Erro: ", error);
+        console.log("HOUR:", hour);
       });
   }
 
@@ -188,7 +192,6 @@ export function ProfilePage() {
     api.post(`/hemocenter/current/`, { email, password }).catch((error) => {
       console.log(error);
       console.log(hemocenter);
-   
     });
   }
   function logOut() {
@@ -281,7 +284,7 @@ export function ProfilePage() {
           ) : (
             ""
           )}
-          {isEdit ? (
+          {page === 6 && isEdit ? (
             <h2>
               <BorderlessButton
                 doSomething={() => doEditData()}
@@ -310,8 +313,8 @@ export function ProfilePage() {
           page === 3 ? doRegisterNewHour() : doRegisterNewBag()
         }
         selectSomething={setBloodType}
-        setDate={setDate}
-        setTime={setTime}
+        setDate={setScheduleDate}
+        setTime={setScheduleTime}
         close={doIsOpenModalFalse}
         hourRegister={page === 3 ? true : false}
         bloodBag={page === 4 ? true : false}
@@ -323,7 +326,6 @@ export function ProfilePage() {
       <MaxDialogProfileUser
         isOpen={isOpenModalEdit}
         isClose={doIsOpenModalConfirmFalse}
-
       />
     </Container>
   );

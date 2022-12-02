@@ -6,19 +6,24 @@ import { Container } from "./styles";
 export function HourAvailableList({ isOpen }) {
   const [hours, setHours] = useState([]);
 
-
-
-
   useEffect(() => {
-    api.get(`/schedules/${sessionStorage.id}`)
-    .then((data) => {
+    api.get(`/schedules/hemocenter/${sessionStorage.id}`).then((data) => {
       setHours(data.data);
-      console.log("AGENDAMENTO:", data.data);
-
     });
-    console.log(hours);
-  }, [setHours]);
+    console.log("HOUERS: ", hours);
+  }, []);
 
+  function handleUseBag(hourId) {
+    api
+      .delete(`/stock/${sessionStorage.id}/${hourId}`)
+      .then(() => {
+        setHours((prev) => prev.filter((hour) => hour.id !== hourId));
+      })
+      .catch((err) => {
+        console.log("DELETE ERROR: ", err.response.status);
+      })
+
+  }
 
   return (
     <Container>
