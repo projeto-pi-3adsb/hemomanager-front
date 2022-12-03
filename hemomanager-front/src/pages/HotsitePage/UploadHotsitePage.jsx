@@ -21,6 +21,8 @@ import {
 import { UpdateDisabled, UploadFile } from "@mui/icons-material";
 
 import upload from "../../assets/upload-img.png";
+import Dropzone from "react-dropzone";
+import Papa from "papaparse";
 
 export function UploadHotsitePage() {
   const navigate = useNavigate();
@@ -29,16 +31,16 @@ export function UploadHotsitePage() {
     sessionStorage.setItem("page", 1);
   }
 
-  // const handleUpload = (files) => {
-  //   Papa.parse(files[0], {
-  //     header: true,
-  //     skipEmptyLines: true,
-  //     complete: function (results) {
-  //       console.log(results.data)
-  //       salvarCSV(results.data)
-  //     }
-  //   })
-  // }
+  const handleUpload = (files) => {
+    Papa.parse(files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        console.log(results.data)
+        salvarCSV(results.data)
+      }
+    })
+  }
 
   function salvarCSV(dados) {
     if (dados.length != 0) {
@@ -84,7 +86,6 @@ export function UploadHotsitePage() {
             </div>
             )
           }
-
           </Dropzone> */}
           <BoxList>
             <table>
