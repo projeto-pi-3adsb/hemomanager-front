@@ -31,8 +31,15 @@ export const Perfil = styled.div`
   h1 {
     font-size: 2rem;
   }
+
+  h4 {
+    border-radius: 50%;
+    border: 2px solid black;
+  }
+
   img {
     height: 8rem;
+    padding: 2rem;
   }
 `;
 

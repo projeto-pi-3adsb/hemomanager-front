@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  flex-direction: column;
   justify-content: center;
-  height: 100%;
-  width: 100%;
-  flex-wrap: wrap;
+  height: 90%;
+  width: 80%;
+  margin: auto;
 
   .password {
+    display: flex;
+    height: 3rem;
+
     input {
       width: 16rem;
-      margin: auto 0;
+      padding: 0;
     }
 
     .focused {
@@ -46,7 +48,8 @@ export const Container = styled.div`
   div {
     display: flex;
     margin: auto;
-    height: 4rem;
+    align-items: center;
+    height: 2rem;
     border-bottom: 2px solid var(--input-border);
     margin-bottom: 2rem;
 
@@ -63,6 +66,7 @@ export const Container = styled.div`
     select {
       margin: auto;
       font-family: "Roboto", sans-serif;
+      height: 2rem;
       width: 40%;
       border: none;
       display: flex;

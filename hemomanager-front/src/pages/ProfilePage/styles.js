@@ -25,6 +25,27 @@ export const MainArea = styled.div`
     padding: 0 2rem;
     align-items: center;
     overflow: hidden;
+
+  
+    h1 {
+      height: 4rem;
+      align-items: center;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    
+    
+    h2 {
+      height: 10rem;
+      align-items: center;
+      width: 100%;
+
+      display: flex;
+      justify-content: flex-end;
+    }
+
   }
 
   .bar-chart {
