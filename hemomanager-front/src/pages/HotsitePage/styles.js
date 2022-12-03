@@ -172,15 +172,8 @@ export const BoxList = styled.div`
 
 export const BoxButton = styled.div`
   margin-top: 20px;
-  margin-left: 30px;
-  width: 50%;
-
-  div {
-    justify-content: right;
-    display: flex;
-  }
-
-  button {
-    margin: 1rem;
-  }
+  margin-bottom: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 `;

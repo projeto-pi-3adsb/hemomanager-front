@@ -126,6 +126,14 @@ export function FormHotsitePage() {
             doSomething={() => sendRegister()}
             text="ENVIAR"
           />
+           <BorderlessButton
+            doSomething={() => sendRegister()}
+            text="BAIXAR MODELO"
+          />
+           <BorderlessButton
+            doSomething={() => sendRegister()}
+            text="UPLOAD DO ARQUIVO"
+          />
         </BoxButton>
       </Container>
     </>
