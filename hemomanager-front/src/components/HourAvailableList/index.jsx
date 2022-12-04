@@ -6,14 +6,22 @@ import { Container } from "./styles";
 export function HourAvailableList({ isOpen }) {
   const [hours, setHours] = useState([]);
 
+  const now = new Date();
+
+  const withPmAm = now.toLocaleTimeString("en-US", {
+    // en-US can be set to 'default' to use user's browser settings
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   useEffect(() => {
-    api.get(`/schedules/hemocenter/${sessionStorage.id}`).then((data) => {
+    api.get(`/schedules/hemocenter/all/${sessionStorage.id}`).then((data) => {
       setHours(data.data);
     });
-    console.log("HOUERS: ", hours);
+    console.log("HOURS: ", hours);
   }, []);
 
-  function handleUseBag(hourId) {
+  function doRemoveHour(hourId) {
     api
       .delete(`/stock/${sessionStorage.id}/${hourId}`)
       .then(() => {
@@ -21,8 +29,7 @@ export function HourAvailableList({ isOpen }) {
       })
       .catch((err) => {
         console.log("DELETE ERROR: ", err.response.status);
-      })
-
+      });
   }
 
   return (
@@ -40,9 +47,13 @@ export function HourAvailableList({ isOpen }) {
         <tbody>
           {hours.length > 0
             ? hours.map((hour) => (
-                <tr key={hour.uuid}>
-                  <td>{hour.shceduleDate}</td>
-                  <td>{hour.shceduleTime}</td>
+                <tr key={hour.hemocenterUuid}>
+                  <td>
+                    {new Intl.DateTimeFormat("pt-BR", {}).format(
+                      new Date(hour.scheduledDate)
+                    )}
+                  </td>
+                  <td></td>
                 </tr>
               ))
             : null}

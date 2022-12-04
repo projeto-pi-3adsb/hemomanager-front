@@ -21,10 +21,10 @@ export function StockList({ isOpen }) {
     setOpen(true);
     setTimeout(() => {
       setOpen(false);
-    }, 2000);
+    }, 2000); 
   }
 
-  function handleUseBag(bagId) {
+  function doRemoveBag(bagId) {
     api
       .delete(`/stock/${sessionStorage.id}/${bagId}`)
       .then(() => {
@@ -58,7 +58,7 @@ export function StockList({ isOpen }) {
                     <td>{bag.bloodType}</td>
                     <td>{bag.collectionDate}</td>
                     <td>
-                      <Delete20Filled onClick={() => handleUseBag(bag.id)} />
+                      <Delete20Filled onClick={() => doRemoveBag(bag.id)} />
                     </td>
                   </tr>
                 ))
