@@ -18,7 +18,7 @@ export function FormHotsitePage() {
   const [birthDate, setBirthDate] = useState("Digite sua data de nascimento aqui!");
   const [password, setPassword] = useState("123");
 
-  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [file, setfile] = React.useState(null);
 
   const [error, setError] = useState(false);
 
@@ -63,12 +63,12 @@ export function FormHotsitePage() {
   const sendFile = async(event) => {
     event.preventDefault()
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("file", file);
     try {
       api
         .post(
           "/platelets/upload-txt",
-          {formData},
+          {file},
           {
             headers: { "Content-Type": "multipart/form-data" }
           },
@@ -87,7 +87,7 @@ export function FormHotsitePage() {
   }
 
   const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0])
+    setfile(event.target.files[0])
   }
 
   function getModel() {
