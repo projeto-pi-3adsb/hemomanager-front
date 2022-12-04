@@ -6,9 +6,10 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+
 import { useState } from "react";
 
-export function MaxDialogProfileUser({ isOpen, isClose, doClose }) {
+export function MaxDialogHour ({ isOpen, isClose, doClose }) {
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState("sm");
 

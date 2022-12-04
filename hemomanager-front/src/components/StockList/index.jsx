@@ -7,6 +7,7 @@ import { MaxDialogBag } from "../shared/DialogBag";
 import { Container } from "./styles";
 
 export function StockList({ isOpen }) {
+  
   const [bags, setBags] = useState([]);
 
   const [open, setOpen] = useState(false);
@@ -17,11 +18,13 @@ export function StockList({ isOpen }) {
       .then((data) => setBags(data.data));
   }, []);
 
+
+
   function validateDelete() {
     setOpen(true);
     setTimeout(() => {
       setOpen(false);
-    }, 2000); 
+    }, 2000);
   }
 
   function doRemoveBag(bagId) {
@@ -29,12 +32,11 @@ export function StockList({ isOpen }) {
       .delete(`/stock/${sessionStorage.id}/${bagId}`)
       .then(() => {
         setBags((prev) => prev.filter((bag) => bag.id !== bagId));
-        validateDelete()
+        validateDelete();
       })
       .catch((err) => {
         console.log("DELETE ERROR: ", err.response.status);
-      })
-
+      });
   }
 
   return (
@@ -54,9 +56,13 @@ export function StockList({ isOpen }) {
           <tbody>
             {bags.length > 0
               ? bags.map((bag) => (
-                  <tr key={bag.counter}>
+                  <tr key={bag.id}>
                     <td>{bag.bloodType}</td>
-                    <td>{bag.collectionDate}</td>
+                    <td>
+                      {new Intl.DateTimeFormat("pt-BR", {}).format(
+                        new Date(bag.collectionDate)
+                      )}
+                    </td>
                     <td>
                       <Delete20Filled onClick={() => doRemoveBag(bag.id)} />
                     </td>

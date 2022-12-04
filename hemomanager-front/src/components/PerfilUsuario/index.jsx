@@ -1,5 +1,5 @@
 import logoImg from "../../assets/logotypes/logo-2.png";
-import mirian from "../../assets/mirian.svg";
+
 import React, { useState } from "react";
 
 import { BorderlessButton } from "../shared/BorderlessButton";
@@ -11,8 +11,8 @@ import { Content, Header, Perfil } from "./styles";
 import { MenuDoador } from "../DonorMenu";
 import { NewSchedule } from "../NewSchedule";
 import { api } from "../../api";
-import { MaxDialog } from "../shared/Dialog";
-import { MaxDialogProfileUser } from "../shared/DialogProfileUser";
+import { MaxDialogHour } from "../shared/DialogHour";
+
 
 export function PerfilUsuario() {
   const navigate = useNavigate();
@@ -163,7 +163,7 @@ export function PerfilUsuario() {
         ) : (
           ""
         )}
-        <MaxDialogProfileUser isOpen={isOpen} isClose={doIsOpenModalFalse} />
+        <MaxDialogHour isOpen={isOpen} isClose={doIsOpenModalFalse} />
       </Content>
     </>
   );

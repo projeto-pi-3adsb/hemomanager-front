@@ -16,7 +16,6 @@ import { Dashboard } from "../../components/Dashboard";
 
 import { Schaduler } from "../../components/Scheduler";
 import { HourAvailableList } from "../../components/HourAvailableList";
-import { RegisterModal } from "../../components/RegisterModal";
 
 import { ManagerMenu } from "../../components/ManagerMenu";
 
@@ -24,8 +23,9 @@ import { api } from "../../api";
 import { StockList } from "../../components/StockList";
 import { useNavigate } from "react-router";
 import { EditProfileManager } from "../../components/editProfileManager";
+import { RegisterModal } from "../../components/RegisterModal";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
-import { MaxDialogProfileUser } from "../../components/shared/DialogProfileUser";
+import { MaxDialogBag } from "../../components/shared/DialogBag";
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -323,10 +323,7 @@ export function ProfilePage() {
         page={page}
         isEdit={isEdit}
       />
-      <MaxDialogProfileUser
-        isOpen={isOpenModalEdit}
-        isClose={doIsOpenModalConfirmFalse}
-      />
+      <MaxDialogBag isOpen={isOpenModalEdit} isClose={doIsOpenModalConfirmFalse} />
     </Container>
   );
 }
