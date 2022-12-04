@@ -1,5 +1,4 @@
 import { Delete20Filled } from "@fluentui/react-icons";
-import { ModalManager } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { api } from "../../api";
 import { BorderlessButton } from "../shared/BorderlessButton";

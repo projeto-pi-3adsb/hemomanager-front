@@ -59,6 +59,13 @@ export const BarraOpcoes = styled.div`
     height: 2.5rem;
     width: 14rem;
   }
+
+  .hover {
+    color: var(--red);
+    transition: 0.2s;
+    background: var(--background);
+    border: 2px solid var(--red);
+  }
 `;
 
 export const Content = styled.div`

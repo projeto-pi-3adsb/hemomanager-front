@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-export function MaxDialogBag({ isOpen, doClose, hour }) {
+export function MaxDialogBag({ isOpen, doClose, hour, schedule }) {
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState("sm");
 
@@ -28,6 +28,8 @@ export function MaxDialogBag({ isOpen, doClose, hour }) {
             <h1>
               {hour
                 ? "Horário excluido com sucesso!"
+                : schedule
+                ? "Agendamento excluido com sucesso!"
                 : "Bolsa excluida com sucesso!"}
             </h1>
           </DialogContentText>

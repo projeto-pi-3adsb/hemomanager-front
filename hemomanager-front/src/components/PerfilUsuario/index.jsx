@@ -5,14 +5,14 @@ import React, { useState } from "react";
 import { BorderlessButton } from "../shared/BorderlessButton";
 
 import { EditProfile } from "../editProfile";
+import { NewSchedule } from "../NewSchedule"
 import { SchedulesUser } from "../ShedulesUser";
 import { useNavigate } from "react-router-dom";
 import { Content, Header, Perfil } from "./styles";
 import { MenuDoador } from "../DonorMenu";
-import { NewSchedule } from "../NewSchedule";
+
 import { api } from "../../api";
 import { MaxDialogHour } from "../shared/DialogHour";
-
 
 export function PerfilUsuario() {
   const navigate = useNavigate();
@@ -47,7 +47,6 @@ export function PerfilUsuario() {
     console.log("TO FECHADO");
     setIsOpen(false);
   }
-
 
   function logOut() {
     sessionStorage.clear();
@@ -88,6 +87,7 @@ export function PerfilUsuario() {
       })
       .catch((error) => {
         console.log("Erro no edit:", error);
+        console.log("User: ", user);
       });
 
     api.post(`/donor/current/`, { email, password }).catch((error) => {
@@ -117,6 +117,7 @@ export function PerfilUsuario() {
         method1={() => setPage(1)}
         method2={() => setPage(2)}
         method3={() => setPage(3)}
+        page={page}
       />
 
       <Content>
