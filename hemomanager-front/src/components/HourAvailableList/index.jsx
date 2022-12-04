@@ -6,8 +6,6 @@ import { MaxDialogBag } from "../shared/DialogBag";
 import { Container } from "./styles";
 
 export function HourAvailableList({ isOpen }) {
-
-
   function time_convert(num) {
     var hours = Math.floor(num / 60);
     var minutes = num % 60;
@@ -51,38 +49,41 @@ export function HourAvailableList({ isOpen }) {
       <h1>
         <BorderlessButton doSomething={isOpen} text="CADASTRAR HORÁRIO" />
       </h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Dia</th>
-            <th>Horário</th>
-            <th>Uso</th>
-          </tr>
-        </thead>
-        <tbody>
-          {hours.length > 0
-            ? hours.map((hour) => (
-                <tr key={hour.scheduleHemocenterUuid}>
-                  <td>
-                    {new Intl.DateTimeFormat("pt-BR", {}).format(
-                      new Date(hour.scheduledDate)
-                    )}
-                  </td>
-                  <td>
-                    {time_convert(
-                      hour.scheduledTime[0] * 60 + hour.scheduledTime[1]
-                    ) + "h"}
-                  </td>
-                  <td>
-                    <Delete20Filled
-                      onClick={() => doRemoveHour(hour.scheduleHemocenterUuid)}
-                    />
-                  </td>
-                </tr>
-              ))
-            : null}
-        </tbody>
-      </table>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Dia</th>
+              <th>Horário</th>
+              <th>Uso</th>
+            </tr>
+          </thead>
+          <tbody>
+            {hours.length > 0
+              ? hours.map((hour) => (
+                  <tr key={hour.scheduleHemocenterUuid}>
+                    <td>
+                      {new Intl.DateTimeFormat("pt-BR", {}).format(
+                        new Date(hour.scheduledDate)
+                      )}
+                    </td>
+                    <td>
+                      {hour.scheduledTime}
+                      <b>h</b>
+                    </td>
+                    <td>
+                      <Delete20Filled
+                        onClick={() =>
+                          doRemoveHour(hour.scheduleHemocenterUuid)
+                        }
+                      />
+                    </td>
+                  </tr>
+                ))
+              : null}
+          </tbody>
+        </table>
+      </div>
       <MaxDialogBag hour isOpen={open} />
     </Container>
   );

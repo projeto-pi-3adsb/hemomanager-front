@@ -5,6 +5,21 @@ export const Container = styled.section`
   width: 100%;
   margin: auto;
 
+  div {
+    ::-webkit-scrollbar {
+      background: var(--background-begie);
+      border-radius: 0.25rem;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 0.25rem;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--background-button);
+    }
+    overflow: auto;
+    height: 80vh;
+  }
+
   h1 {
     display: flex;
     justify-content: end;
@@ -18,6 +33,7 @@ export const Container = styled.section`
   table {
     inline-size: 100%;
     border-spacing: 0 0.5rem;
+    overflow-x: auto;
 
     th {
       color: var(--shape);

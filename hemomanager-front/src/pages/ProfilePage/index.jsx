@@ -47,16 +47,22 @@ export function ProfilePage() {
   const [send, setSend] = useState(null);
 
   const id = sessionStorage.getItem("id");
+
   const [name, setName] = useState(sessionStorage.getItem("user"));
+
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
+
   const [password, setPassword] = useState(sessionStorage.getItem("password"));
+
   const [cpnj, setCnpj] = useState(sessionStorage.getItem("cnpj"));
+
   const [zipCode, setZipCode] = useState(sessionStorage.getItem("ZipCode"));
+
   const [zipNumber, setZipNumber] = useState(
     sessionStorage.getItem("ZipNumber")
   );
   const [startOperation, setStartOperation] = useState(
-    sessionStorage.getItem("startOperation")
+    sessionStorage.getItem("StartOperation")
   );
   const [endOperation, setEndOperation] = useState(
     sessionStorage.getItem("endOperation")
@@ -138,6 +144,7 @@ export function ProfilePage() {
   }
 
   function doRegisterNewHour() {
+    
     const hour = {
       hemocenterId: user.id,
       scheduledDate: scheduleDate,
@@ -161,6 +168,12 @@ export function ProfilePage() {
       });
   }
 
+  function time_convert(num) {
+    var hours = Math.floor(num / 60);
+    var minutes = num % 60;
+    return hours + ":" + (minutes < 10 ? "0" + minutes : minutes);
+  }
+
   function doEditData() {
     const hemocenter = {
       name,
@@ -174,6 +187,9 @@ export function ProfilePage() {
       endOperation,
       qttySimultServices,
     };
+
+    console.log(time_convert(startOperation[0] * 60 + startOperation[1]));
+    console.log(time_convert(endOperation[0] * 60 + endOperation[1]));
 
     api
       .put(`/hemocenter/${id}`, hemocenter)
@@ -212,6 +228,7 @@ export function ProfilePage() {
 
   return (
     <Container>
+      {console.log("START OPERRATION: ")}
       <Profile>
         <Avatar>
           <img src="https://www.github.com/samuckqadev.png" alt="" />
@@ -323,7 +340,10 @@ export function ProfilePage() {
         page={page}
         isEdit={isEdit}
       />
-      <MaxDialogBag isOpen={isOpenModalEdit} isClose={doIsOpenModalConfirmFalse} />
+      <MaxDialogBag
+        isOpen={isOpenModalEdit}
+        isClose={doIsOpenModalConfirmFalse}
+      />
     </Container>
   );
 }
