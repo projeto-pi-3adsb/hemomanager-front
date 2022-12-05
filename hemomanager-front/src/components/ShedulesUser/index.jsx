@@ -54,23 +54,25 @@ export function SchedulesUser() {
   return (
     <Container>
       <OwlCarousel className="owl-theme" items="3" autoPlay nav dots>
-        {schedules?.length > 0
-          ? schedules.map((schedule, index) => (
-              <div key={schedule.uuid} className="item">
-                <SchedulesCard
-                  description={schedule.hemocenter.zipCode}
-                  title={schedule.hemocenter.name}
-                  hour={schedule.scheduleHemocenter.scheduledTime.slice(0, 5)}
-                  doCancel={() =>
-                    doCancelSchedule(
-                      schedule.hemocenter.uuid,
-                      schedule.scheduleHemocenter.uuid
-                    )
-                  }
-                />
-              </div>
-            ))
-          : null}
+        {schedules?.length > 0 ? (
+          schedules.map((schedule, index) => (
+            <div key={schedule.uuid} className="item">
+              <SchedulesCard
+                description={schedule.hemocenter.zipCode}
+                title={schedule.hemocenter.name}
+                hour={schedule.scheduleHemocenter.scheduledTime.slice(0, 5)}
+                doCancel={() =>
+                  doCancelSchedule(
+                    schedule.hemocenter.uuid,
+                    schedule.scheduleHemocenter.uuid
+                  )
+                }
+              />
+            </div>
+          ))
+        ) : (
+          <h1 className="not-found"> Nehnum agendamento encontrado!</h1>
+        )}
       </OwlCarousel>
       <MaxDialogBag schedule isOpen={open} />
     </Container>

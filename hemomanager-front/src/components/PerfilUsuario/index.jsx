@@ -154,8 +154,8 @@ export function PerfilUsuario() {
           ) : (
             ""
           )}
-          {page === 2 ? <SchedulesUser /> : ""}
-          {page === 3 ? <NewSchedule /> : ""}
+          {page === 2 ? <SchedulesUser page={page} /> : ""}
+          {page === 3 ? <NewSchedule cancaledHemocenter={setIsOpen} /> : ""}
         </div>
         {isEdit && page === 1 ? (
           <div className="edit">

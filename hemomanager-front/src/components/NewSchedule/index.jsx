@@ -7,7 +7,7 @@ import { Box, Confirm, Container } from "./styles";
 
 import checkImg from "../../assets/check.png";
 
-export function NewSchedule() {
+export function NewSchedule({ cancaledHemocenter }) {
   const [hemocenters, setHemocenters] = useState([]);
   const [hours, setHours] = useState([]);
 
@@ -32,6 +32,7 @@ export function NewSchedule() {
       })
       .then(() => {
         setHours((prev) => prev.filter((hour) => hour.id !== hourSelected));
+        cancaledHemocenter(true);
       })
       .catch((err) => {
         console.log("POST ERROR: ", err.response.status);
@@ -98,7 +99,7 @@ export function NewSchedule() {
                           setHourSelected(hour.scheduleHemocenterUuid)
                         }
                         id={"radio" + index}
-                        value="true"
+                        value="false"
                         type="radio"
                       />
                     </label>

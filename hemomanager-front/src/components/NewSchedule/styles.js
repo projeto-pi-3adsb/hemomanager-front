@@ -53,12 +53,14 @@ export const Confirm = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+
+  margin: auto;
 `;
 
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   height: 10rem;
   border-radius: 16px;
   align-items: center;
@@ -88,18 +90,22 @@ export const Box = styled.div`
     align-items: center;
     gap: 0.5rem;
     font-weight: normal;
+    
   }
 
   p {
+    flex-wrap: wrap;
+    box-sizing: content-box;
     width: 100%;
+    height: 3rem;
     display: flex;
     justify-content: start;
-    padding: 0.5rem;
+    padding: 0rem;
     margin: 0.5rem auto;
   }
 
   div {
-    margin: 0.8rem 0;
+    margin: 0.3rem 0;
     width: 100%;
     display: flex;
     justify-content: end;

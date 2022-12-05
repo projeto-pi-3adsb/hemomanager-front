@@ -13,12 +13,19 @@ export const Container = styled.div`
   padding: 2rem;
 
   div {
+    box-sizing: content-box;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 1rem;
     border-radius: 8px;
     border: 2px solid var(--background-border-bar);
+
+    button {
+      margin: auto;
+      width: 12rem;
+      font-size: 0.8rem;
+    }
 
     h1 {
       height: 2rem;
@@ -55,11 +62,5 @@ export const Container = styled.div`
         border-radius: 8px;
       }
     }
-  }
-
-  button {
-    margin: 1rem 0 0 0;
-    width: 14rem;
-    align-self: end;
   }
 `;
