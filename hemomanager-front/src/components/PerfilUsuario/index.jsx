@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { BorderlessButton } from "../shared/BorderlessButton";
 
 import { EditProfile } from "../editProfile";
-import { NewSchedule } from "../NewSchedule"
+import { NewSchedule } from "../NewSchedule";
 import { SchedulesUser } from "../ShedulesUser";
 import { useNavigate } from "react-router-dom";
 import { Content, Header, Perfil } from "./styles";
@@ -63,25 +63,17 @@ export function PerfilUsuario() {
   }
 
   function doEditData() {
-    let dateReplace = birthDate;
-    dateReplace = dateReplace.replace(',','-');
-    dateReplace = dateReplace.replace(',','-');
-
     const user = {
       name,
       email,
       password,
-      id,
+      uuid: id,
       cpf,
-      birthDate: dateReplace,
+      birthDate,
       sex,
       phone,
       validDonor,
     };
-
-    console.log("replace", dateReplace);
-    console.log("date normal", birthDate);
-    console.log("objeto", user);
 
     api
       .put(`/donor/${id}`, user)

@@ -6,12 +6,6 @@ import { MaxDialogBag } from "../shared/DialogBag";
 import { Container } from "./styles";
 
 export function HourAvailableList({ isOpen }) {
-  function time_convert(num) {
-    var hours = Math.floor(num / 60);
-    var minutes = num % 60;
-    return hours + ":" + (minutes < 10 ? "0" + minutes : minutes);
-  }
-
   const [hours, setHours] = useState([]);
 
   const [open, setOpen] = useState(false);
@@ -28,7 +22,7 @@ export function HourAvailableList({ isOpen }) {
       setHours(data.data);
     });
     console.log("HOURS: ", hours);
-  }, [setHours]);
+  }, [hours]);
 
   function doRemoveHour(hourId) {
     api

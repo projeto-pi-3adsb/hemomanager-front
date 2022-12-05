@@ -11,8 +11,21 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { blue } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/styles";
 import { fade, lighten } from "@material-ui/core/styles/colorManipulator";
+import { useEffect } from "react";
+import { api } from "../../api";
 
 export function Schaduler(props) {
+  const [schedules, setSchedules] = useState([]);
+
+  useEffect(() => {
+    api
+      .get(`/schedules/hemocenter/all/${sessionStorage.id}`)
+      .then((response) => {
+        setSchedules(response.data);
+        console.log("SCHEDULES: ", schedules);
+      });
+  }, []);
+
   const theme = createMuiTheme({ palette: { type: "light", primary: blue } });
 
   const styles = ({ spacing }) => ({

@@ -21,62 +21,21 @@ export const Container = styled.div`
     gap: 1rem;
 
     h1 {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+
       height: 3rem;
       font-size: 1.5rem;
     }
 
     select {
-      width: 100%;
+      margin: auto;
+      width: 50%;
       height: 3rem;
       border-radius: 8px;
       margin: 0 0 10rem;
       font-size: 1.2rem;
-    }
-  }
-
-  .info {
-    inline-size: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-
-    table {
-      inline-size: 100%;
-      border-spacing: 0 0.5rem;
-
-      th {
-        color: var(--shape);
-        background-color: var(--background-button);
-        font-weight: 400;
-        padding: 1rem 2rem;
-        line-height: 1.8rem;
-        text-align: center;
-
-        &:first-child {
-          border-radius: 8px 0 0 8px;
-        }
-
-        &:last-child {
-          border-radius: 0 8px 8px 0;
-        }
-      }
-
-      td {
-        padding: 1rem 2rem;
-        line-height: 1.8rem;
-        border: 0;
-        background: var(--background-option-bar);
-        color: var(--background-button);
-        border-radius: 0.25rem;
-        text-align: center;
-
-        &:first-child {
-          border-radius: 8px 0 0 8px;
-        }
-        &:last-child {
-          border-radius: 0 8px 8px 0;
-        }
-      }
     }
   }
 
@@ -97,54 +56,61 @@ export const Confirm = styled.div`
 `;
 
 export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 10rem;
   border-radius: 16px;
-  width: 12rem;
-  padding: 1.2rem 1rem;
+  align-items: center;
+  width: 10rem;
+  padding: 0.5rem;
   color: var(--shape);
+  box-sizing: content-box;
   background: var(--background-button);
 
   h1 {
     margin: auto;
     height: 2rem;
+    justify-content: start;
+
     display: flex;
-    flex: 1;
-    flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
-
-    span {
-      font-weight: normal;
-    }
+    font-weight: bold;
   }
 
-  section {
-    h1 {
-      font-size: 2rem;
-      margin: 1rem auto;
-      height: 2rem;
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      font-weight: normal;
-      gap: 0.5rem;
-
-      span {
-        font-weight: normal;
-      }
-    }
-  }
-
-  input {
-    background: #f5f5f5;
+  h2 {
+    margin: 0.8rem 0;
     height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    margin-left: 8rem;
-    color: var(--black);
-    border: none;
+    font-size: 2rem;
+    justify-content: start;
     display: flex;
-    justify-content: center;
-    text-align: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+  }
+
+  p {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+
+    padding: 0.5rem;
+    margin: 0.5rem auto;
+  }
+
+  div {
+    margin: 0.8rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+
+    button {
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background-color: white;
+      border: none;
+    }
   }
 `;

@@ -6,7 +6,6 @@ import { MaxDialogBag } from "../shared/DialogBag";
 import { Container } from "./styles";
 
 export function StockList({ isOpen }) {
-  
   const [bags, setBags] = useState([]);
 
   const [open, setOpen] = useState(false);
@@ -15,9 +14,7 @@ export function StockList({ isOpen }) {
     api
       .get(`/stock/full/${sessionStorage.id}`)
       .then((data) => setBags(data.data));
-  }, []);
-
-
+  }, [bags]);
 
   function validateDelete() {
     setOpen(true);
