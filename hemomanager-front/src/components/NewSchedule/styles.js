@@ -94,7 +94,6 @@ export const Box = styled.div`
     width: 100%;
     display: flex;
     justify-content: start;
-
     padding: 0.5rem;
     margin: 0.5rem auto;
   }
@@ -105,7 +104,8 @@ export const Box = styled.div`
     display: flex;
     justify-content: end;
 
-    button {
+    input[type="radio"] {
+      accent-color: black;
       height: 2rem;
       width: 2rem;
       border-radius: 50%;

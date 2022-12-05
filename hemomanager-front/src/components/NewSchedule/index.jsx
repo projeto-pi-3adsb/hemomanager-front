@@ -5,13 +5,38 @@ import { BorderlessButton } from "../shared/BorderlessButton";
 
 import { Box, Confirm, Container } from "./styles";
 
+import checkImg from "../../assets/check.png";
+
 export function NewSchedule() {
-  const [hemocenters, setHemocenters] = useState([0]);
+  const [hemocenters, setHemocenters] = useState([]);
   const [hours, setHours] = useState([]);
+
+  const [selectedHemocenter, setSelectedHemocenter] = useState(0);
+
+  const [hourSelected, setHourSelected] = useState();
+
+  const id = sessionStorage.id;
+
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     getAllHemocenters();
   }, [hours]);
+
+  function doAddNewSchecule() {
+    api
+      .post(`/schedules`, {
+        donorId: id,
+        hemocenterId: selectedHemocenter,
+        scheduleHemocenterId: hourSelected,
+      })
+      .then(() => {
+        setHours((prev) => prev.filter((hour) => hour.id !== hourSelected));
+      })
+      .catch((err) => {
+        console.log("POST ERROR: ", err.response.status);
+      });
+  }
 
   function getAllHemocenters() {
     api
@@ -29,6 +54,7 @@ export function NewSchedule() {
     api.get(`/schedules/hemocenter/all/${hemo}`).then((data) => {
       setHours(data.data);
     });
+    setSelectedHemocenter(hemo);
   }
 
   return (
@@ -42,7 +68,7 @@ export function NewSchedule() {
               {hemocenters.length > 0
                 ? hemocenters.map((hemo) => {
                     return (
-                      <option key={hemo.uuid} value={hemo.uuid}>
+                      <option key={hemo.uuid} value={hemo.uuid || 0}>
                         {hemo.name}
                       </option>
                     );
@@ -56,7 +82,7 @@ export function NewSchedule() {
         <div className="schedule-avaliable">
           <OwlCarousel className="owl-theme" items="3" autoPlay nav dots>
             {hours.length > 0 ? (
-              hours.map((hour, index) => (
+              hours.map((hour, index, checked) => (
                 <Box key={index}>
                   <p>{hour.hemocenterName}</p>
                   <h1>
@@ -64,18 +90,27 @@ export function NewSchedule() {
                       new Date(hour.scheduledDate)
                     )}
                   </h1>
-                  <h2>{hour.scheduledTime}h</h2>
+                  <h2>{hour.scheduledTime.slice(0, 5)}h</h2>
                   <div>
-                      <button></button>
+                    <label htmlFor={"radio" + index}>
+                      <input
+                        onClick={() =>
+                          setHourSelected(hour.scheduleHemocenterUuid)
+                        }
+                        id={"radio" + index}
+                        value="true"
+                        type="radio"
+                      />
+                    </label>
                   </div>
                 </Box>
               ))
             ) : (
-              <h1>Nenhum hemocentro selecionado</h1>
+              <h1>Nenhum horário disponível</h1>
             )}
           </OwlCarousel>
           <Confirm>
-            <BorderlessButton text="AGENDAR" />
+            <BorderlessButton doSomething={doAddNewSchecule} text="AGENDAR" />
           </Confirm>
         </div>
       </Container>
