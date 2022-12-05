@@ -1,34 +1,46 @@
-// Commonjs
-import axios, { Axios } from "axios";
 import { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { api } from "../../api";
 import { BorderlessButton } from "../shared/BorderlessButton";
-import { Input } from "../shared/Input";
+
 import { Box, Confirm, Container } from "./styles";
 
-export function NewSchedule() {
-  const [hemocenters, setHemocenters] = useState([]);
-  const [localAddress, setLocaAddress] = useState();
-  const [selected, setSelected] = useState([]);
+import checkImg from "../../assets/check.png";
 
-  function getLocalAddress(zipCode) {
-    axios
-      .get(`https://viacep.com.br/ws/${zipCode}/json/`)
-      .then((data) => {
-        setLocaAddress(data.data);
-      })
-      .catch((error) => {
-        console.log("Erro :", error);
-      });
-  }
+export function NewSchedule({ cancaledHemocenter }) {
+  const [hemocenters, setHemocenters] = useState([]);
+  const [hours, setHours] = useState([]);
+
+  const [selectedHemocenter, setSelectedHemocenter] = useState(0);
+
+  const [hourSelected, setHourSelected] = useState();
+
+  const id = sessionStorage.id;
+
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     getAllHemocenters();
-  }, []);
+  }, [hours]);
 
-  async function getAllHemocenters() {
-    await api
+  function doAddNewSchecule() {
+    api
+      .post(`/schedules`, {
+        donorId: id,
+        hemocenterId: selectedHemocenter,
+        scheduleHemocenterId: hourSelected,
+      })
+      .then(() => {
+        setHours((prev) => prev.filter((hour) => hour.id !== hourSelected));
+        cancaledHemocenter(true);
+      })
+      .catch((err) => {
+        console.log("POST ERROR: ", err.response.status);
+      });
+  }
+
+  function getAllHemocenters() {
+    api
       .get("/hemocenter")
       .then((data) => {
         setHemocenters(data.data);
@@ -40,12 +52,10 @@ export function NewSchedule() {
   }
 
   function doSetLocalHemocenter(hemo) {
-    api.post("/hemocenter/current/", hemo).then((data) => {
-      setSelected(data.response);
+    api.get(`/schedules/hemocenter/all/${hemo}`).then((data) => {
+      setHours(data.data);
     });
-    getLocalAddress(selected.zipCode);
-    setSelected(hemo);
-    console.log("HEMO:", localAddress);
+    setSelectedHemocenter(hemo);
   }
 
   return (
@@ -59,80 +69,49 @@ export function NewSchedule() {
               {hemocenters.length > 0
                 ? hemocenters.map((hemo) => {
                     return (
-                      <option key={hemo.uuid} value={hemo.uuid}>
+                      <option key={hemo.uuid} value={hemo.uuid || 0}>
                         {hemo.name}
                       </option>
                     );
                   })
                 : null}
               {console.log("Local :")}
-              {console.log("Hemocentro :", selected)}
+              {console.log("Hemocentro :", hours)}
             </select>
-          </div>
-          <div className="info">
-            <table>
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Local</th>
-                  <th>Número</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{selected?.name}</td>
-                  <td>hdashd</td>
-                  <td>777</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
         <div className="schedule-avaliable">
           <OwlCarousel className="owl-theme" items="3" autoPlay nav dots>
-            <Box>
-              <h1>
-                <span>Hemocentro da tia</span>
-                <p>Quinta-Feira</p>
-              </h1>
-              <section>
-                <h1>15:56H</h1>
-                <Input typeInput="radio" />
-              </section>
-            </Box>
-            <Box>
-              <h1>
-                <span>Hemocentro da tia</span>
-                <p>Quinta-Feira</p>
-              </h1>
-              <section>
-                <h1>15:56H</h1>
-                <Input typeInput="radio" />
-              </section>
-            </Box>
-            <Box>
-              <h1>
-                <span>Hemocentro da tia</span>
-                <p>Quinta-Feira</p>
-              </h1>
-              <section>
-                <h1>15:56H</h1>
-                <Input typeInput="radio" />
-              </section>
-            </Box>
-            <Box>
-              <h1>
-                <span>Hemocentro da tia</span>
-                <p>Quinta-Feira</p>
-              </h1>
-              <section>
-                <h1>15:56H</h1>
-                <Input typeInput="radio" />
-              </section>
-            </Box>
+            {hours.length > 0 ? (
+              hours.map((hour, index, checked) => (
+                <Box key={index}>
+                  <p>{hour.hemocenterName}</p>
+                  <h1>
+                    {new Intl.DateTimeFormat("pt-BR", {}).format(
+                      new Date(hour.scheduledDate)
+                    )}
+                  </h1>
+                  <h2>{hour.scheduledTime.slice(0, 5)}h</h2>
+                  <div>
+                    <label htmlFor={"radio" + index}>
+                      <input
+                        onClick={() =>
+                          setHourSelected(hour.scheduleHemocenterUuid)
+                        }
+                        id={"radio" + index}
+                        value="false"
+                        type="radio"
+                      />
+                    </label>
+                  </div>
+                </Box>
+              ))
+            ) : (
+              <h1>Nenhum horário disponível</h1>
+            )}
           </OwlCarousel>
           <Confirm>
-            <BorderlessButton text="AGENDAR" />
+            <BorderlessButton doSomething={doAddNewSchecule} text="AGENDAR" />
           </Confirm>
         </div>
       </Container>

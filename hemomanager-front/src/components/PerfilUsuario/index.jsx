@@ -1,18 +1,18 @@
 import logoImg from "../../assets/logotypes/logo-2.png";
-import mirian from "../../assets/mirian.svg";
+
 import React, { useState } from "react";
 
 import { BorderlessButton } from "../shared/BorderlessButton";
 
 import { EditProfile } from "../editProfile";
+import { NewSchedule } from "../NewSchedule";
 import { SchedulesUser } from "../ShedulesUser";
 import { useNavigate } from "react-router-dom";
 import { Content, Header, Perfil } from "./styles";
 import { MenuDoador } from "../DonorMenu";
-import { NewSchedule } from "../NewSchedule";
+
 import { api } from "../../api";
-import { MaxDialog } from "../shared/Dialog";
-import { MaxDialogProfileUser } from "../shared/DialogProfileUser";
+import { MaxDialogHour } from "../shared/DialogHour";
 
 export function PerfilUsuario() {
   const navigate = useNavigate();
@@ -48,7 +48,6 @@ export function PerfilUsuario() {
     setIsOpen(false);
   }
 
-
   function logOut() {
     sessionStorage.clear();
     sessionStorage.setItem("page", 2);
@@ -68,7 +67,7 @@ export function PerfilUsuario() {
       name,
       email,
       password,
-      id,
+      uuid: id,
       cpf,
       birthDate,
       sex,
@@ -88,6 +87,7 @@ export function PerfilUsuario() {
       })
       .catch((error) => {
         console.log("Erro no edit:", error);
+        console.log("User: ", user);
       });
 
     api.post(`/donor/current/`, { email, password }).catch((error) => {
@@ -117,6 +117,7 @@ export function PerfilUsuario() {
         method1={() => setPage(1)}
         method2={() => setPage(2)}
         method3={() => setPage(3)}
+        page={page}
       />
 
       <Content>
@@ -153,17 +154,17 @@ export function PerfilUsuario() {
           ) : (
             ""
           )}
-          {page === 2 ? <SchedulesUser /> : ""}
-          {page === 3 ? <NewSchedule /> : ""}
+          {page === 2 ? <SchedulesUser page={page} /> : ""}
+          {page === 3 ? <NewSchedule cancaledHemocenter={setIsOpen} /> : ""}
         </div>
-        {isEdit ? (
+        {isEdit && page === 1 ? (
           <div className="edit">
             <BorderlessButton doSomething={() => doEditData()} text="SALVAR" />
           </div>
         ) : (
           ""
         )}
-        <MaxDialogProfileUser isOpen={isOpen} isClose={doIsOpenModalFalse} />
+        <MaxDialogHour isOpen={isOpen} isClose={doIsOpenModalFalse} />
       </Content>
     </>
   );

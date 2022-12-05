@@ -84,7 +84,6 @@ q:after {
   content: none;
 }
 input {
-  -webkit-appearance: none;
   border-radius: 0;
 }
 html,

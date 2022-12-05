@@ -21,6 +21,9 @@ export function LoginPage() {
     sessionStorage.getItem("userType") === "1" ? 1 : 2
   );
 
+  const [userType, setUserType] = useState(
+    sessionStorage.getItem("userType") === "1" ? 1 : 2
+  );
 
   const [error, setError] = useState(false);
 
@@ -45,6 +48,7 @@ export function LoginPage() {
 
   function doIsOpenModalTrue() {
     console.log("TO aberto");
+    setError(false);
     setIsOpen(true);
   }
 
@@ -75,6 +79,7 @@ export function LoginPage() {
       .post("/hemocenter", hemocenter)
       .then(() => {
         setPage(2);
+        validateError();
         console.table(hemocenter);
       })
       .catch((err) => {
@@ -102,6 +107,7 @@ export function LoginPage() {
       })
       .catch((err) => {
         validateError();
+        console.log("ERROR STATUS: ", err.data.status);
       });
   }
 
@@ -134,7 +140,7 @@ export function LoginPage() {
           sessionStorage.setItem("cpf", user.cpf);
           sessionStorage.setItem("phone", user.phone);
           sessionStorage.setItem("sex", user.sex);
-          sessionStorage.valid("validDonor", false);
+          sessionStorage.setItem("validDonor", false);
         }
 
         if (userType === 2) {
@@ -147,14 +153,13 @@ export function LoginPage() {
           sessionStorage.setItem("ZipNumber", user.zipNumber);
           sessionStorage.setItem("startOperation", user.startOperation);
 
-
           sessionStorage.setItem("endOperation", user.endOperation);
           sessionStorage.setItem("services", user.qttySimultServices);
         }
       })
       .catch((erro) => {
         validateError();
-        console.log(userLogin);
+        console.log("Error:", erro);
       });
   }
 
@@ -186,7 +191,7 @@ export function LoginPage() {
           </div>
         </Welcome>
         <LoginArea>
-          {page === 2 ? (
+          {page === 2 && error ? (
             <h1 className={error ? "error" : ""}>
               {error ? "Email ou senha inválidos, tente novamente!" : ""}
             </h1>

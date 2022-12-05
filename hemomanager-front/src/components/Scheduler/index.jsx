@@ -1,112 +1,86 @@
 import { useState } from "react";
-import Scheduler from "react-mui-scheduler";
-
+import { Conatiner } from "./styles";
+import Paper from "@material-ui/core/Paper";
+import { ViewState } from "@devexpress/dx-react-scheduler";
+import {
+  Scheduler,
+  WeekView,
+  Appointments,
+} from "@devexpress/dx-react-scheduler-material-ui";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { blue } from "@material-ui/core/colors";
+import { withStyles } from "@material-ui/styles";
+import { fade, lighten } from "@material-ui/core/styles/colorManipulator";
+import { useEffect } from "react";
+import { api } from "../../api";
 
 export function Schaduler(props) {
-  const [state] = useState({
-    options: {
-      transitionMode: "zoom", // or fade
-      startWeekOn: "mon", // or sun
-      defaultMode: "month", // or week | day | timeline
-      minWidth: 840,
-      maxWidth: 840,
-      minHeight: 840,
-      maxHeight: 840,
-    },
-    alertProps: {
-      open: true,
-      color: "info", // info | success | warning | error
-      severity: "info", // info | success | warning | error
-      message: "🚀 Let's start with awesome react-mui-scheduler 🔥 🔥 🔥",
-      showActionButton: true,
-      showNotification: true,
-      delay: 1500,
-    },
-    toolbarProps: {
-      showSearchBar: true,
-      showSwitchModeButtons: true,
-      showDatePicker: true,
+  const [schedules, setSchedules] = useState([]);
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    api
+      .get(`/schedules/hemocenter/${sessionStorage.id}`)
+      .then((response) => {
+        setSchedules(response.data);
+        console.log("SCHEDULES: ", schedules);
+        console.log("LIST: ", list);
+      })
+      .then(() => {
+        schedules.map((schedule) =>
+          setList({
+            title: "Website Re-Design Plan",
+            startDate: schedule.scheduledDate,
+            endDate: schedule.scheduledTime,
+            id: schedule.uuid,
+            location: schedule.scheduledDonor,
+          })
+        );
+      });
+  }, []);
+
+  const theme = createMuiTheme({ palette: { type: "light", primary: blue } });
+
+  const styles = ({ spacing }) => ({
+    customCell: {
+      verticalAlign: "Top",
+      borderBottom: `1px solid ${lighten(
+        fade(theme.palette.divider, 1),
+        0.88
+      )}`,
+      height: spacing(12) + 1,
     },
   });
 
-  const events = [
-    {
-      id: "event-1",
-      label: "Medical consultation",
-      groupLabel: "Dr Shaun Murphy",
-      user: "Dr Shaun Murphy",
-      color: "#f28f6a",
-      startHour: "04:00 AM",
-      endHour: "05:00 AM",
-      date: "2022-05-05",
-      createdAt: new Date(),
-      createdBy: "Kristina Mayer",
-    },
-    {
-      id: "event-2",
-      label: "Medical consultation",
-      groupLabel: "Dr Claire Brown",
-      user: "Dr Claire Brown",
-      color: "#099ce5",
-      startHour: "09:00 AM",
-      endHour: "10:00 AM",
-      date: "2022-05-09",
-      createdAt: new Date(),
-      createdBy: "Kristina Mayer",
-    },
-    {
-      id: "event-3",
-      label: "Medical consultation",
-      groupLabel: "Dr Menlendez Hary",
-      user: "Dr Menlendez Hary",
-      color: "#263686",
-      startHour: "13 PM",
-      endHour: "14 PM",
-      date: "2022-05-10",
-      createdAt: new Date(),
-      createdBy: "Kristina Mayer",
-    },
-    {
-      id: "event-4",
-      label: "Consultation prénatale",
-      groupLabel: "Dr Shaun Murphy",
-      user: "Dr Shaun Murphy",
-      color: "#f28f6a",
-      startHour: "08:00 AM",
-      endHour: "09:00 AM",
-      date: "2022-05-11",
-      createdAt: new Date(),
-      createdBy: "Kristina Mayer",
-    },
-  ];
-
-  const handleCellClick = (event, row, day) => {
-    // Do something...
-  };
-
-  const handleEventClick = (event, item) => {
-    // Do something...
-  };
-
-  const handleEventsChange = (item) => {
-    // Do something...
-  };
-
-  const handleAlertCloseButtonClicked = (item) => {
-    // Do something...
-  };
+  const TimeSacaleCell = withStyles(styles, { name: "TimeScaleCell" })(
+    ({ classes, endDate, ...restProps }) => {
+      const nextEndDate = new Date(endDate);
+      nextEndDate.setMinutes(0);
+      return (
+        <WeekView.TimeScaleCell
+          className={classes.customCell}
+          endDate={nextEndDate}
+          {...restProps}
+        />
+      );
+    }
+  );
 
   return (
-    <Scheduler
-      locale="pt-BR"
-      events={events}
-      legacyStyle={true}
-      options={state?.options}
-      toolbarProps={state?.toolbarProps}
-      onEventsChange={handleEventsChange}
-      onCellClick={handleCellClick}
-      onTaskClick={handleEventClick}
-      onAlertCloseButtonClicked={handleAlertCloseButtonClicked}
-    />
+    <Conatiner>
+      <MuiThemeProvider theme={theme}>
+        <Paper>
+          <Scheduler data={list}>
+            <ViewState currentDate="2018-06-28" />
+            <WeekView
+              startDayHour={9}
+              endDayHour={19}
+              timeScaleCellComponent={TimeSacaleCell}
+            />
+            <Appointments />
+          </Scheduler>
+        </Paper>
+      </MuiThemeProvider>
+    </Conatiner>
   );
 }

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import mapImg from "../../assets/map.png";
+
 export const Container = styled.div`
   height: 25rem;
   width: 100%;
@@ -11,12 +13,19 @@ export const Container = styled.div`
   padding: 2rem;
 
   div {
+    box-sizing: content-box;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 1rem;
     border-radius: 8px;
     border: 2px solid var(--background-border-bar);
+
+    button {
+      margin: auto;
+      width: 12rem;
+      font-size: 0.8rem;
+    }
 
     h1 {
       height: 2rem;
@@ -33,17 +42,25 @@ export const Container = styled.div`
 
     p {
       display: flex;
+      flex-direction: column;
+      justify-content: end;
+      background-image: url(${mapImg});
+      background-repeat: no-repeat;
+      background-size: 150px;
+      background-position: center;
+      height: 50%;
       justify-content: center;
       margin: auto;
-      height: 2rem;
 
-      font-size: 1.5rem;
+      span {
+        background: #cb0111;
+        color: var(--shape);
+        font-size: 1rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+      }
     }
-  }
-
-  button {
-    margin: 1rem 0 0 0;
-    width: 14rem;
-    align-self: end;
   }
 `;

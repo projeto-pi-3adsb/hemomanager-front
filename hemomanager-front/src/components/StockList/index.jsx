@@ -2,18 +2,38 @@ import { Delete20Filled } from "@fluentui/react-icons";
 import { useEffect, useState } from "react";
 import { api } from "../../api";
 import { BorderlessButton } from "../shared/BorderlessButton";
+import { MaxDialogBag } from "../shared/DialogBag";
 import { Container } from "./styles";
 
 export function StockList({ isOpen }) {
   const [bags, setBags] = useState([]);
 
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     api
       .get(`/stock/full/${sessionStorage.id}`)
       .then((data) => setBags(data.data));
+  }, [bags]);
 
-    bags.map((bag) => console.log(bag));
-  }, [setBags]);
+  function validateDelete() {
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 2000);
+  }
+
+  function doRemoveBag(bagId) {
+    api
+      .delete(`/stock/${sessionStorage.id}/${bagId}`)
+      .then(() => {
+        setBags((prev) => prev.filter((bag) => bag.id !== bagId));
+        validateDelete();
+      })
+      .catch((err) => {
+        console.log("DELETE ERROR: ", err.response.status);
+      });
+  }
 
   function handleUseBag(bagId) {
     api
@@ -36,17 +56,24 @@ export function StockList({ isOpen }) {
             </tr>
           </thead>
           <tbody>
-            {bags?.map((bag) => (
-              <tr key={bag.counter}>
-                <td>{bag.bloodType}</td>
-                <td>{bag.collectionDate}</td>
-                <td>
-                  <Delete20Filled onClick={() => handleUseBag(bag.id)} />
-                </td>
-              </tr>
-            ))}
+            {bags.length > 0
+              ? bags.map((bag) => (
+                  <tr key={bag.id}>
+                    <td>{bag.bloodType}</td>
+                    <td>
+                      {new Intl.DateTimeFormat("pt-BR", {}).format(
+                        new Date(bag.collectionDate)
+                      )}
+                    </td>
+                    <td>
+                      <Delete20Filled onClick={() => doRemoveBag(bag.id)} />
+                    </td>
+                  </tr>
+                ))
+              : null}
           </tbody>
         </table>
+        <MaxDialogBag isOpen={open} />
       </div>
     </Container>
   );

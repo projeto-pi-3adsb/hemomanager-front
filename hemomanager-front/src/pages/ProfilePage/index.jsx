@@ -16,7 +16,6 @@ import { Dashboard } from "../../components/Dashboard";
 
 import { Schaduler } from "../../components/Scheduler";
 import { HourAvailableList } from "../../components/HourAvailableList";
-import { RegisterModal } from "../../components/RegisterModal";
 
 import { ManagerMenu } from "../../components/ManagerMenu";
 
@@ -24,8 +23,9 @@ import { api } from "../../api";
 import { StockList } from "../../components/StockList";
 import { useNavigate } from "react-router";
 import { EditProfileManager } from "../../components/editProfileManager";
+import { RegisterModal } from "../../components/RegisterModal";
 import { BorderlessButton } from "../../components/shared/BorderlessButton";
-import { MaxDialogProfileUser } from "../../components/shared/DialogProfileUser";
+import { MaxDialogBag } from "../../components/shared/DialogBag";
 
 Chart.register = () => (
   // eslint-disable-next-line no-sequences
@@ -40,18 +40,24 @@ export function ProfilePage() {
   const [page, setPage] = useState(1);
 
   const [bloodType, setBloodType] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState(0);
+  const [scheduleDate, setScheduleDate] = useState("");
+  const [scheduleTime, setScheduleTime] = useState(0);
 
   const [error, setError] = useState(false);
   const [send, setSend] = useState(null);
 
   const id = sessionStorage.getItem("id");
+
   const [name, setName] = useState(sessionStorage.getItem("user"));
+
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
+
   const [password, setPassword] = useState(sessionStorage.getItem("password"));
-  const [cpnj, setCnpj] = useState(sessionStorage.getItem("cnpj"));
+
+  const [cnpj, setCnpj] = useState(sessionStorage.getItem("cnpj"));
+
   const [zipCode, setZipCode] = useState(sessionStorage.getItem("ZipCode"));
+
   const [zipNumber, setZipNumber] = useState(
     sessionStorage.getItem("ZipNumber")
   );
@@ -68,9 +74,9 @@ export function ProfilePage() {
   const [sex, setSex] = useState(sessionStorage.getItem("sex"));
 
   const user = {
-    uuid: sessionStorage.getItem("id"),
-    name: sessionStorage.getItem("user"),
-    email: sessionStorage.getItem("email"),
+    id,
+    name,
+    email,
   };
 
   const [isEdit, setIsEdit] = useState(false);
@@ -98,7 +104,6 @@ export function ProfilePage() {
   }
 
   function doIsOpenModalConfirmTrue() {
-
     console.log("TO aberto");
     setIsOpenModalEdit(true);
   }
@@ -115,45 +120,48 @@ export function ProfilePage() {
 
   function doIsOpenModalFalse() {
     console.log("TO aberto");
+    setScheduleDate("");
+    setScheduleTime("");
     setIsOpenModal(false);
   }
 
   function doRegisterNewBag() {
     const bag = {
       bloodType,
-      collectionDate: date,
+      collectionDate: scheduleDate,
     };
 
     api
-      .post(`/stock/${user.uuid}`, bag)
+      .post(`/stock/${user.id}`, bag)
       .then((response) => {
         validateSuccess();
-
-        console.table(bag);
+        console.log("Insert Bag RESPONSE: ", response);
       })
       .catch((err) => {
         validateError();
-        console.log(err.status);
+        console.log("Insert Bag ERROR: ", err);
       });
   }
 
   function doRegisterNewHour() {
     const hour = {
-      hemocenterId: user.uuid,
-      shcduleDate: date,
-      scheduleTime: time,
+      hemocenterId: user.id,
+      scheduledDate: scheduleDate,
+      scheduledTime: scheduleTime,
     };
 
-    console.log("Current Hour: ", hour);
-
     api
-      .post(`hemocenter/scheduleHemocenter/`, hour)
+      .post(`/hemocenter/scheduleHemocenter`, hour)
       .then(() => {
         validateSuccess();
+        setScheduleDate("");
+        setScheduleTime("");
+        console.log(hour);
       })
       .catch((error) => {
         validateError();
         console.log("Erro: ", error);
+        console.log("HOUR:", hour);
       });
   }
 
@@ -163,7 +171,7 @@ export function ProfilePage() {
       email,
       password,
       id,
-      cpnj,
+      cnpj,
       zipCode,
       zipNumber,
       startOperation,
@@ -188,10 +196,8 @@ export function ProfilePage() {
     api.post(`/hemocenter/current/`, { email, password }).catch((error) => {
       console.log(error);
       console.log(hemocenter);
-   
     });
   }
-
   function logOut() {
     sessionStorage.clear();
     sessionStorage.setItem("page", 2);
@@ -266,7 +272,7 @@ export function ProfilePage() {
               qtty={qttySimultServices}
               setStartOperation={setStartOperation}
               setEndOperation={setEndOperation}
-              setQttySimultServices={setQttySimultServices}
+              setQtty={setQttySimultServices}
               setEmail={setEmail}
               setName={setName}
               zipNumber={zipNumber}
@@ -282,7 +288,7 @@ export function ProfilePage() {
           ) : (
             ""
           )}
-          {isEdit ? (
+          {page === 6 && isEdit ? (
             <h2>
               <BorderlessButton
                 doSomething={() => doEditData()}
@@ -311,8 +317,8 @@ export function ProfilePage() {
           page === 3 ? doRegisterNewHour() : doRegisterNewBag()
         }
         selectSomething={setBloodType}
-        setDate={setDate}
-        setTime={setTime}
+        setDate={setScheduleDate}
+        setTime={setScheduleTime}
         close={doIsOpenModalFalse}
         hourRegister={page === 3 ? true : false}
         bloodBag={page === 4 ? true : false}
@@ -321,10 +327,10 @@ export function ProfilePage() {
         page={page}
         isEdit={isEdit}
       />
-      <MaxDialogProfileUser
+      <MaxDialogBag
+        page={page}
         isOpen={isOpenModalEdit}
         isClose={doIsOpenModalConfirmFalse}
-
       />
     </Container>
   );

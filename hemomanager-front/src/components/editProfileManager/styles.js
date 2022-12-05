@@ -4,15 +4,18 @@ export const Container = styled.div`
   justify-content: center;
   height: 90%;
   width: 80%;
-  margin: auto;
+  margin: 1rem auto;
 
   .password {
     display: flex;
     height: 3rem;
 
     input {
-      width: 16rem;
-      padding: 0;
+      display: flex;
+      justify-content: center;
+      text-align: start;
+      width: 34%;
+      margin: auto;
     }
 
     .focused {
@@ -29,7 +32,7 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
       height: 2rem;
-      width: 2rem;
+      width: 2em;
 
       &:hover {
         background: var(--background-button);

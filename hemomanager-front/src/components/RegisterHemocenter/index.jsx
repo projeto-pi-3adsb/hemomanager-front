@@ -20,11 +20,34 @@ export function RegisterHemocenter({
         placeholderInput="Nome completo*"
       />
       <Input doSomething={setCnpj} nameInput="cnpj" placeholderInput="CNPJ*" />
-      <Input doSomething={setEmail} nameInput="email" placeholderInput="Email*" />
-      <Input doSomething={setPassword} typeInput="password" nameInput="password" placeholderInput="Senha*" />
-      <Input doSomething={setPassword} typeInput="password" nameInput="password" placeholderInput="Confirmar senha*" />
-      <Input doSomething={setZipCode} nameInput="zipCode" placeholderInput="CEP*" />
-      <Input doSomething={setZipNumber} typeInput="number" nameInput="zipNumber" placeholderInput="Número*" />
+      <Input
+        doSomething={setEmail}
+        nameInput="email"
+        placeholderInput="Email*"
+      />
+      <Input
+        doSomething={setPassword}
+        typeInput="password"
+        nameInput="password"
+        placeholderInput="Senha*"
+      />
+      <Input
+        doSomething={setPassword}
+        typeInput="password"
+        nameInput="password"
+        placeholderInput="Confirmar senha*"
+      />
+      <Input
+        doSomething={setZipCode}
+        nameInput="zipCode"
+        placeholderInput="CEP*"
+      />
+      <Input
+        doSomething={setZipNumber}
+        typeInput="number"
+        nameInput="zipNumber"
+        placeholderInput="Número*"
+      />
 
       <div className="input-group">
         <span>Horário de início da operação*</span>

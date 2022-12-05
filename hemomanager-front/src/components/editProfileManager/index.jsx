@@ -63,7 +63,7 @@ export function EditProfileManager({
         <span>Inicio da operação</span>
         <Input
           setDisabled={isEdit}
-          typeInput="time"
+          typeInput={isEdit ? "text" : "time"}
           valueInput={startOperation}
           doSomething={setStartOperation}
         />

@@ -1,51 +1,80 @@
 // Commonjs
 import OwlCarousel from "react-owl-carousel";
-
+import { MaxDialogBag } from "../shared/DialogBag";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 import { SchedulesCard } from "../ScheduleCard";
 import { Container } from "./styles";
-import { mapHash } from "@fullcalendar/react";
+import { useEffect, useState } from "react";
+import { api } from "../../api";
 
 export function SchedulesUser() {
-  const imgs = [
-    {
-      id: 1,
-      title: "Hemocentro Blood Donate",
-      descrition: "Rua Haddcock lobo, vila brasilandia",
-    },
-    {
-      id: 2,
-      title: "Hmocentro Blood Donate",
-      descrition: "Rua Haddcock lobo, vila brasilandia",
-    },
-    {
-      id: 123,
-      title: "Hmocentro Blood Donate",
-      descrition: "Rua Haddcock lobo, vila brasilandia",
-    },
-    {
-      id: 3,
-      title: "Hmocentro Blood Donate",
-      descrition: "Rua Haddcock lobo, vila brasilandia",
-    },
-    {
-      id: 4,
-      title: "Hmocentro Blood Donate",
-      descrition: "Rua Haddcock lobo, vila brasilandia",
-    },
-  ];
+  const [schedules, setSchedules] = useState([]);
+
+  const [locals, setLocals] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const id = sessionStorage.id;
+
+  function validateDelete() {
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 2000);
+  }
+
+  useEffect(() => {
+    api
+      .get(`/schedules/donor/${id}`)
+      .then((resp) => {
+        setSchedules(resp.data);
+        console.log("DATA DO ARRAY:", schedules);
+        return;
+      })
+      .catch((erro) => console.log(erro));
+  }, [schedules]);
+
+  function doCancelSchedule(homocenterId, scheduleHemocenterId) {
+    api
+      .delete(`/schedules/hour/${homocenterId}/${scheduleHemocenterId}`)
+      .then(() => {
+        setSchedules((prev) =>
+          prev.filter(
+            (schedule) =>
+              schedule.scheduleHemocenter.uuid !== scheduleHemocenterId
+          )
+        );
+      })
+      .catch((err) => {
+        console.log("Error:", err);
+      });
+  }
 
   return (
     <Container>
-      <OwlCarousel className="owl-theme" items="2" autoPlay nav dots>
-        {imgs.map((img) => (
-          <div key={img.id} className="item">
-            <SchedulesCard title={img.title} description={img.descrition} />
-          </div>
-        ))}
+      <OwlCarousel className="owl-theme" items="3" autoPlay nav dots>
+        {schedules?.length > 0 ? (
+          schedules.map((schedule, index) => (
+            <div key={schedule.uuid} className="item">
+              <SchedulesCard
+                description={schedule.hemocenter.zipCode}
+                title={schedule.hemocenter.name}
+                hour={schedule.scheduleHemocenter.scheduledTime.slice(0, 5)}
+                doCancel={() =>
+                  doCancelSchedule(
+                    schedule.hemocenter.uuid,
+                    schedule.scheduleHemocenter.uuid
+                  )
+                }
+              />
+            </div>
+          ))
+        ) : (
+          <h1 className="not-found"> Nehnum agendamento encontrado!</h1>
+        )}
       </OwlCarousel>
+      <MaxDialogBag schedule isOpen={open} />
     </Container>
   );
 }

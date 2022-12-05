@@ -25,4 +25,6 @@ export const Button = styled.button`
     background: var(--background);
     border: 2px solid var(--red);
   }
+
+  
 `;
