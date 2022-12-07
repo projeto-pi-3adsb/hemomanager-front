@@ -1,11 +1,14 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { useEffect, useState } from "react";
-import { Bar, HorizontalBar, Line } from "react-chartjs-2";
+import { Pie, HorizontalBar } from "react-chartjs-2";
 import { api } from "../../api";
 
-export function Dashboard({ labelsBag, labelsSex }) {
+export function Dashboard() {
   const [types, setTypes] = useState([]);
   const [values, setValues] = useState([]);
+
+  const [male, setMale] = useState([]);
+  const [female, setFemale] = useState([]);
+  const [gender, setGender] = useState([]);
 
   const options = {
     responsive: true,
@@ -26,6 +29,21 @@ export function Dashboard({ labelsBag, labelsSex }) {
       .then((data) => setValues(data.data));
   }, []);
 
+  useEffect(() => {
+    api.get(`/donor/gender/female`).then((data) => setFemale(data.data));
+  }, []);
+
+  useEffect(() => {
+    api.get(`/donor/gender/male`).then((data) => setMale(data.data));
+  }, []);
+
+  useEffect(() => {
+    setGender(male);
+    setGender(female);
+    console.log(male);
+    console.log(female);
+  }, []);
+
   console.log(values);
 
   const data = {
@@ -39,18 +57,15 @@ export function Dashboard({ labelsBag, labelsSex }) {
     ],
   };
 
-  const data2 = {
-    labels: labelsSex,
+  const sexus = {
+    labels: ["Femininos", "Masculinos"],
     datasets: [
       {
-        label: "Doadores Femininos",
-        data: labelsSex.map(() => 5),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Doadores Masculinos",
-        data: labelsSex.map(() => 1),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        label: "# of Votes",
+        data: [female, male],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+        borderWidth: 1,
       },
     ],
   };
@@ -61,7 +76,7 @@ export function Dashboard({ labelsBag, labelsSex }) {
         <HorizontalBar height={90} options={options} data={data} />
       </div>
       <div className="chart">
-        <Line height={90} options={options} data={data2} />
+        <Pie height={90} data={sexus} />
       </div>
     </>
   );

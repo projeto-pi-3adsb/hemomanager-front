@@ -31,8 +31,15 @@ export const Perfil = styled.div`
   h1 {
     font-size: 2rem;
   }
+
+  h4 {
+    border-radius: 50%;
+    border: 2px solid black;
+  }
+
   img {
     height: 8rem;
+    padding: 2rem;
   }
 `;
 
@@ -52,6 +59,13 @@ export const BarraOpcoes = styled.div`
     height: 2.5rem;
     width: 14rem;
   }
+
+  .hover {
+    color: var(--red);
+    transition: 0.2s;
+    background: var(--background);
+    border: 2px solid var(--red);
+  }
 `;
 
 export const Content = styled.div`
@@ -68,7 +82,6 @@ export const Content = styled.div`
   div{
     height: 100%
     height: 5rem;
-''
   }
 
   h1 {

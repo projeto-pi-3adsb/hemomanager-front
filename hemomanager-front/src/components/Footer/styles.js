@@ -86,6 +86,7 @@ export const MenuFooter = styled.div`
       a {
         color: var(--text-white);
         text-decoration: none;
+        cursor: pointer;
       }
     }
   }

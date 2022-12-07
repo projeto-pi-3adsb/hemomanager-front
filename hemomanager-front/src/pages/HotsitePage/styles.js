@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import upload from "../../assets/upload1.png";
 
 export const Container = styled.div`
   padding: 1rem;
@@ -87,65 +88,99 @@ export const BoxUpload = styled.div`
   width: 100%;
   height: 90vh;
   margin-top: 4rem;
-
-`
+`;
 export const Upload = styled.div`
-    justify-content: center;
-    width: 50%;
-    height: 40vh;
-    margin-top: 20px;
-    padding: 0 3rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--background-border-bar);
-    display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 40vh;
+  margin-top: 20px;
+  padding: 1.2rem 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--background-border-bar);
+  display: flex;
+  flex-direction: column;
 
-    h2 {
+  div {
+    margin: auto;
+    height: 100%;
+    padding: 2rem ;
+    width: 80%;
+    background-image: url(${upload});
+    background-repeat: no-repeat;
+    background-size: 200px ;
+    background-position: center;
+  }
+
+  h2 {
     margin-top: 20px;
     color: #666666;
+    margin: auto;
   }
-`
+`;
 
 export const BoxList = styled.div`
   margin-top: 30px;
   width: 100%;
 
   table {
-      inline-size: 110%;
-      border-spacing: 0 0.5rem;
+    inline-size: 100%;
+    border-spacing: 0 0.5rem;
 
-      th {
-        color: var(--shape);
-        background-color: var(--background-button);
-        font-weight: 400;
-        padding: 1rem 2rem;
-        line-height: 1.8rem;
-        text-align: center;
-        border-radius: 8px 8px 8px 8px;
-      }
-
-      td {
-        padding: 1rem 2rem;
-        line-height: 1.8rem;
-        background: var(--background-option-bar);
-        color: var(--background-button);
-        border-radius: 0.25rem;
-        text-align: center;
-        flex-wrap: wrap;
-        display: flex;
-      }
+    th {
+      color: var(--shape);
+      background-color: var(--background-button);
+      font-weight: 400;
+      padding: 1rem 2rem;
+      line-height: 1.8rem;
+      text-align: center;
+      border-radius: 8px 8px 8px 8px;
     }
-  `;
 
-  export const BoxButton = styled.div`
-    margin-top: 20px;
-    margin-left: 30px;
-    background-color: brown;
-    width: 50%;
-
-    div {
-      justify-content: right;
+    td {
+      padding: 1rem 2rem;
+      line-height: 1.8rem;
+      background: var(--text-white);
+      color: var(--background-button);
+      border-radius: 0.25rem;
+      text-align: center;
       display: flex;
-    }
-    
-  `
+      justify-content: space-between;
 
+      span {
+        display: flex;
+        align-items: center;
+      }
+
+      div {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+
+        i {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.5rem;
+
+          cursor: pointer;
+        }
+      }
+    }
+  }
+`;
+
+export const BoxButton = styled.div`
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 50%;
+
+  div {
+    justify-content: right;
+    display: flex;
+  }
+
+  button {
+    margin: 1rem;
+  }
+`;
