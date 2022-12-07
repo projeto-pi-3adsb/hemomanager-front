@@ -176,13 +176,4 @@ export const BoxButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-
-  div {
-    justify-content: right;
-    display: flex;
-  }
-
-  button {
-    margin: 1rem;
-  }
 `;

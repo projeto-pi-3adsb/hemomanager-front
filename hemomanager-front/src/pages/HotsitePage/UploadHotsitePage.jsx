@@ -161,19 +161,15 @@ export function UploadHotsitePage() {
               <tbody>
                 <tr>
                   <td>
-                    <span>Teste</span>
                     <div>
                       <BorderlessButton
                         doSomething={() => getCSV()}
-                        text="BAIXAR CSV"
+                        text="BAIXAR COM CSV"
                       />
                       <BorderlessButton
                         doSomething={() => getTxt()}
-                        text="BAIXAR TXT"
+                        text="BAIXAR COM TXT"
                       />
-                      <i>
-                        <Delete28Filled />
-                      </i>
                     </div>
                   </td>
                 </tr>
