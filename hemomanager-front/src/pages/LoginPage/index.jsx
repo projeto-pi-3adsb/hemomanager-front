@@ -21,10 +21,6 @@ export function LoginPage() {
     sessionStorage.getItem("userType") === "1" ? 1 : 2
   );
 
-  const [userType, setUserType] = useState(
-    sessionStorage.getItem("userType") === "1" ? 1 : 2
-  );
-
   const [error, setError] = useState(false);
 
   const [name, setName] = useState("");
