@@ -64,7 +64,7 @@ export function HourAvailableList({ isOpen }) {
                       )}
                     </td>
                     <td>
-                      {hour.scheduledTime}
+                      {hour.scheduledTime.slice(0, 5)}
                       <b>h</b>
                     </td>
                     <td>

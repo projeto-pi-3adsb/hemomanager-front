@@ -60,6 +60,7 @@ export function SchedulesUser() {
               <SchedulesCard
                 description={schedule.hemocenter.zipCode}
                 title={schedule.hemocenter.name}
+                date={schedule.scheduleHemocenter.scheduledDate}
                 hour={schedule.scheduleHemocenter.scheduledTime.slice(0, 5)}
                 doCancel={() =>
                   doCancelSchedule(

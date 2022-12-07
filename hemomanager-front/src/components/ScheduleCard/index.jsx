@@ -2,9 +2,7 @@ import { Delete20Filled } from "@fluentui/react-icons";
 import { BorderlessButton } from "../shared/BorderlessButton";
 import { Container } from "./styles";
 
-
-
-export function SchedulesCard({ title, description, doCancel, hour }) {
+export function SchedulesCard({ title, description, doCancel, hour, date }) {
   return (
     <>
       <Container>
@@ -13,7 +11,10 @@ export function SchedulesCard({ title, description, doCancel, hour }) {
           <p>
             <span>{description}</span>
           </p>
-          <span>{hour}</span>
+          <span>
+            Dia {new Intl.DateTimeFormat("pt-BR", {}).format(new Date(date))} às{" "}
+            {hour}h
+          </span>
           <BorderlessButton
             icon={<Delete20Filled />}
             doSomething={doCancel}

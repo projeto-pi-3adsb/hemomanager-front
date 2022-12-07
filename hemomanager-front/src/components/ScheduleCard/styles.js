@@ -28,15 +28,15 @@ export const Container = styled.div`
     }
 
     h1 {
-      height: 2rem;
+      height: 3rem;
       display: flex;
       justify-content: center;
       align-items: center;
       margin: auto;
       font-family: "Francois One", sans-serif;
-      font-size: 2rem;
+      font-size: 1.2rem;
       background-color: var(--background-button);
-      border-radius: 8px;
+      border-radius: 4px;
       color: var(--shape);
     }
 
