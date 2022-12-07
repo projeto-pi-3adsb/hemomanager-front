@@ -172,8 +172,10 @@ export const BoxList = styled.div`
 
 export const BoxButton = styled.div`
   margin-top: 20px;
-  margin-left: 30px;
-  width: 50%;
+  margin-bottom: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 
   div {
     justify-content: right;

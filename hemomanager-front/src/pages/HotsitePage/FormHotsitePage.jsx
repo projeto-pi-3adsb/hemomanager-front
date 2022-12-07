@@ -17,7 +17,7 @@ export function FormHotsitePage() {
   const [cpf, setCpf] = useState("Digite seu CPF aqui!");
   const [birthDate, setBirthDate] = useState("Digite sua data de nascimento aqui!");
   const [password, setPassword] = useState("123");
-
+  const [selectedFile, setSelectedFile] = React.useState(null);
   const [error, setError] = useState(false);
 
   const user = {
@@ -52,6 +52,72 @@ export function FormHotsitePage() {
         sessionStorage.setItem("donorId", resp.data.id);
         doGoToRegister();
 
+      })
+      .catch((erro) => {
+        validateError();
+      });
+  }
+
+  const sendFile = async(event) => {
+    event.preventDefault()
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    try {
+      api
+        .post(
+          "/platelets/upload-txt",
+          {formData},
+          {
+            headers: { "Content-Type": "multipart/form-data" }
+          },
+        )
+        .then((resp) => {
+          sessionStorage.setItem("donorId", resp.data.id);
+          doGoToRegister();
+
+        })
+        .catch((erro) => {
+          validateError();
+        });
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0])
+  }
+
+  function getModel() {
+    api
+      .get(
+        "/platelets/dowload-modelo-txt",
+        {
+          headers: {
+            'Content-Type': 'application/txt',
+          }
+        }
+      )
+      .then((resp) => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(
+          new Blob([resp.data]),
+        );
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute(
+          'download',
+          `Donors.txt`,
+        );
+
+        // Append to html link element page
+        document.body.appendChild(link);
+
+        // Start download
+        link.click();
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link);
       })
       .catch((erro) => {
         validateError();
@@ -121,10 +187,24 @@ export function FormHotsitePage() {
             />
           </div>
         </InputGroup>
+        <div>
+        <form onSubmit={sendFile}>
+          <input type="file" onChange={handleFileSelect}/>
+          <input type="submit" value="Upload File" />
+        </form>
+        </div>
         <BoxButton>
           <BorderlessButton
             doSomething={() => sendRegister()}
             text="ENVIAR"
+          />
+          <BorderlessButton
+            doSomething={() => getModel()}
+            text="BAIXAR MODELO TXT"
+          />
+          <BorderlessButton
+            doSomething={() => sendRegister()}
+            text="UPLOAD DO ARQUIVO"
           />
         </BoxButton>
       </Container>
