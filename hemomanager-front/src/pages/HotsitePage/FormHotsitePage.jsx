@@ -208,14 +208,14 @@ export function FormHotsitePage() {
             doSomething={() => sendRegister()}
             text="UPLOAD DO ARQUIVO"
           />
-          <BorderlessButton
+          {/* <BorderlessButton
             doSomething={() => getModel()}
             text="BAIXAR MODELO TXT"
           />
           <BorderlessButton
             doSomething={() => sendRegister()}
             text="UPLOAD DO ARQUIVO"
-          />
+          /> */}
         </BoxButton>
       </Container>
     </>
