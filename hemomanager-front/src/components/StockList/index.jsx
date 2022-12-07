@@ -21,9 +21,43 @@ export function StockList({ isOpen }) {
       .then(() => setBags(prev => prev.filter(bag => bag.id !== bagId)));
   }
 
+  function getCSV() {
+    api
+      .get(
+        "/stock/download-csv/" + sessionStorage.getItem("id"),
+        {
+          headers: {
+            'Content-Type': 'application/txt',
+          }
+        }
+      )
+      .then((resp) => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(
+          new Blob([resp.data]),
+        );
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute(
+          'download',
+          `stock.csv`,
+        );
+
+        // Append to html link element page
+        document.body.appendChild(link);
+
+        // Start download
+        link.click();
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link);
+      });
+  }
+
   return (
     <Container>
       <h1>
+        <BorderlessButton doSomething={() => getCSV()}text="BAIXAR COM CSV"/>
         <BorderlessButton doSomething={isOpen} text="INSERIR BOLSA" />
       </h1>
       <div>
