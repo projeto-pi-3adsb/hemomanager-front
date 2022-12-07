@@ -21,8 +21,6 @@ import {
 import { UpdateDisabled, UploadFile } from "@mui/icons-material";
 
 import upload from "../../assets/upload-img.png";
-import Dropzone from "react-dropzone";
-import Papa from "papaparse";
 
 export function UploadHotsitePage() {
   const navigate = useNavigate();
@@ -31,16 +29,82 @@ export function UploadHotsitePage() {
     sessionStorage.setItem("page", 1);
   }
 
-  const handleUpload = (files) => {
-    Papa.parse(files[0], {
-      header: true,
-      skipEmptyLines: true,
-      complete: function (results) {
-        console.log(results.data)
-        salvarCSV(results.data)
-      }
-    })
+  function getCSV() {
+    api
+      .get(
+        "/platelets/dowload-csv?donorId=" + sessionStorage.getItem("donorId"),
+        {
+          headers: {
+            'Content-Type': 'application/txt',
+          }
+        }
+      )
+      .then((resp) => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(
+          new Blob([resp.data]),
+        );
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute(
+          'download',
+          `Donors.csv`,
+        );
+
+        // Append to html link element page
+        document.body.appendChild(link);
+
+        // Start download
+        link.click();
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link);
+      });
   }
+
+  function getTxt() {
+    api
+      .get(
+        "/platelets/dowload-txt?donorId=" + sessionStorage.getItem("donorId"),
+        {
+          headers: {
+            'Content-Type': 'application/txt',
+          }
+        }
+      )
+      .then((resp) => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(
+          new Blob([resp.data]),
+        );
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute(
+          'download',
+          `Donors.txt`,
+        );
+
+        // Append to html link element page
+        document.body.appendChild(link);
+
+        // Start download
+        link.click();
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link);
+      });
+  }
+
+  // const handleUpload = (files) => {
+  //   Papa.parse(files[0], {
+  //     header: true,
+  //     skipEmptyLines: true,
+  //     complete: function (results) {
+  //       console.log(results.data)
+  //       salvarCSV(results.data)
+  //     }
+  //   })
+  // }
 
   function salvarCSV(dados) {
     if (dados.length != 0) {
@@ -100,11 +164,11 @@ export function UploadHotsitePage() {
                     <span>DKASKDKASD</span>
                     <div>
                       <BorderlessButton
-                        doSomething={() => doGoToRegister()}
+                        doSomething={() => getCSV()}
                         text="BAIXAR COM CSV"
                       />
                       <BorderlessButton
-                        doSomething={() => doGoToRegister()}
+                        doSomething={() => getTxt()}
                         text="BAIXAR COM TXT"
                       />
                       <i>
