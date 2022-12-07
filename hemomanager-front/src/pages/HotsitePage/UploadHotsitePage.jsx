@@ -128,7 +128,7 @@ export function UploadHotsitePage() {
             <span>DOAÇÃO DE PLAQUETAS</span>
           </div>
           <Title>BAIXE SEU FORMULÁRIO E LEVE AO HEMOCENTRO!!</Title>
-          <p>VOCÊ TAMBÉM PODE FAZER O UPLOUD DO SEU FORMULÁRIO!</p>
+          <p>VOCÊ TAMBÉM PODE FAZER O UPLOAD DO SEU FORMULÁRIO!</p>
         </Header>
         <BoxUpload>
           {/* <Dropzone
@@ -161,15 +161,15 @@ export function UploadHotsitePage() {
               <tbody>
                 <tr>
                   <td>
-                    <span>DKASKDKASD</span>
+                    <span>Teste</span>
                     <div>
                       <BorderlessButton
                         doSomething={() => getCSV()}
-                        text="BAIXAR COM CSV"
+                        text="BAIXAR CSV"
                       />
                       <BorderlessButton
                         doSomething={() => getTxt()}
-                        text="BAIXAR COM TXT"
+                        text="BAIXAR TXT"
                       />
                       <i>
                         <Delete28Filled />
