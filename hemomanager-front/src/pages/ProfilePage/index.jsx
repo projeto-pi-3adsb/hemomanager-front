@@ -161,7 +161,22 @@ export function ProfilePage() {
       });
   }
 
+  function doFormatTime(num) {
+    console.log("RECEIVED TIME:", num);
+    let numConvert = num;
+    num = numConvert.replace(',',':');
+    console.log("RETURNED TIME:", num);
+
+    var hours = Math.floor(num / 60);
+    var minutes = num % 60;
+    console.log(hours + ":" + (minutes < 10 ? "0" + minutes : minutes))
+    return hours + ":" + (minutes < 10 ? "0" + minutes : minutes);
+  }
+
   function doEditData() {
+    let formattedStartOperation = doFormatTime(startOperation[0] * 60 + startOperation[1]);
+    let formattedEndOperation = doFormatTime(endOperation[0] * 60 + endOperation[1]);
+
     const hemocenter = {
       name,
       email,
@@ -170,8 +185,8 @@ export function ProfilePage() {
       cpnj,
       zipCode,
       zipNumber,
-      startOperation,
-      endOperation,
+      startOperation: formattedStartOperation,
+      endOperation: formattedEndOperation,
       qttySimultServices,
     };
 

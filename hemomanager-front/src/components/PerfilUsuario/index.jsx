@@ -63,17 +63,25 @@ export function PerfilUsuario() {
   }
 
   function doEditData() {
+    let dateReplace = birthDate;
+    dateReplace = dateReplace.replace(',','-');
+    dateReplace = dateReplace.replace(',','-');
+
     const user = {
       name,
       email,
       password,
       id,
       cpf,
-      birthDate,
+      birthDate: dateReplace,
       sex,
       phone,
       validDonor,
     };
+
+    console.log("replace", dateReplace);
+    console.log("date normal", birthDate);
+    console.log("objeto", user);
 
     api
       .put(`/donor/${id}`, user)
