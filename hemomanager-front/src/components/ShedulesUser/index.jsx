@@ -21,31 +21,10 @@ export function SchedulesUser() {
       .get(`/schedules/donor/${sessionStorage.id}`)
       .then((resp) => {
         setSchedules(resp.data);
-        console.log("DATA DO ARRAY:", schedules);
-      })
-      .then(() => {
-        schedules
-          .forEach((schedule, index) => {
-            axios
-              .get(
-                `https://viacep.com.br/ws/${schedule.hemocenter.zipCode}/json/`
-              )
-              .then((data) => {
-                schedule.hemocenter.zipCode = data.logradouro;
-                console.log("VIACEP: ", locals);
-              });
-          })
-          .catch((error) => {
-            console.log("Erro AXIOS :", error);
-          });
       })
       .catch((erro) => console.log(erro));
   }
 
-  function insertData(resp) {
-    setSchedules(resp.data);
-    getLocalAddress(resp.data.hemocenter.zipCode);
-  }
 
   function validateDelete() {
     setOpen(true);
@@ -64,17 +43,7 @@ export function SchedulesUser() {
     return hours + ":" + (minutes < 10 ? "0" + minutes : minutes);
   }
 
-  function getLocalAddress(zipCode) {
-    axios
-      .get(`https://viacep.com.br/ws/${zipCode}/json/`)
-      .then((data) => {
-        setLocals(data);
-        console.log("LOCAL", locals);
-      })
-      .catch((error) => {
-        console.log("Erro :", error);
-      });
-  }
+
 
   useEffect(() => {
     getData();
